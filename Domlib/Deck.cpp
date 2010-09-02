@@ -34,7 +34,22 @@ Deck::Deck( CARDSET set )
 
 Deck::~Deck( void )
 {
+    delete m_Copper;
+    delete m_Silver;
+    delete m_Gold;
+    delete m_Estate;
+    delete m_Duchy;
+    delete m_Province;
+    delete m_Curse;
 
+    while( m_KingdomCards.size() )
+    {
+        Card* pCard = m_KingdomCards.back();
+
+        delete pCard;
+
+        m_KingdomCards.pop_back();
+    }
 }
 
 Card* Deck::GetCard( CARDID id )
