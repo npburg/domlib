@@ -1,0 +1,9 @@
+#summary Activities and TODO items
+
+Big-ticket items:
+
+ # Action cards need implementing.
+ # Phases not completely ironed out.
+ # Fix destructors not deleting child objects
+ # AI hooks will need refining in light of action cards
+ # Need to determine winners and the best reporting mechanism ( CSV, xml, etc )
