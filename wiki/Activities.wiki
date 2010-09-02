@@ -7,3 +7,4 @@ Big-ticket items:
  # Fix destructors not deleting child objects
  # AI hooks will need refining in light of action cards
  # Need to determine winners and the best reporting mechanism ( CSV, xml, etc )
+ # Need to decide about engine versus AI error handling
