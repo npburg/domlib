@@ -1,0 +1,20 @@
+#summary Domlib Documentation
+#labels Phase-Requirements,Phase-Implementation
+
+= Introduction =
+
+Domlib is a Dominion card game engine with AI exports for decision making tasks. The goal is to allow the engine to iterate over a set of games to create a competitive environment for custom AIs. The goal is to keep the AI exports simple and let the engine do all the game validation, phase execution, and card tasks.
+
+= AI Reference =
+
+== Interfaces ===
+
+Within the domlib project, there are a set of public interfaces the game engine uses to communicate with the custom AI.
+
+=== IPlayer ===
+
+IPlayer is the interface an AI will inherit from to implement a custom AI. The engine will call into its public interfaces to make AI decisions.
+
+=== IGameEngine ===
+
+TBD
