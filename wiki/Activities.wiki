@@ -11,6 +11,7 @@
  # Need to determine winners and the best reporting mechanism ( CSV, xml, etc )
  # Need to decide about engine versus AI error handling
  # Determine when/how to make a major release
+ # Add correct licensing to each file.
 
 == Long Term Brainstorm ==
 
