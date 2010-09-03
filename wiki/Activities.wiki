@@ -1,6 +1,8 @@
 #summary Activities and TODO items
 
-Big-ticket items:
+= Activities & TODO Items =
+
+== Large Items ==
 
  # Action cards need implementing.
  # Phases not completely ironed out.
@@ -8,3 +10,12 @@ Big-ticket items:
  # AI hooks will need refining in light of action cards
  # Need to determine winners and the best reporting mechanism ( CSV, xml, etc )
  # Need to decide about engine versus AI error handling
+ # Determine when/how to make a major release
+
+== Long Term Brainstorm ==
+
+ # Have the engine profile AI to determine their "style". Useful for data reporting
+ # Load AIs via DLL at the command line.
+  # May make it easier to share AIs for competitive purposes.
+  # May make it easier to iterate over combination of AIs via command line.
+  # Requires a "versioning" of the engine.
