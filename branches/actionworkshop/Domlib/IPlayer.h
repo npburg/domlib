@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 namespace Domlib
 {
 
@@ -41,6 +43,9 @@ public:
     virtual bool    ContinueBuying( int buysRemaining ) = 0;
 
     virtual CARDID  BuyCard( int buyingPower ) = 0;
+
+    // Gaining
+    virtual CARDID  SelectCardToGain( const std::vector<IDomCard*>& cards ) = 0;
 
 private:
 

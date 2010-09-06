@@ -9,6 +9,8 @@ namespace Domlib
 
 class Action;
 class Turn;
+class Game;
+class Player;
 enum CARDID;
 
 class Card
@@ -25,7 +27,10 @@ public:
 
     void AddBaseAction( Action* action );
 
-    void Execute( Turn* turn );
+    virtual void Execute(
+        Game* pGame,
+        Turn* pTurn,
+        Player* pPlayer );
 
     int Worth( void ) const;
 

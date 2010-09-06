@@ -149,6 +149,38 @@ int Player::VictoryPoints( void ) const
     return points;
 }
 
+Card* Player::SelectCardToGain( const std::vector<Card*>& cards )
+{
+    Card* pSelectedCard = NULL;
+
+    // Ask AI
+    const std::vector<AI::IDomCard*>& pDomCards = 
+         (std::vector<AI::IDomCard*>&)cards;
+    CARDID selectedId = m_pPlayerAI->SelectCardToGain( pDomCards );
+
+    // Validate and return selection
+    if( selectedId != CARDID_UNKNOWN )
+    {
+        bool cardFound = false;
+        std::vector<Card*>::const_iterator cardItr = cards.begin();
+        while( cardItr != cards.end() && !cardFound )
+        {
+            Card* pCard = *cardItr;
+
+            if( pCard->CardId() == selectedId )
+            {
+                pSelectedCard = pCard;
+
+                cardFound = true;
+            }
+
+            cardItr++;
+        }
+    }
+
+    return pSelectedCard;
+}
+
 bool Player::IsDiscardPileEmpty( void ) const
 {
     return ( m_DiscardPile.size() == 0 );

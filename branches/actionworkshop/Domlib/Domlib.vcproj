@@ -239,6 +239,22 @@
 					RelativePath=".\Deck.h"
 					>
 				</File>
+				<Filter
+					Name="Base"
+					>
+					<File
+						RelativePath=".\BaseDeck.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Village.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Workshop.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="AI Interfaces"

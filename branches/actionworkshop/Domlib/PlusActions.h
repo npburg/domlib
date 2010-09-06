@@ -25,9 +25,12 @@ public:
 
     };
 
-    virtual void Execute( Turn* turn )
+    virtual void Execute(
+        Game* pGame,
+        Turn* pTurn,
+        Player* pPlayer )
     {
-        turn->AddActions( _TAmount );
+        pTurn->AddActions( _TAmount );
     }
 };
 

@@ -5,6 +5,7 @@
 #include "PlusBuys.h"
 #include "PlusCards.h"
 #include "PlusTreasure.h"
+#include "BaseDeck.h"
 
 namespace Domlib
 {
@@ -53,7 +54,7 @@ Card* Deck::GetCard( CARDID id )
         case CARDID_CURSE:      pCardOut = GetCurse(); break;
         default:
             {
-                while( cardItr != m_KingdomCards.end() && pCardOut != NULL )
+                while( cardItr != m_KingdomCards.end() && pCardOut == NULL )
                 {
                     Card* pCard = *cardItr;
 
@@ -124,18 +125,14 @@ void Deck::CreateBaseCardSet( void )
     pKingdomCard->AddBaseAction( new BaseActions::PlusTreasure<2>() );
     m_KingdomCards.push_back( pKingdomCard );
 
-    pKingdomCard = new Card( CARDID_VILLAGE, true, false, false, 3, 0 );
-    pKingdomCard->AddBaseAction( new BaseActions::PlusCards<1>() );
-    pKingdomCard->AddBaseAction( new BaseActions::PlusActions<2>() );
-    m_KingdomCards.push_back( pKingdomCard );
+    m_KingdomCards.push_back( new Village() );
 
     pKingdomCard = new Card( CARDID_WOODCUTTER, true, false, false, 3, 0 );
     pKingdomCard->AddBaseAction( new BaseActions::PlusBuys<1>() );
     pKingdomCard->AddBaseAction( new BaseActions::PlusTreasure<2>() );
     m_KingdomCards.push_back( pKingdomCard );
 
-    pKingdomCard = new Card( CARDID_WORKSHOP, true, false, false, 3, 0 );
-    m_KingdomCards.push_back( pKingdomCard );
+    m_KingdomCards.push_back( new Workshop() );
 
     pKingdomCard = new Card( CARDID_BUREAUCRAT, true, false, false, 4, 0 );
     m_KingdomCards.push_back( pKingdomCard );
