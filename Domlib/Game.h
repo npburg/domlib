@@ -57,6 +57,8 @@ public:
 
     void RegisterPlayer( AI::IPlayer* player );
 
+    void RequireCard( CARDID id );
+
     void Play( void );
 
     Deck*                   GetDeck( void );
@@ -69,6 +71,8 @@ public:
     bool                    TakeGold( void );
     bool                    TakeCurse( void );
     bool                    TakeKingdomCard( Card* pCard );
+
+    virtual void            GetAvailableCards( std::vector<Card*>& cards );
 
     // IGameEngine interfaces
     virtual AI::IDomCard*   GetCard( CARDID id );
@@ -113,6 +117,9 @@ private:
 
     // Cards ( not all in play )
     Deck*                               m_pDeck;
+
+    // Modifiers
+    std::vector<Card*>                  m_pRequiredCards;
 };
 
 }

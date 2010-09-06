@@ -38,7 +38,10 @@ void ActionPhase::Execute(
             {
                 // Execute the action card
                 // requested by the player
-                pCard->Execute( pTurn );
+                pCard->Execute( 
+                    pGame, 
+                    pTurn, 
+                    pPlayer );
             }
             else
             {

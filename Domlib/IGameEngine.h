@@ -14,7 +14,11 @@ class __declspec(novtable) IGameEngine
 {
 public:
 
-    // Deck
+    /*
+        Deck Queries
+
+        Returns specific cards based on name and id.
+    */
     virtual IDomCard*   GetCard( CARDID id ) = 0;
     virtual IDomCard*   GetCopper( void ) = 0;
     virtual IDomCard*   GetSilver( void ) = 0;

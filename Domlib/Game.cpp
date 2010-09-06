@@ -74,7 +74,40 @@ void Game::Play( void )
     m_pDeck->SelectRandomKingdomCards(
         KINGDOM_PILES,
         kingdomCards );
+    
+    // Add required cards
+    if( m_pRequiredCards.size() )
+    {
+        std::vector<Card*>::iterator cardItr = kingdomCards.begin();
+        std::vector<Card*>::iterator removedItr = m_pRequiredCards.begin();
+        while( cardItr != kingdomCards.end() &&
+               m_pRequiredCards.size() )
+        {
+            while( removedItr != m_pRequiredCards.end() )
+            {
+                if( *cardItr == *removedItr )
+                {
+                    m_pRequiredCards.erase( removedItr );
+                    break;
+                }
 
+                removedItr++;
+            }
+            removedItr = m_pRequiredCards.begin();
+
+            cardItr++;
+        }
+
+        if( m_pRequiredCards.size() )
+        {
+            kingdomCards.insert(
+                kingdomCards.end(),
+                m_pRequiredCards.begin(),
+                m_pRequiredCards.end() );
+        }
+    }
+
+    // Create piles out of selected cards
     for( int i = 0; i < KINGDOM_PILES; i++ )
     {
         Card* pKingdomCard = kingdomCards.at( i );
@@ -182,6 +215,30 @@ bool Game::TakeKingdomCard( Card* pCard )
     return success;
 }
 
+void Game::GetAvailableCards( std::vector<Card*>& cards )
+{
+    cards.clear();
+
+    if( m_Coppers.second > 0 )      cards.push_back( m_Coppers.first );
+    if( m_Silvers.second > 0 )      cards.push_back( m_Silvers.first );
+    if( m_Golds.second > 0 )        cards.push_back( m_Golds.first );
+    if( m_Curses.second > 0 )       cards.push_back( m_Curses.first );
+    if( m_Estates.second > 0 )      cards.push_back( m_Estates.first );
+    if( m_Duchies.second > 0 )      cards.push_back( m_Duchies.first );
+    if( m_Provinces.second > 0 )    cards.push_back( m_Provinces.first );
+
+    std::vector< std::pair<Card*,int> >::iterator pileItr = m_KingdomCards.begin();
+
+    while( pileItr != m_KingdomCards.end() )
+    {
+        if( (*pileItr).second > 0 )
+        {
+            cards.push_back( (*pileItr).first );
+        }
+        pileItr++;
+    }
+}
+
 Deck* Game::GetDeck( void )
 {
     return m_pDeck;
@@ -255,6 +312,33 @@ void Game::RegisterPlayer( AI::IPlayer* pPlayerAI )
     Player* pNewPlayer = new Player( pPlayerAI );
 
     m_Players.push_back( pNewPlayer );
+}
+
+void Game::RequireCard( CARDID id )
+{
+    if( id != CARDID_UNKNOWN )
+    {
+        Card* pCard = m_pDeck->GetCard( id );
+
+        // Validate duplicates
+        bool isDuplicate = false;
+        std::vector<Card*>::iterator cardItr = m_pRequiredCards.begin();
+        while( cardItr != m_pRequiredCards.end() )
+        {
+            if( (*cardItr)->CardId() == id )
+            {
+                isDuplicate = true;
+                break;
+            }
+
+            cardItr++;
+        }
+
+        if( !isDuplicate )
+        {
+            m_pRequiredCards.push_back( pCard );
+        }
+    }
 }
 
 }

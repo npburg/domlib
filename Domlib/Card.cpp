@@ -73,7 +73,10 @@ void Card::AddBaseAction( Action* action )
     m_BaseActions.push_back( action );
 }
 
-void Card::Execute( Turn* turn )
+void Card::Execute(
+    Game* pGame,
+    Turn* pTurn,
+    Player* pPlayer )
 {
     std::vector<Action*>::iterator baseActionItr = m_BaseActions.begin();
     while( baseActionItr != m_BaseActions.end() )
@@ -82,7 +85,7 @@ void Card::Execute( Turn* turn )
 
         if( baseAction )
         {
-            baseAction->Execute( turn );
+            baseAction->Execute( pGame, pTurn, pPlayer );
         }
 
         baseActionItr++;

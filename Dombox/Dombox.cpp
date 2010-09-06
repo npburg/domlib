@@ -56,6 +56,33 @@ public:
 
         return id;
     }
+
+    virtual Domlib::CARDID SelectCardToGain( const std::vector<Domlib::AI::IDomCard*>& cards )
+    {
+        Domlib::CARDID id = Domlib::CARDID_UNKNOWN;
+
+        std::vector<Domlib::AI::IDomCard*>::const_iterator cardItr = cards.begin();
+
+        // Buy a village
+        while( cardItr != cards.end() )
+        {
+            Domlib::AI::IDomCard* pCard = *cardItr;
+
+            if( pCard->IsAction() )
+            {
+                Domlib::CARDID currentCardId = pCard->CardId();
+
+                if( currentCardId == Domlib::CARDID_VILLAGE )
+                {
+                    id = currentCardId;
+                }
+            }
+
+            cardItr++;
+        }
+
+        return id;
+    };
 };
 
 int _tmain( int argc, _TCHAR* argv[] )
@@ -65,6 +92,9 @@ int _tmain( int argc, _TCHAR* argv[] )
     basicGame.RegisterPlayer( new PureMoney() );
     basicGame.RegisterPlayer( new PureMoney() );
     basicGame.RegisterPlayer( new PureMoney() );
+
+    basicGame.RequireCard( Domlib::CARDID_WORKSHOP );
+    basicGame.RequireCard( Domlib::CARDID_VILLAGE );
 
     basicGame.Play();
 

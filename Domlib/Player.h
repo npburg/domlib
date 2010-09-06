@@ -30,6 +30,9 @@ public:
 
     int     VictoryPoints( void ) const;
 
+    // Gaining Cards
+    Card*   SelectCardToGain( const std::vector<Card*>& cards );
+
     // ActionPhase
     bool    HasActionCardInHand( void ) const;
 
