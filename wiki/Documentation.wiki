@@ -7,14 +7,4 @@ Domlib is a Dominion card game engine with AI exports for decision making tasks.
 
 = AI Reference =
 
-== Interfaces ===
-
-Within the domlib project, there are a set of public interfaces the game engine uses to communicate with the custom AI.
-
-=== IPlayer ===
-
-IPlayer is the interface an AI will inherit from to implement a custom AI. The engine will call into its public interfaces to make AI decisions.
-
-=== IGameEngine ===
-
 TBD
