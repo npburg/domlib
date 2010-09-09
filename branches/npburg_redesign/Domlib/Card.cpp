@@ -1,66 +1,92 @@
+#include "StdAfx.h"
 #include "Card.h"
-#include "Action.h"
-#include "Game.h"
 
 namespace Domlib
 {
 
-Card::Card( void )
-    :
-    m_CardId( CARDID_UNKNOWN ),
-    m_IsAction( false ),
-    m_IsTreasure( false ),
-    m_IsVictory( false ),
-    m_Cost( 0 ),
-    m_Worth( 0 )
+Card::Card( 
+           std::wstring name,
+           CARDID cardId, 
+           CARDTYPE cardType, 
+           int victoryPoints,
+           Treasure treasureValue,
+           Treasure cost )
+           :
+           m_Name( name ),
+           m_CardId( cardId ),
+           m_CardType( cardType ),
+           m_VictoryPoints( victoryPoints ),
+           m_TreasureValue( treasureValue ),
+           m_Cost( cost )
 {
 }
 
-Card::Card( CARDID cardid, bool action, bool treasure, bool victory, int cost, int worth )
-    :
-    m_CardId( cardid ),
-    m_IsAction( action ),
-    m_IsTreasure( treasure ),
-    m_IsVictory( victory ),
-    m_Cost( cost ),
-    m_Worth( worth )
+Card::~Card( void ) {}
+
+void Card::OnDurationPhase( Engine* pEngine ) {}
+
+void Card::OnActionPhase( Engine* pEngine ) {}
+
+void Card::OnReaction( Engine* pEngine, Player* pPlayer ) {}
+
+Treasure Card::OnTreasurePhase( Engine* pEngine ) 
 {
+    return this->TreasureValue( pEngine );
 }
 
-Card::~Card( void )
+void Card::OnBuyPhase( Engine* pEngine, ICard* pCard ) {}
+
+void Card::OnCleanUpPhase( Engine* pEngine ) {}
+
+void Card::OnBuy( Engine* pEngine ) {}
+
+int Card::OnScoring( Engine* pEngine ) { return VictoryPoints( pEngine ); }
+
+void Card::OnAttack( Engine* pEngine, Player* pPlayer ) {}
+
+void Card::Attack( Engine* pEngine, AttackWhom attackWhom )
 {
-    while( m_BaseActions.size() )
+    Player* pAttackingPlayer;
+    Player* pCurrentPlayer;
+    
+    pAttackingPlayer = pCurrentPlayer = pEngine->GetCurrentPlayer();
+
+    if( attackWhom == ATTACK_ALL )
     {
-        Action* action = m_BaseActions.back();
-        delete action;
-        m_BaseActions.pop_back();
+        OnAttack( pEngine, pCurrentPlayer );
     }
+    else if( attackWhom == ATTACK_OTHERS )
+    {
+        // fall through to attack others
+    }
+    else
+    {
+        // TODO: report error
+        throw std::wstring( L"Error: Card::Attack" );
+        return;
+    }
+
+    do
+    {
+        pCurrentPlayer = pEngine->GetNextPlayer( pCurrentPlayer );
+        AI* pCurrentAi = pCurrentPlayer->GetAI();
+
+        ICard* pReactionCard = pCurrentAi->OnAttack( this );
+        ( (Card*) pReactionCard)->OnReaction( pEngine, pCurrentPlayer );
+
+        if( pReactionCard->CardId() != CARDID_MOAT ||
+            pCurrentPlayer->IsCardInDuration( CARDID_LIGHTHOUSE ) == false )
+        {
+            OnAttack( pEngine, pCurrentPlayer );
+        }
+    }
+    while( pCurrentPlayer != pAttackingPlayer );
 }
 
-int Card::Worth( void ) const
-{
-    return m_Worth;
-}
 
-
-bool Card::IsAction( void ) const
+ICard* Card::GetCard( CARDID cardId )
 {
-    return m_IsAction;
-}
-
-bool Card::IsTreasure( void ) const
-{
-    return m_IsTreasure;
-}
-
-bool Card::IsVictory( void ) const
-{
-    return m_IsVictory;
-}
-
-int Card::Cost( void ) const
-{
-    return m_Cost;
+    return m_CardDeck.GetCard( cardId );
 }
 
 CARDID Card::CardId( void ) const
@@ -68,25 +94,88 @@ CARDID Card::CardId( void ) const
     return m_CardId;
 }
 
-void Card::AddBaseAction( Action* action )
+CARDTYPE Card::CardType( void ) const
 {
-    m_BaseActions.push_back( action );
+    return m_CardType;
 }
 
-void Card::Execute( Turn* turn )
+int Card::VictoryPoints( IEngine* pEngine ) const
 {
-    std::vector<Action*>::iterator baseActionItr = m_BaseActions.begin();
-    while( baseActionItr != m_BaseActions.end() )
+    return m_VictoryPoints;
+}
+
+Treasure Card::Cost( IEngine* pEngine ) const
+{
+    return m_Cost;
+}
+
+Treasure Card::TreasureValue( IEngine* pEngine ) const
+{
+    return m_TreasureValue;
+}
+
+bool Card::IsActionCard( void ) const
+{
+    switch( m_CardType )
     {
-        Action* baseAction = *baseActionItr;
-
-        if( baseAction )
-        {
-            baseAction->Execute( turn );
-        }
-
-        baseActionItr++;
+    case CARDTYPE_ACTION:
+    case CARDTYPE_ACTION_ATTACK:
+    case CARDTYPE_ACTION_REACTION:
+    case CARDTYPE_ACTION_VICTORY:
+    case CARDTYPE_ACTION_DURATION:
+        return true;
+    default:
+        return false;
     }
+}
+
+bool Card::IsAttackCard( void ) const
+{
+    return ( m_CardType == CARDTYPE_ACTION_ATTACK );
+}
+
+bool Card::IsReactionCard( void ) const
+{
+    return ( m_CardType == CARDTYPE_ACTION_REACTION );
+}
+
+bool Card::IsDurationCard( void ) const
+{
+    return ( m_CardType == CARDTYPE_ACTION_DURATION );
+}
+
+bool Card::IsTreasureCard( void ) const
+{
+    switch( m_CardType )
+    {
+    case CARDTYPE_TREASURE:
+    case CARDTYPE_TREASURE_VICTORY:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Card::IsVictoryCard( void ) const
+{
+    switch( m_CardType )
+    {
+    case CARDTYPE_VICTORY:
+    case CARDTYPE_TREASURE_VICTORY:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Card::IsCurseCard( void ) const
+{
+    return ( m_CardType == CARDTYPE_CURSE );
+}
+
+bool Card::IsNullCard( void ) const
+{
+    return ( m_CardType == CARDTYPE_NULL );
 }
 
 } // namespace Domlib
