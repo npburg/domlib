@@ -1,55 +1,103 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include "IDomCard.h"
+#include "Domlib.h"
+#include "Engine.h"
+#include "Player.h"
 
 namespace Domlib
 {
 
-class Action;
-class Turn;
-enum CARDID;
+enum AttackWhom
+{
+    ATTACK_OTHERS,
+    ATTACK_ALL,
+};
 
-class Card
-    :
-    public AI::IDomCard
+class Card : 
+    public ICard
 {
 public:
-
-    Card( void );
-
-    Card( CARDID cardid, bool action, bool treasure, bool victory, int cost, int worth );
-
     virtual ~Card( void );
 
-    void AddBaseAction( Action* action );
+    // Engine Interfaces
+    virtual void OnDurationPhase( Engine* pEngine );
+    virtual void OnActionPhase( Engine* pEngine );
+    virtual Treasure OnTreasurePhase( Engine* pEngine );
+    virtual void OnBuyPhase( Engine* pEngine, ICard* pCard );
+    virtual void OnCleanUpPhase( Engine* pEngine );
+    virtual void OnBuy( Engine* pEngine );
+    virtual int  OnScoring( Engine* pEngine );
 
-    void Execute( Turn* turn );
+    // AI Interfaces ( class ICard )
+            ICard*      GetCard( CARDID cardId );
+    virtual CARDID      CardId( void ) const;
+    virtual CARDTYPE    CardType( void ) const;
+    virtual int         VictoryPoints( IEngine* pEngine ) const;
+    virtual Treasure    Cost( IEngine* pEngine ) const;
+    virtual Treasure    TreasureValue( IEngine* pEngine ) const;
+    virtual bool        InList( IEngine* pEngine, ICardList cardList ) const;
 
-    int Worth( void ) const;
+    virtual bool        IsActionCard( void ) const;
+    virtual bool        IsAttackCard( void ) const;
+    virtual bool        IsReactionCard( void ) const;
+    virtual bool        IsDurationCard( void ) const;
+    virtual bool        IsTreasureCard( void ) const;
+    virtual bool        IsVictoryCard( void ) const;
+    virtual bool        IsCurseCard( void ) const;
+    virtual bool        IsNullCard( void ) const;
 
-    // IDomCard Interfaces
-    virtual bool IsAction( void ) const;
+    static bool         CardListsMatch( ICardList listA, 
+                                        ICardList listB );
 
-    virtual bool IsTreasure( void ) const;
+protected:
+    Card( 
+        std::wstring name,
+        CARDID cardId, 
+        CARDTYPE cardType, 
+        int victoryPoints,
+        Treasure treasureValue,
+        Treasure cost );
 
-    virtual bool IsVictory( void ) const;
+    void Attack( Engine* pEngine, AttackWhom attackWhom );
+    virtual void OnAttack( Engine* pEngine, Player* pPlayer );
+    virtual void OnReaction( Engine* pEngine, Player* pPlayer );
 
-    virtual int Cost( void ) const;
-
-    virtual CARDID CardId( void ) const;
+    const std::wstring      m_Name;
+    const CARDID            m_CardId;
+    const CARDTYPE          m_CardType;
+    const int               m_VictoryPoints;
+    const Treasure          m_TreasureValue;
+    const Treasure          m_Cost;
 
 private:
-    CARDID                  m_CardId;
-    bool                    m_IsAction;
-    bool                    m_IsTreasure;
-    bool                    m_IsVictory;
-    int                     m_Cost;
-    
-    int                     m_Worth;
+    typedef std::map<CARDID, ICard*>    ICardMap;
+    typedef ICardMap::const_iterator    ICardMapConstIter;
+    typedef std::pair<CARDID, ICard*>   ICardMapPair;
 
-    std::vector<Action*>    m_BaseActions;
+    class CardFactory
+    {
+    public:
+        CardFactory( void );
+        ~CardFactory( void );
+
+        ICard* GetCard( CARDID cardId );
+
+    private:
+        void    AddCard( ICard* pCard );
+        ICard*  CreateCard( CARDID cardId );
+
+        ICardMap m_CardMap;
+        ICard*  m_pNullCard;
+    };
+
+    static CardFactory m_CardDeck;
 };
+
+// TODO: Delete this if not used
+/*
+typedef std::list<Card*>            CardList;
+typedef CardList::iterator          CardListIter;
+typedef CardList::const_iterator    CardListConstIter;
+*/
 
 } // namespace Domlib
