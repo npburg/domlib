@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DominionAITester", "DominionAITester\DominionAITester.vcproj", "{3CFAE86B-5329-4136-A1E5-786644D5CC8C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2893F16F-7DED-467E-8993-7FD97510A41E} = {2893F16F-7DED-467E-8993-7FD97510A41E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Domlib", "Domlib\Domlib.vcproj", "{2893F16F-7DED-467E-8993-7FD97510A41E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CFAE86B-5329-4136-A1E5-786644D5CC8C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3CFAE86B-5329-4136-A1E5-786644D5CC8C}.Debug|Win32.Build.0 = Debug|Win32
+		{3CFAE86B-5329-4136-A1E5-786644D5CC8C}.Release|Win32.ActiveCfg = Release|Win32
+		{3CFAE86B-5329-4136-A1E5-786644D5CC8C}.Release|Win32.Build.0 = Release|Win32
+		{2893F16F-7DED-467E-8993-7FD97510A41E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2893F16F-7DED-467E-8993-7FD97510A41E}.Debug|Win32.Build.0 = Debug|Win32
+		{2893F16F-7DED-467E-8993-7FD97510A41E}.Release|Win32.ActiveCfg = Release|Win32
+		{2893F16F-7DED-467E-8993-7FD97510A41E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
