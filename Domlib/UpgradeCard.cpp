@@ -32,8 +32,8 @@ void UpgradeCard::OnActionPhase( Engine* pEngine )
     if( pPlayer->IsCardInHand( pCardToTrash ) )
     {
         pPlayer->TrashFromHand( pCardToTrash );
-        ICard* pCardToGain = pAi->OnGainACardExactly( 
-            pCardToTrash->Cost( pEngine ) + Treasure( 1, 0 ) );
+        Treasure cost = *( (Treasure*) pCardToTrash->Cost( pEngine ) ) + Treasure( 1, 0 );
+        ICard* pCardToGain = pAi->OnGainACardExactly( &cost );
         pPlayer->GainCardOnDiscard( pCardToGain );
     }
     else

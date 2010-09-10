@@ -29,7 +29,7 @@ void IronworksCard::OnActionPhase( Engine* pEngine )
     // the discard pile?
     throw std::wstring( L"IronworksCard::OnActionPhase - To be implemented..." );
 
-    ICard* pCardGained = pPlayer->OnGainACard( Treasure( 4, 0 ) );
+    ICard* pCardGained = pPlayer->OnGainACard( &Treasure( 4, 0 ) );
 
     if( pCardGained->IsActionCard() )
     {

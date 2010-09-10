@@ -29,7 +29,9 @@ void RemodelCard::OnActionPhase( Engine* pEngine )
     if( pPlayer->IsCardInHand( pCardToRemodel ) )
     {
         pPlayer->TrashFromHand( pCardToRemodel );
-        pPlayer->OnGainACard( pCardToRemodel->Cost( pEngine ) + Treasure( 2, 0 ) );
+        Treasure cardTORemodelCost = *( ( Treasure* ) pCardToRemodel->Cost( pEngine ) );
+        Treasure cost = cardTORemodelCost + Treasure( 2, 0 );
+        pPlayer->OnGainACard( &cost );
     }
     else
     {

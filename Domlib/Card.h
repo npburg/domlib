@@ -3,6 +3,7 @@
 #include "Domlib.h"
 #include "Engine.h"
 #include "Player.h"
+#include "Treasure.h"
 
 namespace Domlib
 {
@@ -20,22 +21,22 @@ public:
     virtual ~Card( void );
 
     // Engine Interfaces
-    virtual void OnDurationPhase( Engine* pEngine );
-    virtual void OnActionPhase( Engine* pEngine );
-    virtual Treasure OnTreasurePhase( Engine* pEngine );
-    virtual void OnBuyPhase( Engine* pEngine, ICard* pCard );
-    virtual void OnCleanUpPhase( Engine* pEngine );
-    virtual void OnBuy( Engine* pEngine );
-    virtual int  OnScoring( Engine* pEngine );
+    virtual void        OnDurationPhase( Engine* pEngine );
+    virtual void        OnActionPhase( Engine* pEngine );
+    virtual Treasure    OnTreasurePhase( Engine* pEngine );
+    virtual void        OnBuyPhase( Engine* pEngine, ICard* pCard );
+    virtual void        OnCleanUpPhase( Engine* pEngine );
+    virtual void        OnBuy( Engine* pEngine );
+    virtual int         OnScoring( Engine* pEngine );
 
     // AI Interfaces ( class ICard )
-            ICard*      GetCard( CARDID cardId );
-    virtual CARDID      CardId( void ) const;
-    virtual CARDTYPE    CardType( void ) const;
-    virtual int         VictoryPoints( IEngine* pEngine ) const;
-    virtual Treasure    Cost( IEngine* pEngine ) const;
-    virtual Treasure    TreasureValue( IEngine* pEngine ) const;
-    virtual bool        InList( IEngine* pEngine, ICardList cardList ) const;
+            ICard*              GetCard( CARDID cardId );
+    virtual CARDID              CardId( void ) const;
+    virtual CARDTYPE            CardType( void ) const;
+    virtual int                 VictoryPoints( IEngine* pEngine ) const;
+    virtual const ITreasure*    Cost( IEngine* pEngine ) const;
+    virtual const ITreasure*    TreasureValue( IEngine* pEngine ) const;
+    virtual bool                InList( IEngine* pEngine, ICardList cardList ) const;
 
     virtual bool        IsActionCard( void ) const;
     virtual bool        IsAttackCard( void ) const;

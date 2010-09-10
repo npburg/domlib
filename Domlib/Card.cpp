@@ -31,7 +31,7 @@ void Card::OnReaction( Engine* pEngine, Player* pPlayer ) {}
 
 Treasure Card::OnTreasurePhase( Engine* pEngine ) 
 {
-    return this->TreasureValue( pEngine );
+    return *( (Treasure*) this->TreasureValue( pEngine ) );
 }
 
 void Card::OnBuyPhase( Engine* pEngine, ICard* pCard ) {}
@@ -104,14 +104,14 @@ int Card::VictoryPoints( IEngine* pEngine ) const
     return m_VictoryPoints;
 }
 
-Treasure Card::Cost( IEngine* pEngine ) const
+const ITreasure* Card::Cost( IEngine* pEngine ) const
 {
-    return m_Cost;
+    return &m_Cost;
 }
 
-Treasure Card::TreasureValue( IEngine* pEngine ) const
+const ITreasure* Card::TreasureValue( IEngine* pEngine ) const
 {
-    return m_TreasureValue;
+    return &m_TreasureValue;
 }
 
 bool Card::IsActionCard( void ) const

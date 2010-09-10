@@ -68,8 +68,8 @@ public:
     ICardList  RevealCardsFromDeck( int numCards );
     ICardList  RevealHand();
 
-    ICard*     OnGainACard( Treasure cost );
-    ICard*     OnGainACardExactly( Treasure cost );
+    ICard*     OnGainACard( ITreasure* cost );
+    ICard*     OnGainACardExactly( ITreasure* cost );
 
     void    TakeCardFromHand( ICard* pCard );
     void    TakeCardFromInPlay( CARDID cardId );
@@ -91,9 +91,9 @@ public:
     void    SetGolemFlag( bool );
 
     // IPlayer Interfaces
-    virtual ICardList  GetHand( void );
-    virtual int               HandSize( void );
-    virtual int               ActionsPlayed( void );
+    virtual ICardList   GetHand( void );
+    virtual int         HandSize( void );
+    virtual int         ActionsPlayed( void );
 
 protected:
     void OnDurationPhase( void );

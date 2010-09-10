@@ -29,8 +29,8 @@ void MineCard::OnActionPhase( Engine* pEngine )
         pPlayer->IsCardInHand( pCardToTrash ) )
     {
         pPlayer->TrashFromHand( pCardToTrash );
-        ICard* pCardToGain = pAi->OnMineGain( 
-            pCardToTrash->Cost( pEngine ) + Treasure( 3, 0) );
+        Treasure cost = *( (Treasure*) pCardToTrash->Cost( pEngine ) ) + Treasure( 3, 0 );
+        ICard* pCardToGain = pAi->OnMineGain( &cost );
         pPlayer->GainCardInHand( pCardToGain );
     }
     else
