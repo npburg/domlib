@@ -9,7 +9,8 @@ class ICard;
 class IEngine;
 class IGame;
 class IPlayer;
-class Treasure;
+class IPlayerSelf;
+class ITreasure;
 
 typedef std::list<ICard*>           ICardList;
 typedef ICardList::iterator         ICardListIter;
@@ -212,10 +213,10 @@ public:
     virtual ICard*              OnAttack( ICard* pAttackCard ) = 0;
 
     // Return a card to gain up to the value of cost.
-    virtual ICard*              OnGainACard( const Treasure cost ) = 0;
+    virtual ICard*              OnGainACard( const ITreasure* cost ) = 0;
 
     // Return a card to gain of the exact value of cost.
-    virtual ICard*              OnGainACardExactly( const Treasure cost ) = 0;
+    virtual ICard*              OnGainACardExactly( const ITreasure* cost ) = 0;
 
     // Return a reordered list of cards to put back on top of the draw pile.
     // The first card in the list is the first card pushed onto the draw pile
@@ -255,7 +256,7 @@ public:
     virtual ICard*              OnMineTrash( void ) = 0;
 
     // Return a Treasure card from supply up to the cost when Mine is played.
-    virtual ICard*              OnMineGain( Treasure cost ) = 0;
+    virtual ICard*              OnMineGain( const ITreasure* cost ) = 0;
 
     // Return a card in hand to trash when Remodel is played.
     virtual ICard*              OnRemodel( void ) = 0;
@@ -286,7 +287,7 @@ public:
     virtual ICard*              OnCourtyard( void ) = 0;
 
     // Return a card to gain up to cost when Ironworks is played.
-    virtual ICard*              OnIronworks( Treasure cost ) = 0;
+    virtual ICard*              OnIronworks( const ITreasure* cost ) = 0;
 
     // Return a card from hand to pass to the player on the left when
     // Masquerade is played.
@@ -329,7 +330,7 @@ public:
 
     // Return a card for another player to gain up to the cost when
     // Swindler is played.
-    virtual ICard*              OnSwindler( Treasure card ) = 0;
+    virtual ICard*              OnSwindler( const ITreasure* card ) = 0;
 
     // Return a list of 2 cards to discard from hand (or empty list to accept 
     // a Curse card) when Torturer is played.
@@ -676,13 +677,13 @@ class __declspec(novtable) ICard
 public:
     virtual ~ICard( void );
 
-    virtual ICard*      GetCard( CARDID cardId ) = 0;
-    virtual CARDID      CardId( void ) const = 0;
-    virtual CARDTYPE    CardType( void ) const = 0;
-    virtual int         VictoryPoints( IEngine* pEngine ) const = 0;
-    virtual Treasure    Cost( IEngine* pEngine ) const = 0;
-    virtual Treasure    TreasureValue( IEngine* pEngine ) const = 0;
-    virtual bool        InList( IEngine* pEngine, ICardList ) const = 0;
+    virtual ICard*              GetCard( CARDID cardId ) = 0;
+    virtual CARDID              CardId( void ) const = 0;
+    virtual CARDTYPE            CardType( void ) const = 0;
+    virtual int                 VictoryPoints( IEngine* pEngine ) const = 0;
+    virtual const ITreasure*    Cost( IEngine* pEngine ) const = 0;
+    virtual const ITreasure*    TreasureValue( IEngine* pEngine ) const = 0;
+    virtual bool                InList( IEngine* pEngine, ICardList ) const = 0;
 
     virtual bool        IsActionCard( void ) const = 0;
     virtual bool        IsAttackCard( void ) const = 0;
@@ -758,37 +759,18 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Treasure Class
-//
-// TODO: This should change to ITreasure and be purely virtual.
+// ITreasure Class
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class Treasure
+class ITreasure
 {
 public:
-    Treasure( int coins, int potions );
-    virtual ~Treasure( void );
+    ITreasure( void );
+    virtual ~ITreasure( void );
 
-    Treasure operator+  (const Treasure t) const;
-    Treasure operator+= (const Treasure t);
-    Treasure operator-  (const Treasure t) const;
-    Treasure operator-= (const Treasure t);
-
-    bool     operator<  (const Treasure t) const;
-    bool     operator<= (const Treasure t) const;
-    bool     operator>  (const Treasure t) const;
-    bool     operator>= (const Treasure t) const;
-    bool     operator== (const Treasure t) const;
-    bool     operator!= (const Treasure t) const;
-
-    int      Coins( void ) const;
-    int      Potions( void ) const;
-
-private:
-    const int m_Coins;
-    const int m_Potions;
+    virtual int      Coins( void ) const = 0;
+    virtual int      Potions( void ) const = 0;
 };
-
 
 } // namespace Domlib

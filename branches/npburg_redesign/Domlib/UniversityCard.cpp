@@ -29,7 +29,7 @@ void UniversityCard::OnActionPhase( Engine* pEngine )
     ICard* pActionCardToGain = pAi->OnUniversity();
 
     if( pActionCardToGain->IsActionCard() &&
-        pActionCardToGain->Cost( pEngine ) < Treasure( 5, 0 ) )
+        *( (Treasure*) pActionCardToGain->Cost( pEngine ) ) < Treasure( 5, 0 ) )
     {
         pPlayer->GainCardOnDiscard( pActionCardToGain );
     }

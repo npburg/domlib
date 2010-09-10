@@ -41,7 +41,7 @@ void SwindlerCard::OnAttack( Engine* pEngine, Player* pPlayer )
         Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
         AI* pAttackingAi = pAttackingPlayer->GetAI();
         ICard* pCardGained = pAttackingAi->OnSwindler( 
-            pCardTrashed->Cost( pEngine) );
+            pCardTrashed->Cost( pEngine ) );
 
         if( pCardTrashed->Cost( pEngine ) == pCardGained->Cost( pEngine ) ||
             pCardGained->IsNullCard() )

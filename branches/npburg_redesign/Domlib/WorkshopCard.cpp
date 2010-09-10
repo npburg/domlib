@@ -23,7 +23,7 @@ void WorkshopCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
-    pPlayer->OnGainACard( Treasure( 4, 0 ) );
+    pPlayer->OnGainACard( &Treasure( 4, 0 ) );
 }
 
 } // namespace Domlib

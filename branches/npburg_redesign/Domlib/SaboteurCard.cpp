@@ -29,7 +29,7 @@ void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
     ICard* pCardRevealed = pPlayer->RevealCardFromDeck();
     ICardList revealedCardList;
 
-    while( pCardRevealed->Cost( pEngine ) < Treasure( 3, 0 ) ||
+    while( *( (Treasure*) pCardRevealed->Cost( pEngine ) ) < Treasure( 3, 0 ) ||
            pCardRevealed->IsNullCard() )
     {
         revealedCardList.push_back( pCardRevealed );
@@ -44,7 +44,8 @@ void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
     else
     {
         pPlayer->TrashCard( pCardRevealed );
-        pPlayer->OnGainACard( pCardRevealed->Cost( pEngine ) - Treasure( 2, 0 ) );
+        Treasure cost = *( (Treasure*) pCardRevealed->Cost( pEngine ) ) - Treasure( 2, 0 );
+        pPlayer->OnGainACard( &cost );
     }
 
     pPlayer->PutCardsInDiscard( revealedCardList );
