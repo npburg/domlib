@@ -49,3 +49,61 @@
     * For example: PutCardInTrash( card ) this puts a reference to the card in the trash pile without knowing where it came from but this is just an example since TrashCard( card ) is the same as PutCardInTrash( card ).
   * *TrashCardxxx*( Card ) – this prefix indicates that the card should go to the postfix source. If there is no postfix source then the card is simply trashed and it is up to the caller to handle the bookkeeping of the source.
     * For example: TrashCardFromHand( card ) will take the card from the Hand list and put it in the TrashPile
+==AI Class==
+The AI class will contain the logic that drive the player classes decisions. There is an Interface class the AI will derive from and will need to implement the interface functions to work correctly.
+==AI Interfaces==
+TODO: Add description of the Bridge pattern and it’s use with the AI interfaces.
+==Card Class==
+All cards are derived from the Card class and implement needed functions. The base class will have the default implementation since most operations will be common. The class will have any helper functions for common operations such as AttackCard. The class will also have a reference to the GameEngine to query the players or modify game state. The Card class will also implement AI interface version of Card which provides the user access to some but not all of the class functions. The Card class also implements a singleton model such that there is a private constructor for the class and all derived class, there is a static GetCard method to get a copy a card from a factory by passing in the CARDID. 
+
+===Action Card Execution===
+Each card has a pointer to the game engine enabling the card to execute it’s own instruction. The game engine manages the players (piles, hands, mats, tokens etc) and the deck (piles) and any tokens.
+
+By default, any action card played, decrements the actions by 1 and the card is removed from the player’s hand to the “in-play” list. Duration cards moved from in-play to duration list in clean-up phase.
+
+===AttackCard Helper function===
+Instead of writing the same loop to attack players for each attack write a single function which takes in the attack card played and a flag to indicate is self attack is possible (i.e. Spy)
+{{{
+For each (other) player
+{
+    If(player does not have Lighthouse in DurationList)
+    {
+        reactionCard = player->GetReaction( AttackCard )
+        if( reactionCard != Moat)
+        {
+            reactionCard.Reaction( AttackCard, player );
+            AttackCard.Attack()
+        }
+    }
+}
+}}}
+
+===Reaction Cards===
+If an attack occurs the player is queried for a reaction card from hand.
+The card returned then has card.Reaction( AttackCard ) function called to perform a reaction action.
+
+===Card::GainACard() Helper function===
+This should call player::GainACard() function in the player but instead of having a card directly call this function it should call the Card::GainACard() which include checks to make sure play gained a valid card
+{{{
+Card::GainACard()
+{
+    Card = player.GainACard();
+    if(Card in stock)
+    {
+        Put card in player’s discard pile
+    }
+    // do nothing
+}
+}}}
+This function always puts the card into the discard pile. If the card is suppose to go into the draw pile or hand then a more explicit function should be called.
+
+===Cleanup function===
+This allows the card to perform any special actions on the cards in the in-play list (including itself) before the in-play is moved to the discard pile.
+==Engine Class==
+The engine class will contain the list of players, the supply piles and any other general state about the game. The engine will also have functions for running the game such as the different phases of a turn.
+
+The Engine will contain a Supply Pile Manager which has all the piles of a given game and the interfaces to manage the piles. The Supply Pile Manager will also handle setting up the piles for different game types (preloaded, random, mixed/pure sets, etc.) The individual piles will use the Pile class which manages the card in the pile, number of cards available, and add additional state such as embargos or trade route tokens.
+==Player Class==
+The player class will contain the various piles/mats/etc (Discard, Draw, Hand, Duration, Reveal, Island Mat, NativeVillage Mat, etc.). It will also log actions of the player and hand the actions requested to/from the AI or Card.
+==Treasure Class==
+Treasure struct handles the complex system of currency in the game (coins + potions) since currency is no longer simply coins, it cannot be represented by a single integer.
