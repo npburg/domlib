@@ -128,3 +128,145 @@ Treasure struct handles the complex system of currency in the game (coins + poti
   * Default behavior
 ====Curse====
   * Default behavior
+==Base Set Cards==
+====Adventurer::OnActionPhase()====
+  * While draw cards from draw pile (if empty but there are cards in discard they should be shuffled and placed in draw pile hidden by draw function) until 2 treasure cards are revealed or draw pile is empty.
+  * Place treasure cards into hand
+  * Place revealed cards into discard pile
+====Bureaucrat::OnActionPhase()====
+  * Add a SilverCard to the top of the player’s deck.
+  * Call Attack and pass in the flag ATTACK_ALL.
+====Bureaucrat::OnAttack()====
+  * If the player has a victory card in hand then query the player’s AI with OnBureaucrat() to return a victory card in hand to put on draw pile.
+  * Check that the victory card returned is in hand.
+  * Move the card from the player’s hand to the draw pile.
+  * Else if the player had no Victory cards in hand to discard then add the players hand to the reveal list.
+====Cellar::OnActionPhase()====
+  * Add 1 action to player’s turn.
+  * Query the player’s AI with OnCellar() for a list of cards from hand to discard.
+  * Check the list of cards return against the cards in the player’s hand.
+  * Discard the cards in the list from the player’s hand.
+  * Equal number of cards are drawn into the players hand.
+====Chapel::OnActionPhase()====
+  * Query the player’s AI with OnChapel for a list of cards from hand to trash.
+  * Check the list of cards returned agains the cards in the player’s hand.
+  * Trash the cards in the list from the player’s hand. 
+====Chancellor::OnActionPhase()====
+  * Add 2 coins to the player’s turn.
+  * Query the player’s AI with OnChancellor() to return an option to discard the draw pile immediately.
+  * If returns the option to discard then move draw pile to the discard pile.
+====Council Room::OnActionPhase()====
+  * Draw 4 cards to player’s hand
+  * Add 1 buy to player’s turn
+  * Add 1 card to other player’s hand
+====Feast::OnActionPhase()====
+  * Use OnGainACard( cost = 5 ) helper function to handle this card.
+====Feast::OnCleanup()====
+  * Move the Feast card from the InPlayList to the TrashPile.
+====Festival::OnActionPhase()====
+  * Add 2 actions to player’s turn
+  * Add 1 buy to player’s turn
+  * Add 2 coin to player’s turn
+====Gardens::OnActionPhase()====
+  * Do nothing
+====Gardens::OnScoring()====
+  * Sum the number of cards in the players Deck (sum the draw pile, discard pile, hand, in-play list, duration list haven list and any other list with a card that is not simply a copy of the card such as reveal list.)
+====Laboratory::OnActionPhase()====
+  * Draw 2 cards to player’s hand
+  * Add 1 action to player’s turn
+====Library::OnActionPhase()====
+  * While player’s hand is < 7 cards
+  * Draw a card
+  * If the card drawn is an Action card query the player’s AI with OnLibrary( card ) for a Library option.
+  * If the AI returns to keep the card then put it into Hand otherwise set it aside in revealed pile.
+  * End while loop
+  * Place cards in reveal pile into discard pile
+====Market::OnActionPhase()====
+  * Draw 1 card into player’s hand
+  * Add 1 action to player’s turn
+  * Add 1 buy to player’s turn
+  * Add 1 coin to player’s turn
+====Militia::OnActionPhase()====
+  * Add 2 coins to this player’s turn.
+====Militia::OnAttack()()====
+  * Query the player’s AI with OnMilitia() to return a list of cards to discard from hand such that the hand’s size will be <= 3.
+  * Check the cards returned are in the players hand and it would reduce the size of the hand to <= 3.
+  * Discard the cards return from the players hand.
+====Mine::OnActionPhase()====
+  * Query the player’s AI with OnMineTrash() to return a Treasure card from Hand to trash.
+  * Check that the card returned is a treasure and is in the player’s hand
+  * Trash the card and query the player’s AI with OnMineGain( cost card.coins + 3 ) to gain a card. 
+  * Check the card returned is a Treasure card.
+  * Add the treasure card from the supply pile to player’s hand.
+====Moat::OnActionPhase()====
+  * Draw 2 cards into player’s hand
+====Moat::Reaction()====
+  * Does nothing since there are no special action to perform at this point. The AI is request to return a reaction card in the attack function. At that point the AI would return the MoatCard to block the attack.
+====Moneylender::OnActionPhase()====
+  * If a player has a CopperCard in Hand then 
+  * Trash a CopperCard from the player’s Hand 
+  * Add 3 coins to the players turn.
+====Remodel::OnActionPhase()====
+  * Query the player’s AI with OnRemodel () for a card in Hand to trash.
+  * Check the card returned against cards in Hand.
+  * Trash the card from Hand.
+  * Use the OnGainACard( trashed card’s cost + 2 ) helper function to finish handling this function.
+====Smithy::OnActionPhase()====
+  * Draw 3 cards to player’s hand
+====Spy::OnActionPhase()====
+  * Draw 1 card to player’s hand
+  * Add 1 action to player’s turn
+====Spy::OnAttack()====
+  * Reveal a card from the player’s deck.
+  * If the player is the attacker then query the player’s AI with OnSpySelf() for the spy option.
+  * If the player is not the attacker then query the player’s AI with OnSpyOther() for the spy option.
+  * If the spy option is discard then move the card revealed to the discard pile.
+  * If the spy option is not discard then move the card revealed back to the draw pile.
+====Thief::OnActionPhase()====
+  * Do nothing
+====Thief::OnAttack()====
+  * Reveal top 2 cards from the player’s deck.
+  * If both cards revealed then query the attacking player’s AI with ThiefTrash() to return which card to trash and set it to the card to trash.
+  * Else if there is only one card then set it to the card to trash.
+  * Query the attacking player’s AI with ThiefGain() to gain the card or trash the card.
+  * If the AI want to gain the card then put the card on the attacking player’s discard pile.
+  * Else put the card into the trash pile. 
+====Throne Room::OnActionPhase()====
+  * Query player with ThroneRoom() which returns an action card from hand for the throne room to play twice.
+  * Check that the action card is in hand()
+  * Add the card to the player’s InPlay list, and increment the number of action cards played in the player’s turn by 1.
+  * Call the OnAction() function of the action card.
+  * Increment the number of cards played in the player’s turn by 1.
+  * Call the OnAction() function of the action card.
+====ThroneRoom::OnDuration()====
+  * Query the AI for a card from the ThroneRoomDurationList to play with OnDuration( DurationCardList ).
+  * Check that the card returned is in the ThroneRoomDurationList.
+  * Play the card once with its OnDuration(), no need modified the Player’s turn state.
+  * Play the card a second time with its OnDuration().
+
+Note: The following cards need to be handled with care with the Throne Room / King’s Court.
+  * Feast – this card gains 2 cards but the feast card is trashed only once. Feast is trashed during the cleanup phase so there is no special handling required.
+  * Mining Village – If this card is trashed in the first instance it is played then it is not available to be played again by throne room. To handle this, when throne room is in play, it checks if the card to throne room is Mining Village, it then counts the number of Mining Villages in the InPlayList, then adds the Mining Village to the InPlayList plays the Mining Village as normal. Then before playing the card a second time count the number of Mining Village cards in the InPlayList, if it is equal to the earlier count then the Mining Village was trashed from the InPlayList so it should not be played again.
+  * Conspirator – Assuming no other action cards were played before throne room, the first time conspirator is played then only 2 actions have been played so the second effect does not apply; however, it does apply the second time Conspirator is used. To track this, Throne Room needs to increment the number of actions played that turn before playing each card.
+  * Coppersmith – The effect of coppersmith is applied twice; however, only one copy of the card will be in the InPlay list. One solution would be to have a flag counting the number of coppersmith’s played or second is to have a ThroneRoom list in which Coppersmith would appear once and it would also be in the inplay list so when applying the Coppersmith modification, it would check both the inplay list and ThroneRoomList. (The modification for King’s Court would be to add the card to the ThroneRoomList twice.
+  * Bridge – This should be handled similar to Coppersmith.
+  * Duration Cards – The effect of the card is doubled both now and later, plus Throne Room is left with the duration card instead of discarded as a reminder to apply the duration card twice again. To handle this, if the Throne Room detect that it is being played on a Duration card then it should play the card as normal the first time and the second time put the Duration card in the ThroneRoomList as normal. During cleanup phase the number of Duration cards in the ThroneRoomList should be counted then each copy of Duration cards in the InPlayList that are also in the ThroneRoomList should be delete (simply removed without being moved to any list). Then while moving cards from the InPlayList to the DurationList, move up to the count of (Durration Cards in the ThroneRoomList) number of Throne Room cards from the InPlayList to the DurationList instead of DiscardPile. For each Duration card in the ThroneRoomList move that card to the DurationThroneRoomList instead of deleting it. During the DurationPhase the AI will be asked which card to play (in order) from the duration list and if Throne Room is selected then the AI should be asked again which Duration card from the ThroneRoomDurationList to play (This should be handled in the Throne Room’s OnDurationPhase() function. 
+  * Embargo – This should be handled similar to Feast.
+  * Island – Set on the Island mat the Island card and 2 cards.
+  * Tactician – You basically play Tactician once meaning you discard hand to gain the +5 card next turn and the second time Tactician is played there are no cards in hand to discard so no additional +5 card bonus at the start of next turn.
+  * Treasure Map – The first time treasure map is played it is trashed so you gain 4 gold if there was another Treasure Map in hand. The second time treasure map is played you already trashed it so it cannot be trashed with a 3rd treasure map to gain 4 gold; however, if you do have a 3rd treasure map, it will be trashed even if it is for nothing.
+  * Golem – If Golem is throne roomed then no problem; however, if Golem plays a Throne Room nothing happens since you cannot have Golem apply the Throne Room to the second card or to any card in hand.
+  * Peddler – the cost of buying this card is based on the count of cards in play not the number of times they were played so Throne Room does not have an effect on reducing this any more than the fact that Throne Room and the card chosen to Throne Room are in play thus reducing the cost by 4 not 6.
+====Village::OnActionPhase()====
+  * Draw 1 card into player’s hand.
+  * Add 2 actions to player’s turn.
+====Witch::OnActionPhase()====
+  * Draw 2 cards into player’s hand
+  * Call Attack with ATTACK_OTHERS
+====Witch::OnAttack()====
+  * Add a curse to player’s discard pile from supply pile.
+====Woodcutter::OnActionPhase()====
+  * Add 1 buy to player’s turn.
+  * Add 2 coins to player’s turn.
+====Workshop::OnActionPhase()====
+  * Use the OnGainACard( cost = 4 ) helper function to handle this card.
