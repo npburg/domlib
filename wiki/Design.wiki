@@ -51,6 +51,7 @@
     * For example: TrashCardFromHand( card ) will take the card from the Hand list and put it in the TrashPile
 ==AI Class==
 The AI class will contain the logic that drive the player classes decisions. There is an Interface class the AI will derive from and will need to implement the interface functions to work correctly.
+TODO: Need to add mechanism to indicate which set of cards an AI supports. There could be some situations when the default AI combined with the implemented AI result in bad behavior if new cards are introduced that the AI was not designed to support. Example, Masquerade could put into deck a new victory card and if the player has that card in hand when Bureaucrat is play the logic might not return the proper card thus generating an error. The AI might still be valid for previous version or previous sets of hands.
 ==AI Interfaces==
 TODO: Add description of the Bridge pattern and it’s use with the AI interfaces.
 ==Card Class==
