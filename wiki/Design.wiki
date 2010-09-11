@@ -113,3 +113,18 @@ TODO: Add info
 The player class will contain the various piles/mats/etc (Discard, Draw, Hand, Duration, Reveal, Island Mat, NativeVillage Mat, etc.). It will also log actions of the player and hand the actions requested to/from the AI or Card.
 ==Treasure Class==
 Treasure struct handles the complex system of currency in the game (coins + potions) since currency is no longer simply coins, it cannot be represented by a single integer.
+==Common Cards==
+====Copper::OnTreasureValue()====
+  * Return 1 + the number of Coppersmiths in the player’s InPlayList.
+====Silver====
+  * Default behavior
+====Gold====
+  * Default behavior
+====Estates====
+  * Default behavior
+====Duchy====
+  * Default behavior
+====Province====
+  * Default behavior
+====Curse====
+  * Default behavior
