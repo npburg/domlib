@@ -622,3 +622,84 @@ Note: The following cards need to be handled with care with the Throne Room / Ki
   * Add 1 buy to the player’s turn
 ====Wharf::OnCleanupPhase()====
   * Move this card from InPlayList to the DurationList.
+==Alchemy Set Cards==
+====Alchemist::OnActionPhase()====
+  * Draw 2 cards into the player’s hand
+  * Add 1 action to the player’s turn
+====Alchemist::OnCleanupPhase()====
+  * If the player’s InPlayList contains a potion then query the player’s AI with OnAlchemist() for an alchemist option.
+  * If the option return is to put back the alchemist card then put it on top of the draw pile.
+====Apothecary::OnActionPhase()====
+  * Draw 1 card into the player’s hand
+  * Add 1 action to the player’s turn
+  * Generate a reveal list of 4 cards from the player’s DrawPile.
+  * Put coppers and potions from the reveal list into the player’s hand.
+  * Query player with OnReturnToDrawPile ( cardList ) with filtered list to return the list reordered by player  (see Scout for reorder)
+  * Check output list is the same as the input list.
+  * Put cards in the lost top of the DrawPile.
+====Apprentice::OnActionPhase()====
+  * Add 1 action to the player’s turn
+  * Query the player’s AI with OnApprentice() for a card to trash from hand.
+  * Check the card return is in hand.
+  * Trash the returned card from hand.
+  * Add trashedcard.coin + (trashedcard.potion != 0) ? 2 : 0 to the coins in the player’s turn
+====Familiar::OnActionPhase()====
+  * Draw 1 card to player’s hand
+  * Add 1 action to player’s turn
+  * Attach other players
+====Familiar::OnAttack()====
+  * Player gains a curse to the discard pile
+====Golem::OnActionPhase()====
+  * Reveal cards from the DrawPile until 2 non-Golem cards have been drawn.
+  * Discard the revealed cards 
+  * Query the player’s AI with OnGolem( cardList ) to return a reordered list of action cards to play.
+  * Play the action cards from the list in order.
+  * (Note: when the cards are played, they should not have access to the player’s hand and do not have access to the other card the Golem plays.)
+====Herbalist::OnActionPhase()====
+  * Add 1 buy to the player’s turn
+  * Add 1 coin to the player’s turn
+====Herbalist::OnCleanupPhase()====
+  * If any treasure cards in InPlayList then query the player’s AI with OnHerbalist() to pick a treasure to put on DrawPile.
+  * Check that the card returned is a treasure and is in the player’s InPlayList.
+  * Move the card from InPlayList to the DrawPile.
+====Philosopher’s Stone::OnActionPhase()====
+  * No-op
+====Philosopher’s Stone::OnTreasurePhase()====
+  * Return the sum of the cards in the players draw pile and discard pile divide by 5 and round down. 
+====Philosopher’s Stone::TreasureValue()====
+  * Return 0 for TreasureValue() since this card only return value greater than 0 with in the context of the OnTreasurePhase().
+====Possession::OnActionPhase()====
+  * No-op. This card simply needs to be played in the InPlayList.
+====Possession::OnCleanupPhase()====
+  * Set the Possession flag on the left player’s turn (the turn mechanism needs to be enhanced to allow for a possessing AI and prevent cards from being trashed but instead put into a possession trash pile to be discarded)
+Note: At the end of the left player’s possessed turn then the flag has to be disabled.
+The turn mechanism needs to be able to swap the player AI temporarily
+====Potion::OnActionPhase()====
+  * No-op
+====Scrying Pool::OnActionPhase()====
+  * Add 1 action to the player’s turn
+  * Attack every player (including yourself)
+  * Reveal cards from DrawPile until an Action card is revealed.
+  * Move cards in reveal list into the players hand.
+====Scrying Pool::OnAttack()====
+  * Reveal a card from the player’s deck.
+  * If the player is the attacker then query the player’s AI with OnScryingPoolSelf() for the scrying pool option.
+  * If the player is not the attacker then query the player’s AI with OnScryingPoolOther() for the scrying pool option.
+  * If the scrying pool option is discard then move the card revealed to the discard pile.
+  * If the scrying pool option is not discard then move the card revealed back to the draw pile.
+====Transmute::OnActionPhase()====
+  * Query the player’s AI with OnTransmute() for a card from hand to trash.
+  * Check if card returned is in hand
+  * Trash card from hand
+  * If trashed card is an action then gain a duchy in discard pile.
+  * If trashed card is a treasure then gain a transmute in discard pile.
+  * If trashed card is a victory card then gain a gold in discard pile.
+====University::OnActionPhase()====
+  * Add 2 actions to player’s turn
+  * Query the player’s AI with GainAnActionCard( cost 5 )
+  * Check card is an action card that cost <= 5
+  * Add the card to the player’s discard pile
+====Vineyard::OnActionPhase()====
+  * No-op
+====Vinyard::OnScoring()====
+  * Return the sum the number of action cards in the player’s Deck divide by 3 rounded down.
