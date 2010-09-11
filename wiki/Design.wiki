@@ -99,10 +99,16 @@ This function always puts the card into the discard pile. If the card is suppose
 
 ===Cleanup function===
 This allows the card to perform any special actions on the cards in the in-play list (including itself) before the in-play is moved to the discard pile.
+==Game Class==
+TODO: Add info
 ==Engine Class==
 The engine class will contain the list of players, the supply piles and any other general state about the game. The engine will also have functions for running the game such as the different phases of a turn.
 
 The Engine will contain a Supply Pile Manager which has all the piles of a given game and the interfaces to manage the piles. The Supply Pile Manager will also handle setting up the piles for different game types (preloaded, random, mixed/pure sets, etc.) The individual piles will use the Pile class which manages the card in the pile, number of cards available, and add additional state such as embargos or trade route tokens.
+==SupplyPile Class==
+TODO: Add info
+==SupplyPileManager Class==
+TODO: Add info
 ==Player Class==
 The player class will contain the various piles/mats/etc (Discard, Draw, Hand, Duration, Reveal, Island Mat, NativeVillage Mat, etc.). It will also log actions of the player and hand the actions requested to/from the AI or Card.
 ==Treasure Class==
