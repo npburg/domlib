@@ -6,26 +6,27 @@ namespace Domlib
 {
 
 class Treasure
-    : public ITreasure
 {
 public:
-    Treasure( int coins, int potions );
+    Treasure( void );
+    //Treasure( Treasure& treasure );
+    Treasure( const int coins, const int potions );
     virtual ~Treasure( void );
 
-    virtual Treasure operator+  (const Treasure t) const;
-    virtual Treasure operator+= (const Treasure t);
-    virtual Treasure operator-  (const Treasure t) const;
-    virtual Treasure operator-= (const Treasure t);
+    const Treasure operator+  (const Treasure t) const;
+          Treasure operator+= (const Treasure t);
+    const Treasure operator-  (const Treasure t) const;
+          Treasure operator-= (const Treasure t);
 
-    virtual bool     operator<  (const Treasure t) const;
-    virtual bool     operator<= (const Treasure t) const;
-    virtual bool     operator>  (const Treasure t) const;
-    virtual bool     operator>= (const Treasure t) const;
-    virtual bool     operator== (const Treasure t) const;
-    virtual bool     operator!= (const Treasure t) const;
+    const bool     operator<  (const Treasure t) const;
+    const bool     operator<= (const Treasure t) const;
+    const bool     operator>  (const Treasure t) const;
+    const bool     operator>= (const Treasure t) const;
+    const bool     operator== (const Treasure t) const;
+    const bool     operator!= (const Treasure t) const;
 
-    virtual int      Coins( void ) const;
-    virtual int      Potions( void ) const;
+    int      Coins( void ) const;
+    int      Potions( void ) const;
 
 private:
     int m_Coins;

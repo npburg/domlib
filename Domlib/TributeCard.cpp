@@ -23,11 +23,11 @@ void TributeCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     Player* pPlayerToLeft = pEngine->GetNextPlayer( pPlayer );
-    ICardList cardsDrawnList = 
+    CardList cardsDrawnList = 
         pPlayerToLeft->RevealCardsFromDeck( 2 );
-    ICardListIter cardIter;
+    CardListIter cardIter;
 
-    ICard* pFirstCard = *cardIter;
+    Card* pFirstCard = *cardIter;
 
     if( pFirstCard->IsActionCard() )
     {
@@ -45,7 +45,7 @@ void TributeCard::OnActionPhase( Engine* pEngine )
     }
 
     cardIter++;
-    ICard* pSecondCard = *cardIter;
+    Card* pSecondCard = *cardIter;
     
     if( pSecondCard->CardId() != pFirstCard->CardId() )
     {

@@ -27,8 +27,8 @@ void ScryingPoolCard::OnActionPhase( Engine* pEngine )
 
     Attack( pEngine, ATTACK_ALL );
 
-    ICardList revealedCardList;
-    ICard* pRevealedCard;
+    CardList revealedCardList;
+    Card* pRevealedCard;
     
     do
     {
@@ -43,8 +43,8 @@ void ScryingPoolCard::OnActionPhase( Engine* pEngine )
 void ScryingPoolCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
     Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
-    AI* pAttackingAi = pPlayer->GetAI();
-    ICard* pCard = pPlayer->RevealCardFromDeck();
+    IAI* pAttackingAi = pPlayer->GetAI();
+    Card* pCard = pPlayer->RevealCardFromDeck();
     ScryingPoolOpt scryingPoolOpt;
 
     if( pAttackingPlayer == pPlayer )
@@ -58,10 +58,10 @@ void ScryingPoolCard::OnAttack( Engine* pEngine, Player* pPlayer )
     
     switch( scryingPoolOpt )
     {
-    case SCRYING_DISCARD_CARD:
+    case SCRYINGPOOL_DISCARD_CARD:
         pPlayer->PutCardInDiscard( pCard );
         break;
-    case SCRYING_PUT_BACK_CARD:
+    case SCRYINGPOOL_PUT_BACK_CARD:
         pPlayer->PutCardOnDraw( pCard );
         break;
     default:

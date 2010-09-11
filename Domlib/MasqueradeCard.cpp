@@ -22,11 +22,11 @@ MasqueradeCard::~MasqueradeCard( void )
 void MasqueradeCard::OnActionPhase( Engine* pEngine )
 {
     Player* pCurrentPlayer = pEngine->GetCurrentPlayer();
-    AI* pCurrentAi = pCurrentPlayer->GetAI();
+    IAI* pCurrentAi = pCurrentPlayer->GetAI();
 
     pCurrentPlayer->DrawCardsToHand( 2 );
     
-    ICard* pCardToPass = pCurrentAi->OnMasqueradePass();
+    Card* pCardToPass = pCurrentAi->OnMasqueradePass();
     
     if( pCurrentPlayer->IsCardInHand( pCardToPass ) )
     {
@@ -38,12 +38,12 @@ void MasqueradeCard::OnActionPhase( Engine* pEngine )
         throw std::wstring( L"Error: MasqueradeCard::OnActionPhase" );
     }
 
-    ICard* pCardToRecieve = pCardToPass;
+    Card* pCardToRecieve = pCardToPass;
     Player* pNextPlayer = pEngine->GetNextPlayer( pCurrentPlayer );
 
     while( pNextPlayer != pCurrentPlayer )
     {
-        AI* pNextAi = pNextPlayer->GetAI();
+        IAI* pNextAi = pNextPlayer->GetAI();
         pCardToPass = pNextAi->OnMasqueradePass();
 
         if( pNextPlayer->IsCardInHand( pCardToPass ) )
@@ -63,7 +63,7 @@ void MasqueradeCard::OnActionPhase( Engine* pEngine )
 
     pCurrentPlayer->PutCardInHand( pCardToRecieve );
 
-    ICard* pCardToTrash = pCurrentAi->OnMasqueradeTrash();
+    Card* pCardToTrash = pCurrentAi->OnMasqueradeTrash();
     
     if( pCurrentPlayer->IsCardInHand( pCardToTrash ) )
     {

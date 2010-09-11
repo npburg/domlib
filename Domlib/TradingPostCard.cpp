@@ -22,8 +22,8 @@ TradingPostCard::~TradingPostCard( void )
 void TradingPostCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToTrash = pAi->OnTradingPost();
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToTrash = pAi->OnTradingPost();
 
     if( cardsToTrash.size() == 2 &&
         pPlayer->AreCardsInHand( cardsToTrash ) )

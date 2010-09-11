@@ -12,9 +12,22 @@ Game::~Game( void )
 {
 }
 
-IGame* CreateGame( void )
+void Game::RegisterAI( AI* pAi )
 {
-    return new Game();
 }
+
+void Game::RandomizeKingdomCards( int cardSet )
+{
+}
+
+void Game::Play( void )
+{
+}
+
+void* Game::GetResults( void )
+{
+    return NULL;
+}
+
 
 } // namespace Domlib

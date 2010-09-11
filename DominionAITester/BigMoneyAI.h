@@ -1,8 +1,9 @@
 #pragma once
 #include "Domlib.h"
+#include "DefaultAI.h"
 
 class BigMoneyAI :
-    public Domlib::AI
+    public DefaultAI
 {
 public:
     BigMoneyAI( void );

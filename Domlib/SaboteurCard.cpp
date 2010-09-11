@@ -26,10 +26,11 @@ void SaboteurCard::OnActionPhase( Engine* pEngine )
 
 void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    ICard* pCardRevealed = pPlayer->RevealCardFromDeck();
-    ICardList revealedCardList;
+    IAI* pAi = pPlayer->GetAI();
+    Card* pCardRevealed = pPlayer->RevealCardFromDeck();
+    CardList revealedCardList;
 
-    while( *( (Treasure*) pCardRevealed->Cost( pEngine ) ) < Treasure( 3, 0 ) ||
+    while( pCardRevealed->Cost( pEngine ) < Treasure( 3, 0 ) ||
            pCardRevealed->IsNullCard() )
     {
         revealedCardList.push_back( pCardRevealed );
@@ -44,8 +45,8 @@ void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
     else
     {
         pPlayer->TrashCard( pCardRevealed );
-        Treasure cost = *( (Treasure*) pCardRevealed->Cost( pEngine ) ) - Treasure( 2, 0 );
-        pPlayer->OnGainACard( &cost );
+        Treasure cost = pCardRevealed->Cost( pEngine ) - Treasure( 2, 0 );
+        pAi->OnGainACard( &cost );
     }
 
     pPlayer->PutCardsInDiscard( revealedCardList );

@@ -30,11 +30,11 @@ void HerbalistCard::OnActionPhase( Engine* pEngine )
 void HerbalistCard::OnCleanUpPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     if( pPlayer->GetCardCountInDeckType( CARDTYPE_TREASURE ) > 0 )
     {
-        ICard* pTreasureToPutBack = pAi->OnHerbalist();
+        Card* pTreasureToPutBack = pAi->OnHerbalist();
 
         if( pPlayer->IsCardInPlay( pTreasureToPutBack ) &&
             pTreasureToPutBack->IsTreasureCard() )

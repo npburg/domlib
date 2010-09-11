@@ -2,6 +2,7 @@
 
 #include "Domlib.h"
 #include "Card.h"
+#include "IAI.h"
 
 namespace Domlib
 {
@@ -14,66 +15,65 @@ typedef std::list<Player*>          PlayerList;
 typedef PlayerList::iterator        PlayerListIter;
 typedef PlayerList::const_iterator  PlayerListConstIter;
 
-class Player :
-    public IPlayer
+class Player
 {
 public:
-    Player( Engine* pEngine, AI* pAi );
+    Player( Engine* pEngine, IAI* pAi );
     virtual ~Player( void );
 
     void PlayTurn( void );
 
-    AI*    GetAI( void );
+    IAI*    GetAI( void );
 
-    bool    AreCardsInHand( ICardList cardList );
-    bool    IsCardInHand( ICard* pCard );
+    bool    AreCardsInHand( CardList cardList );
+    bool    IsCardInHand( Card* pCard );
     bool    IsCardInHand( CARDID cardId );
-    bool    IsCardInDuration( ICard* pCard );
+    bool    IsCardInDuration( Card* pCard );
     bool    IsCardInDuration( CARDID cardId );
     bool    IsCardInPlay( CARDID cardId );
-    bool    IsCardInPlay( ICard* pCard );
+    bool    IsCardInPlay( Card* pCard );
 
     void    DiscardDrawPile( void );
 
-    void    DiscardFromHand( ICardList cardList );
-    void    DiscardFromHand( ICard* pCard );
-    void    DiscardFromHandToDrawPile( ICard* pCard );
+    void    DiscardFromHand( CardList cardList );
+    void    DiscardFromHand( Card* pCard );
+    void    DiscardFromHandToDrawPile( Card* pCard );
 
-    void    TrashFromHand( ICardList cardList );
-    void    TrashFromHand( ICard* pCard );
+    void    TrashFromHand( CardList cardList );
+    void    TrashFromHand( Card* pCard );
     void    TrashFromHand( CARDID cardId );
-    void    TrashFromInPlay( ICard* pCard );
+    void    TrashFromInPlay( Card* pCard );
     void    TrashFromInPlay( CARDID cardId );
-    void    TrashCard( ICard* pCard );
-    ICard*     TrashFromDeck();
+    void    TrashCard( Card* pCard );
+    Card*   TrashFromDeck();
     
-    void    GainCardOnDiscard( ICard* pCard );
+    void    GainCardOnDiscard( Card* pCard );
     void    GainCardOnDiscard( CARDID cardId );
-    void    GainCardOnDeck( ICard* pCard );
+    void    GainCardOnDeck( Card* pCard );
     void    GainCardOnDeck( CARDID cardId );
-    void    GainCardInHand( ICard* pCard );
+    void    GainCardInHand( Card* pCard );
     void    GainCardInHand( CARDID cardId );
 
-    void    PutCardInDiscard( ICard* pCard );
-    void    PutCardOnDraw( ICard* pCard );
+    void    PutCardInDiscard( Card* pCard );
+    void    PutCardOnDraw( Card* pCard );
     void    PutCardOnDraw( CARDID cardId );
-    void    PutCardInHand( ICard* pCard );
+    void    PutCardInHand( Card* pCard );
 
-    void    PutCardsInDiscard( ICardList cardList );
-    void    PutCardsOnDraw( ICardList cardList );
-    void    PutCardsInPlay( ICardList cardList );
-    void    PutCardsInHand( ICardList cardList );
+    void    PutCardsInDiscard( CardList cardList );
+    void    PutCardsOnDraw( CardList cardList );
+    void    PutCardsInPlay( CardList cardList );
+    void    PutCardsInHand( CardList cardList );
 
-    ICard*     RevealCardFromDeck();
-    ICardList  RevealCardsFromDeck( int numCards );
-    ICardList  RevealHand();
+    Card*     RevealCardFromDeck();
+    CardList  RevealCardsFromDeck( int numCards );
+    CardList  RevealHand();
 
-    ICard*     OnGainACard( ITreasure* cost );
-    ICard*     OnGainACardExactly( ITreasure* cost );
+    Card*     OnGainACard( ITreasure* cost );
+    Card*     OnGainACardExactly( ITreasure* cost );
 
-    void    TakeCardFromHand( ICard* pCard );
+    void    TakeCardFromHand( Card* pCard );
     void    TakeCardFromInPlay( CARDID cardId );
-    void    TakeCardFromInPlay( ICard* pCard );
+    void    TakeCardFromInPlay( Card* pCard );
 
     void    DrawCardsToHand( int numCards );
     void    PlusCoins( int numCoins );
@@ -91,7 +91,7 @@ public:
     void    SetGolemFlag( bool );
 
     // IPlayer Interfaces
-    virtual ICardList   GetHand( void );
+    virtual CardList   GetHand( void );
     virtual int         HandSize( void );
     virtual int         ActionsPlayed( void );
 
@@ -103,23 +103,23 @@ protected:
     void OnCleanUpPhase( void );
 
 private:
-    const Engine*           m_pEngine;
-    const AI*        m_pAi;
+    const Engine*   m_pEngine;
+    const IAI*      m_pAi;
 
-    ICardList        m_DrawPile;
-    ICardList        m_Hand;
-    ICardList        m_DiscardPile;
-    ICardList        m_RevealedList;
-    ICardList        m_BoughtList;
-    ICardList        m_DurationList;
-    ICardList        m_HavenList;
-    ICardList        m_InPlayList;
-    ICardList        m_IslandMat;
-    int                     m_PirateShipMat;
-    ICardList        m_NativeVillageMat;
-    bool                    m_GolemFlag;
-    ICardList        m_PlayerMat;    // Holds Victory tokens from Prosperity
-    int                     m_ActionsPlayed;
+    CardList        m_DrawPile;
+    CardList        m_Hand;
+    CardList        m_DiscardPile;
+    CardList        m_RevealedList;
+    CardList        m_BoughtList;
+    CardList        m_DurationList;
+    CardList        m_HavenList;
+    CardList        m_InPlayList;
+    CardList        m_IslandMat;
+    int             m_PirateShipMat;
+    CardList        m_NativeVillageMat;
+    bool            m_GolemFlag;
+    CardList        m_PlayerMat;    // Holds Victory tokens from Prosperity
+    int             m_ActionsPlayed;
 };
 
 } // namespace Domlib

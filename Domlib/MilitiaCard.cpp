@@ -29,8 +29,8 @@ void MilitiaCard::OnActionPhase( Engine* pEngine )
     
 void MilitiaCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToDiscard;
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToDiscard;
     
     cardsToDiscard = pAi->OnMilitia();
     if( pPlayer->AreCardsInHand( cardsToDiscard ) )

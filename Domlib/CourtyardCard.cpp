@@ -22,10 +22,10 @@ CourtyardCard::~CourtyardCard( void )
 void CourtyardCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 3 );
-    ICard* pCardToReturn = pAi->OnCourtyard();
+    Card* pCardToReturn = pAi->OnCourtyard();
     if( pPlayer->IsCardInHand( pCardToReturn ) )
     {
         pPlayer->PutCardOnDraw( pCardToReturn );

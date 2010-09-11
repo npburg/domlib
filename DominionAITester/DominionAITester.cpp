@@ -3,26 +3,27 @@
 
 #include "stdafx.h"
 #include "Domlib.h"
-#include "BigMoneyAI.h"
+//#include "BigMoneyAI.h"
+#include "DefaultAI.h"
 
 const int numGames = 1;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    Domlib::IGame* pGame = Domlib::CreateGame();
+    Domlib::IGame game;
 
-    pGame->RandomizeKingdomCards( Domlib::CARDSET_BASE | Domlib::CARDSET_INTRIGUE );
+    game.RandomizeKingdomCards( Domlib::CARDSET_BASE | Domlib::CARDSET_INTRIGUE );
 
     // TODO: Need to implement BigMoneyAI or DefaultAI.
-    //pGame->RegisterAI( new BigMoneyAI() );
-    //pGame->RegisterAI( new BigMoneyAI() );
-    //pGame->RegisterAI( new BigMoneyAI() );
-    //pGame->RegisterAI( new BigMoneyAI() );
+    game.RegisterAI( new DefaultAI() );
+    game.RegisterAI( new DefaultAI() );
+    game.RegisterAI( new DefaultAI() );
+    game.RegisterAI( new DefaultAI() );
 
-    pGame->Play();
+    game.Play();
 
-    pGame->GetResults();
+    game.GetResults();
 
-	return 0;
+    return 0;
 }
 

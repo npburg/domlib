@@ -22,7 +22,7 @@ NoblesCard::~NoblesCard( void )
 void NoblesCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
     NoblesOpt noblesOpt = pAi->OnNobles();
 
     switch( noblesOpt )

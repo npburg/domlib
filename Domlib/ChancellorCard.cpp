@@ -22,7 +22,7 @@ ChancellorCard::~ChancellorCard( void )
 void ChancellorCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
     ChancellorOpt chancellorOpt;
 
     pPlayer->PlusCoins( 2 );

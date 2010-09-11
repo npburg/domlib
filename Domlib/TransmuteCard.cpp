@@ -22,8 +22,8 @@ TransmuteCard::~TransmuteCard( void )
 void TransmuteCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICard* pCardToTrash = pAi->OnTransmute();
+    IAI* pAi = pPlayer->GetAI();
+    Card* pCardToTrash = pAi->OnTransmute();
 
     if( pPlayer->IsCardInHand( pCardToTrash ) )
     {

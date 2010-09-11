@@ -8,14 +8,19 @@
 namespace Domlib
 {
 
+class Card;
+
+typedef std::list<Card*>            CardList;
+typedef CardList::iterator          CardListIter;
+typedef CardList::const_iterator    CardListConstIter;
+
 enum AttackWhom
 {
     ATTACK_OTHERS,
     ATTACK_ALL,
 };
 
-class Card : 
-    public ICard
+class Card
 {
 public:
     virtual ~Card( void );
@@ -24,19 +29,19 @@ public:
     virtual void        OnDurationPhase( Engine* pEngine );
     virtual void        OnActionPhase( Engine* pEngine );
     virtual Treasure    OnTreasurePhase( Engine* pEngine );
-    virtual void        OnBuyPhase( Engine* pEngine, ICard* pCard );
+    virtual void        OnBuyPhase( Engine* pEngine, Card* pCard );
     virtual void        OnCleanUpPhase( Engine* pEngine );
     virtual void        OnBuy( Engine* pEngine );
     virtual int         OnScoring( Engine* pEngine );
 
     // AI Interfaces ( class ICard )
-            ICard*              GetCard( CARDID cardId );
+    static  Card*               GetCard( CARDID cardId );
     virtual CARDID              CardId( void ) const;
     virtual CARDTYPE            CardType( void ) const;
-    virtual int                 VictoryPoints( IEngine* pEngine ) const;
-    virtual const ITreasure*    Cost( IEngine* pEngine ) const;
-    virtual const ITreasure*    TreasureValue( IEngine* pEngine ) const;
-    virtual bool                InList( IEngine* pEngine, ICardList cardList ) const;
+    virtual int                 VictoryPoints( Engine* pEngine ) const;
+    virtual Treasure            Cost( Engine* pEngine ) const;
+    virtual Treasure            TreasureValue( Engine* pEngine ) const;
+    virtual bool                InList( Engine* pEngine, CardList cardList ) const;
 
     virtual bool        IsActionCard( void ) const;
     virtual bool        IsAttackCard( void ) const;
@@ -47,8 +52,8 @@ public:
     virtual bool        IsCurseCard( void ) const;
     virtual bool        IsNullCard( void ) const;
 
-    static bool         CardListsMatch( ICardList listA, 
-                                        ICardList listB );
+    static bool         CardListsMatch( CardList listA, 
+                                        CardList listB );
 
 protected:
     Card( 
@@ -71,9 +76,9 @@ protected:
     const Treasure          m_Cost;
 
 private:
-    typedef std::map<CARDID, ICard*>    ICardMap;
-    typedef ICardMap::const_iterator    ICardMapConstIter;
-    typedef std::pair<CARDID, ICard*>   ICardMapPair;
+    typedef std::map<CARDID, Card*>     CardMap;
+    typedef CardMap::const_iterator     CardMapConstIter;
+    typedef std::pair<CARDID, Card*>    CardMapPair;
 
     class CardFactory
     {
@@ -81,24 +86,18 @@ private:
         CardFactory( void );
         ~CardFactory( void );
 
-        ICard* GetCard( CARDID cardId );
+        Card*  GetCard( CARDID cardId );
 
     private:
-        void    AddCard( ICard* pCard );
-        ICard*  CreateCard( CARDID cardId );
+        void    AddCard( Card* pCard );
+        Card*   CreateCard( CARDID cardId );
 
-        ICardMap m_CardMap;
-        ICard*  m_pNullCard;
+        CardMap m_CardMap;
+        Card*  m_pNullCard;
     };
 
     static CardFactory m_CardDeck;
 };
 
-// TODO: Delete this if not used
-/*
-typedef std::list<Card*>            CardList;
-typedef CardList::iterator          CardListIter;
-typedef CardList::const_iterator    CardListConstIter;
-*/
 
 } // namespace Domlib

@@ -31,8 +31,8 @@ void SpyCard::OnActionPhase( Engine* pEngine )
 void SpyCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
     Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
-    AI* pAttackingAi = pPlayer->GetAI();
-    ICard* pCard = pPlayer->RevealCardFromDeck();
+    IAI* pAttackingAi = pPlayer->GetAI();
+    Card* pCard = pPlayer->RevealCardFromDeck();
     SpyOpt spyOpt;
 
     if( pAttackingPlayer == pPlayer )

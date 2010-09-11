@@ -22,12 +22,12 @@ LibraryCard::~LibraryCard( void )
 void LibraryCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList revealedCardList;
+    IAI* pAi = pPlayer->GetAI();
+    CardList revealedCardList;
 
     while( pPlayer->HandSize() < 7 )
     {
-        ICard* pRevealedCard = pPlayer->RevealCardFromDeck();
+        Card* pRevealedCard = pPlayer->RevealCardFromDeck();
         if( pRevealedCard->IsActionCard() )
         {
             LibraryOpt libraryOpt = pAi->OnLibrary( pRevealedCard );

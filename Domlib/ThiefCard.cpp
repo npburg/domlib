@@ -28,10 +28,10 @@ void ThiefCard::OnActionPhase( Engine* pEngine )
 void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
     Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
-    AI* pAttackingAi = pAttackingPlayer->GetAI();
-    ICardList cardList = pPlayer->RevealCardsFromDeck( 2 );
-    ICard* pCardToTrash;
-    ICardListIter iter;
+    IAI* pAttackingAi = pAttackingPlayer->GetAI();
+    CardList cardList = pPlayer->RevealCardsFromDeck( 2 );
+    Card* pCardToTrash;
+    CardListIter iter;
 
     
     for( iter = cardList.begin();
@@ -71,7 +71,7 @@ void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
         if( iter != cardList.end() )
         {
             cardList.erase( iter );
-            ICard* pCardToDiscard = cardList.front();
+            Card* pCardToDiscard = cardList.front();
             pPlayer->PutCardInDiscard( pCardToDiscard );
             cardList.clear();
         }

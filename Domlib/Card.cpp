@@ -29,12 +29,12 @@ void Card::OnActionPhase( Engine* pEngine ) {}
 
 void Card::OnReaction( Engine* pEngine, Player* pPlayer ) {}
 
-Treasure Card::OnTreasurePhase( Engine* pEngine ) 
+Treasure Card::OnTreasurePhase( Engine* pEngine )
 {
-    return *( (Treasure*) this->TreasureValue( pEngine ) );
+    return this->TreasureValue( pEngine );
 }
 
-void Card::OnBuyPhase( Engine* pEngine, ICard* pCard ) {}
+void Card::OnBuyPhase( Engine* pEngine, Card* pCard ) {}
 
 void Card::OnCleanUpPhase( Engine* pEngine ) {}
 
@@ -69,9 +69,9 @@ void Card::Attack( Engine* pEngine, AttackWhom attackWhom )
     do
     {
         pCurrentPlayer = pEngine->GetNextPlayer( pCurrentPlayer );
-        AI* pCurrentAi = pCurrentPlayer->GetAI();
+        IAI* pCurrentAi = pCurrentPlayer->GetAI();
 
-        ICard* pReactionCard = pCurrentAi->OnAttack( this );
+        Card* pReactionCard = pCurrentAi->OnAttack( this );
         ( (Card*) pReactionCard)->OnReaction( pEngine, pCurrentPlayer );
 
         if( pReactionCard->CardId() != CARDID_MOAT ||
@@ -84,7 +84,7 @@ void Card::Attack( Engine* pEngine, AttackWhom attackWhom )
 }
 
 
-ICard* Card::GetCard( CARDID cardId )
+Card* Card::GetCard( CARDID cardId )
 {
     return m_CardDeck.GetCard( cardId );
 }
@@ -99,19 +99,34 @@ CARDTYPE Card::CardType( void ) const
     return m_CardType;
 }
 
-int Card::VictoryPoints( IEngine* pEngine ) const
+int Card::VictoryPoints( Engine* pEngine ) const
 {
     return m_VictoryPoints;
 }
 
-const ITreasure* Card::Cost( IEngine* pEngine ) const
+Treasure Card::Cost( Engine* pEngine ) const
 {
-    return &m_Cost;
+    return m_Cost;
 }
 
-const ITreasure* Card::TreasureValue( IEngine* pEngine ) const
+Treasure Card::TreasureValue( Engine* pEngine ) const
 {
-    return &m_TreasureValue;
+    return m_TreasureValue;
+}
+
+bool Card::InList( Engine* pEngine, CardList cardList ) const
+{
+    for( CardListIter iter = cardList.begin();
+         iter != cardList.end();
+         iter++ )
+    {
+        if( m_CardId == (*iter)->CardId() )
+        {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 bool Card::IsActionCard( void ) const

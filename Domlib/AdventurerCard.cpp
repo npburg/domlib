@@ -23,8 +23,8 @@ void AdventurerCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     int treasureCardsFound = 0;
-    ICard* pCardRevealed;
-    ICardList revealedCardList;
+    Card* pCardRevealed;
+    CardList revealedCardList;
 
     do
     {

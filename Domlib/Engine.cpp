@@ -20,9 +20,9 @@ Engine::~Engine( void )
 
 void Engine::RegisterPlayer( AI* pAi )
 {
-    pAi->SetEngine( this );
+    pAi->SetEngine( new IEngine( this ) );
 
-    Player* pNewPlayer = new Player( this, pAi );
+    Player* pNewPlayer = new Player( this, new IAI( pAi ) );
 
     m_PlayerList.push_back( pNewPlayer );
 }
