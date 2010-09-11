@@ -703,3 +703,150 @@ The turn mechanism needs to be able to swap the player AI temporarily
   * No-op
 ====Vinyard::OnScoring()====
   * Return the sum the number of action cards in the player’s Deck divide by 3 rounded down.
+==Prosperity Set Cards==
+Need to ask query of treasure cards if the player wants to put them in play since many of the Prosperity Treasure cards have side effects. The Treasure() function should be called one during the buy phase and perform any side effects. Treasure() will calculate give the treasure value of the card. Need to check if there are any other places Treasure() might be needed to be called.
+====Bank::OnTreasurePhase()====
+  * Return the number of treasure cards in “in-play” list as the value of this treasure
+====Bishop::OnActionPhase()====
+  * Draw 1 card to player’s hand
+  * Add 1 victory point token to player’s victory point mat
+  * If the players hand is not empty query the player with OnBishipSelf() to trash a card from hand.
+  * Check that the card returned is in hand. (Error on a NullCard)
+  * Add victory point tokens equal to half the card trashed cost in coins rounded down.
+  * For each other player query the player’s AI with OnBishipOther() to return a card from hand to trash.
+  * Check that the card returned is in hand (do nothing on a NullCard.)
+====City::OnActionPhase()====
+  * Draw 1 card into the player’s hand
+  * Add 2 actions to the player’s turn
+  * If numEmptySupplyPiles >= 1 then draw 1 card into the player’s hand
+  * If numEmptySupplyPiles >= 2 then add 1 coin and add 1 buy into player’s turn
+  * (Perform both conditional checks since in the case of >= 2 you still draw 1 card as well.)
+====Contraband::OnActionPhase()====
+  * Add 1 buy to the player’s turn
+====Contraband::OnBuyPhase()====
+  * Query the player’s AI to the left with OnContraband() to name a card
+  * Set Contraband flag on Supply Pile named
+====Contraband::OnCleanupPhase()====
+  * Reset the contraband flags for the SupplyPiles.
+====Counting House::OnActionPhase()====
+  * Count the number of Coppers in the DiscardPile.
+  * Query the player’s AI with OnCountingHouse() to return the number of coppers to draw from the DiscardPile which is passed to the player.
+  * Check the number of coppers returned is <= the number of coppers in the DiscardPile.
+  * Move as many coppers from the DiscardPile to the player’s Hand as requested.
+====Expand::OnActionPhase()====
+  * Query the player’s AI to trash a card from hand with OnExpand().
+  * Check that the card returned is in the player’s hand.
+  * Trash the card returned.
+  * Complete the function with a call to OnGainACard( trashedCard.cost + 3)
+====Forge::OnActionPhase()====
+  * Query the player’s AI with OnForge() for list of cards from hand to trash.
+  * Check that the cards returned are in hand.
+  * Trash the cards in the list from the player’s hand.
+  * Complete the function with a call to OnGainACard( sum of the cost of the cards trashed).
+====Goons::OnActionPhase()====
+  * Add 1 buy to player’s turn
+  * Add 2 coins to player’s turn
+====Goons::OnCleanupPhase()====
+  * Count the number of cards in the BuyList and add that many victory point tokens to the player’s mat.
+====Goons::OnAttack()====
+  * Query the player’s AI with OnGoon() to return a list of cards to discard from hand such that the hand’s size will be <= 3.
+  * Check the cards returned are in the players hand and it would reduce the size of the hand to <= 3.
+  * Discard the cards return from the player’s hand.
+====Grand Market::OnActionPhase()====
+  * Draw 1 card into player’s hand
+  * Add 1 action to player’s turn
+  * Add 1 buy to player’s turn
+  * Add 2 coin to player’s turn
+  * Note: Add logic to buyphase to block this card if copper is in play but only when the buy is requested. If mint is bought then all the coppers are trashed but the buying power remains the same and if there are enough +buys and treasure points the Grand Market can be bought.
+====Hoard::OnCleanupPhase( card )====
+  * For each victory card in the BuyList, the player gains a gold card to the discard pile.
+====King’s Court::OnActionPhase()====
+  * See Throne Room for implementation details. 
+====Loan::OnBuyPhase()====
+  * Reveal cards from the player’s DrawPile until a Treasure card is revealed.
+  * Query the player’s AI with OnLoad() to return a Loan option to discard or trash the Treasure card revealed.
+  * Discard or trash the card
+  * Discard the cards in the revealed pile to the DiscardPile.
+====Monument::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * Add 1 victory point token to player’s victory point mat
+====Mint::OnActionPhase()====
+  * Query the player’s AI with OnMint() to return a card from hand to copy.
+  * Check the card returned is in hand
+  * Gain a copy of it in the discard pile.
+====Mint::OnBuy()====
+  * Trash all treasure in “in-play” list.
+  * Note: Buy() is not the same as BuyPhase() this operation occurs when this card is purchased not when it is using the in the buy phase.
+====Mountebank::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * Attack other players
+====Mountebank::OnAttack()====
+  * If the player has a Curse card in hand then query the player’s AI with OnMontebank() to return a Montebank option to discard a curse from hand.
+  * If the player return to discard a Curse then do nothing.
+  * If the player does not discard a Curse then gain a curse and copper in discard pile.
+====Peddler::OnActionPhase()====
+  * Draw card into player’s hand
+  * Add 1 action to player’s turn
+  * Add 1 coin into player’s turn
+====Peddler::Cost()====
+  * Return max(8 - Sum the number of action cards in “in-play” list * 2, 0)
+====Quarry::OnActionPhase()====
+  * No-op
+====Quarry::BuyPhase()====
+  * Set flag for quarry in player’s turn
+  * This flag will reduce the cost of cards by 2 (similar to Bridge but only in buy phase)
+====Rabble::OnActionPhase()====
+  * Draw 3 cards into hand
+  * Attack other players.
+====Rabble::OnAttack()====
+  * Reveal 3 card from the player’s DrawPile.
+  * Discard any action or treasure cards revealed.
+  * Query the player’s AI with OnReturnToDrawPile() to return a reordered list to put on the player’s DrawPile.
+  * Check the reordered list is the same as the input list.
+  * Place cards in returned list on the player DrawPile (see Scout)
+====Royal Seal::OnActionPhase()====
+  * No-op
+====Royal Seal::OnBuyPhase()====
+  * Set Royal Seal flag in player’s turn
+  * When a card is bought query the player if they want to put the card on top of the DrawPile OnRoyalSeal( card )
+  * If true put the card on top of the DrawPile
+  * Else put the card in discard pile.
+  * Reset the Royal Seal flag when the turn is over
+====Talisman::OnActionPhase()====
+  * No-op
+====Talisman::OnBuyPhase()====
+  * Set flag for Talisman in player’s turn
+  * This flag will allow a copy of a card to be gained if it’s cost is <= 4 and not a victory card
+  * Reset this flag when the turn is over.
+====Trade Route::OnActionPhase()====
+  * Add 1 buy to the player’s turn
+  * Add 1 coin per Trade Route token on the players map.
+  * Query the player’s AI with OnTradeRoute() to trash a card from hand.
+  * Check that the card returned is in the player’s Hand.
+  * Trash the card from hand.
+====Venture::OnActionPhase()====
+  * No-op
+====Venture::OnTreasurePhase()====
+  * Reveal cards from the DrawPile until a Treasure card is revealed.
+  * Discard the revealed cards to the DiscardPile.
+  * Put the revealed Treasure card into the end of the InPlayList.
+  * Play the Treasure card with OnTreasurePhase().
+====Vault::OnActionPhase()====
+  * Draw 2 cards into player’s hand
+  * Query the player’s AI with OnValueSelf() for a cards to discard from hand.
+  * Check that the cards returned are in the players list.
+  * Add the number of cards to the coins in the player’s turn.
+  * For each other player query the player’s AI with OnValueOther() to discard 2 cards from the player’s hand.
+  * Check the list of cards to discard and the list is <= 2 in size.
+  * If list is empty do nothing
+  * If list has 2 cards then draw 1 card into other player’s hand
+====WatchTower::OnActionPhase()====
+  * Draw cards into the player’s hand until they have 6 or more cards in hand.
+====WatchTower::OnReaction()====
+  * Query the player’s AI with OnWatchTower() for the watch tower option to trash the card gained.
+  * If the option is to trash then trash the card gained instead of putting it any where it is placed (discard, draw, hand, etc.)
+  * Need to be able to call this reaction from when gaining a card for any reason.
+====Worker’s Village::OnActionPhase()====
+  * Draw one card into the player’s hand
+  * Add 2 actions to the player’s turn
+  * Add 1 buy to the player’s turn
