@@ -1,5 +1,5 @@
 #labels Phase-Requirements,Phase-Design,Featured
-= Domlib Design Doc =
+= Domlib Design Document =
 == Classes ==
   * *AI*: The AI class is the base class for any AI that is written by an AI developer. The default implementation will be provided in the DeafultAI so AI developers can extend this class if they do not want to override every interface.
   * *ICard* - The ICard class provides the public interface to the AI to gain public information about the card such as the cost, plus action, etc, (note, some information may vary based on the context of the player for example PhilosopherStoneCard’s cost is determined by the size of the draw pile and discard pile.)
