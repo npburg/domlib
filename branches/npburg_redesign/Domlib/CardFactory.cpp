@@ -59,7 +59,7 @@ Card::CardFactory::CardFactory( void )
 
 Card::CardFactory::~CardFactory( void )
 {
-    for( ICardMapConstIter iter = m_CardMap.begin();
+    for( CardMapConstIter iter = m_CardMap.begin();
          iter != m_CardMap.end();
          iter++ )
     {
@@ -70,7 +70,7 @@ Card::CardFactory::~CardFactory( void )
     delete m_pNullCard;
 }
 
-ICard* Card::CardFactory::GetCard( CARDID cardId )
+Card* Card::CardFactory::GetCard( CARDID cardId )
 {
     if( cardId == CARDID_NULL )
     {
@@ -78,11 +78,11 @@ ICard* Card::CardFactory::GetCard( CARDID cardId )
     }
     else
     {
-        ICardMapConstIter iter = m_CardMap.find( cardId );
+        CardMapConstIter iter = m_CardMap.find( cardId );
         
         if( iter == m_CardMap.end() )
         {
-            ICard* pCard = CreateCard( cardId );
+            Card* pCard = CreateCard( cardId );
             AddCard( pCard );
             return pCard;
         }
@@ -91,13 +91,13 @@ ICard* Card::CardFactory::GetCard( CARDID cardId )
     }
 }
 
-void Card::CardFactory::AddCard( ICard* pCard )
+void Card::CardFactory::AddCard( Card* pCard )
 {
     if( pCard->CardId() != CARDID_NULL )
     {
         if( m_CardMap.find( pCard->CardId() ) == m_CardMap.end() )
         {
-            m_CardMap.insert(ICardMapPair( pCard->CardId(), pCard ) );
+            m_CardMap.insert(CardMapPair( pCard->CardId(), pCard ) );
         }
     }
     else
@@ -107,10 +107,10 @@ void Card::CardFactory::AddCard( ICard* pCard )
     }
 }
 
-ICard* Card::CardFactory::CreateCard( CARDID cardId )
+Card* Card::CardFactory::CreateCard( CARDID cardId )
 {
     // TODO: Add code to instantiate requrested card.
-    ICard* pCard = m_pNullCard;
+    Card* pCard = m_pNullCard;
 
     switch( cardId )
     {

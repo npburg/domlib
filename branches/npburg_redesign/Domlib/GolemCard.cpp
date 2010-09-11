@@ -27,13 +27,13 @@ void GolemCard::OnActionPhase( Engine* pEngine )
     throw std::wstring( L"GolemCard::OnActionPhase - To be implemented..." );
 
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList revealedCardList;
-    ICardList actionCardList;
+    IAI* pAi = pPlayer->GetAI();
+    CardList revealedCardList;
+    CardList actionCardList;
 
     do
     {
-        ICard* pRevealedCard = pPlayer->RevealCardFromDeck();
+        Card* pRevealedCard = pPlayer->RevealCardFromDeck();
 
         if( pRevealedCard->IsNullCard() )
         {
@@ -53,12 +53,12 @@ void GolemCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PutCardsInDiscard( revealedCardList );
 
-    ICardList reorderedCardList = 
+    CardList reorderedCardList = 
         pAi->OnGolem( revealedCardList );
 
     if( Card::CardListsMatch( revealedCardList, reorderedCardList ) )
     {
-        ICardListIter cardIter;
+        CardListIter cardIter;
 
         pPlayer->SetGolemFlag( true );
 

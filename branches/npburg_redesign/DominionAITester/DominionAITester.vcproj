@@ -190,6 +190,14 @@
 				RelativePath=".\BigMoneyAI.h"
 				>
 			</File>
+			<File
+				RelativePath=".\DefaultAI.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DefaultAI.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Precompiled Header"

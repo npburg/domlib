@@ -6,18 +6,17 @@
 namespace Domlib
 {
 
-class Game:
-    public IGame
+class Game
 {
 public:
     Game( void );
     virtual ~Game( void );
 
     // IGame Interfaces
-    virtual void    RegisterAI( AI* pAi );
-    virtual void    RandomizeKingdomCards( int cardSet );
-    virtual void    Play( void );
-    virtual void*   GetResults( void );
+    void    RegisterAI( AI* pAi );
+    void    RandomizeKingdomCards( int cardSet );
+    void    Play( void );
+    void*   GetResults( void );
 
 private:
     const Engine    m_Engine;

@@ -22,7 +22,7 @@ MinionCard::~MinionCard( void )
 void MinionCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->PlusActions( 1 );
 
@@ -34,7 +34,7 @@ void MinionCard::OnActionPhase( Engine* pEngine )
         break;
     case MINION_DISCARD_HAND:
         {
-        ICardList hand = pPlayer->GetHand();
+        CardList hand = pPlayer->GetHand();
         pPlayer->DiscardFromHand( hand );
         pPlayer->DrawCardsToHand( 4 );
 
@@ -52,7 +52,7 @@ void MinionCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
     if( pPlayer->HandSize() >= 5 )
     {
-        ICardList hand = pPlayer->GetHand();
+        CardList hand = pPlayer->GetHand();
         pPlayer->DiscardFromHand( hand );
         pPlayer->DrawCardsToHand( 4 );
     }

@@ -22,7 +22,7 @@ PawnCard::~PawnCard( void )
 void PawnCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
     PawnOptPair pawnOptPair = pAi->OnPawn();
 
     if( pawnOptPair.first != pawnOptPair.second )

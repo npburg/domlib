@@ -22,8 +22,8 @@ SecretChamberCard::~SecretChamberCard( void )
 void SecretChamberCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToDiscard = pAi->OnSecretChamber();
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToDiscard = pAi->OnSecretChamber();
 
     if( pPlayer->AreCardsInHand( cardsToDiscard ) )
     {
@@ -40,8 +40,8 @@ void SecretChamberCard::OnReaction( Engine* pEngine, Player* pPlayer )
 {
     pPlayer->DrawCardsToHand( 2 );
     
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToPutBack = pAi->OnSecretChamberReaction();
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToPutBack = pAi->OnSecretChamberReaction();
 
     if( pPlayer->AreCardsInHand( cardsToPutBack ) )
     {

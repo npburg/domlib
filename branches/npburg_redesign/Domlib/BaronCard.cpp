@@ -22,7 +22,7 @@ BaronCard::~BaronCard( void )
 void BaronCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->PlusBuys( 1 );
     BaronOpt baronOpt = pAi->OnBaron();

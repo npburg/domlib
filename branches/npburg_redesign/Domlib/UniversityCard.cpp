@@ -22,14 +22,14 @@ UniversityCard::~UniversityCard( void )
 void UniversityCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->PlusActions( 2 );
 
-    ICard* pActionCardToGain = pAi->OnUniversity();
+    Card* pActionCardToGain = pAi->OnUniversity();
 
     if( pActionCardToGain->IsActionCard() &&
-        *( (Treasure*) pActionCardToGain->Cost( pEngine ) ) < Treasure( 5, 0 ) )
+        pActionCardToGain->Cost( pEngine ) < Treasure( 5, 0 ) )
     {
         pPlayer->GainCardOnDiscard( pActionCardToGain );
     }

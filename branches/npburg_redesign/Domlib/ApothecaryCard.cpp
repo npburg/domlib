@@ -22,20 +22,20 @@ ApothecaryCard::~ApothecaryCard( void )
 void ApothecaryCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
 
-    ICardList revealedCardList = 
+    CardList revealedCardList = 
         pPlayer->RevealCardsFromDeck( 4 );
-    ICardListIter cardIter;
+    CardListIter cardIter;
 
     for( cardIter = revealedCardList.begin();
          cardIter != revealedCardList.end();
          cardIter++ )
     {
-        ICard* pCardInList = *cardIter;
+        Card* pCardInList = *cardIter;
 
         if( pCardInList->CardId() == CARDID_COPPER ||
             pCardInList->CardId() == CARDID_POTION )
@@ -45,7 +45,7 @@ void ApothecaryCard::OnActionPhase( Engine* pEngine )
         }
     }
     
-    ICardList reorderedCardList = 
+    CardList reorderedCardList = 
         pAi->OnReturnToDrawPile( revealedCardList );
 
     if( Card::CardListsMatch( revealedCardList, reorderedCardList ) )

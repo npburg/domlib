@@ -23,7 +23,7 @@ void FeastCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
-    pPlayer->OnGainACard( &Treasure( 5, 0 ) );
+    pPlayer->OnGainACard( &ITreasure( 5, 0 ) );
 
 }
 

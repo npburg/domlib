@@ -22,8 +22,8 @@ CellarCard::~CellarCard( void )
 void CellarCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToDiscard;
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToDiscard;
 
     cardsToDiscard = pAi->OnCellar();
     if( pPlayer->AreCardsInHand( cardsToDiscard ) )

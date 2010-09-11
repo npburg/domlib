@@ -22,8 +22,8 @@ ChapelCard::~ChapelCard( void )
 void ChapelCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICardList cardsToTrash;
+    IAI* pAi = pPlayer->GetAI();
+    CardList cardsToTrash;
 
     cardsToTrash = pAi->OnChapel();
     if( pPlayer->AreCardsInHand( cardsToTrash ) )

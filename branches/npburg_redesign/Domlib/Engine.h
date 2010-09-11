@@ -12,16 +12,15 @@ typedef std::list<Player*>          PlayerList;
 typedef PlayerList::iterator        PlayerListIter;
 typedef PlayerList::const_iterator  PlayerListConstIter;
 
-class Engine :
-    public IEngine
+class Engine
 {
 public:
     Engine( void );
     virtual ~Engine( void );
 
     // IEngine Interfaces
-    bool        IsCardInStock( ICard* card );
-    bool        CardsAvailable( ICard* card );
+    bool        IsCardInStock( CARDID cardId );
+    bool        CardsAvailable( CARDID cardId );
 
     void        RegisterPlayer( AI* pAi );
     void        Play( void );
@@ -31,7 +30,7 @@ public:
     Player*     GetCurrentPlayer( void );
     Player*     GetNextPlayer( Player* pPlayer );
     Player*     GetLastPlayer( void );
-    void        PutInTrash( ICard* pCard );
+    void        PutInTrash( Card* pCard );
 
 protected:
     bool IsGameOver( void ) const;

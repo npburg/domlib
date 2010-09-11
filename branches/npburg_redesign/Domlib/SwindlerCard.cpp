@@ -30,7 +30,7 @@ void SwindlerCard::OnActionPhase( Engine* pEngine )
 
 void SwindlerCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    ICard* pCardTrashed = pPlayer->TrashFromDeck();
+    Card* pCardTrashed = pPlayer->TrashFromDeck();
 
     if( pCardTrashed->IsNullCard() )
     {
@@ -39,9 +39,8 @@ void SwindlerCard::OnAttack( Engine* pEngine, Player* pPlayer )
     else
     {
         Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
-        AI* pAttackingAi = pAttackingPlayer->GetAI();
-        ICard* pCardGained = pAttackingAi->OnSwindler( 
-            pCardTrashed->Cost( pEngine ) );
+        IAI* pAttackingAi = pAttackingPlayer->GetAI();
+        Card* pCardGained = pAttackingAi->OnSwindler( pCardTrashed );
 
         if( pCardTrashed->Cost( pEngine ) == pCardGained->Cost( pEngine ) ||
             pCardGained->IsNullCard() )

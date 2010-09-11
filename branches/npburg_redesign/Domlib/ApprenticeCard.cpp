@@ -22,8 +22,8 @@ ApprenticeCard::~ApprenticeCard( void )
 void ApprenticeCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
-    ICard* pCardToTrash = pAi->OnApprentice();
+    IAI* pAi = pPlayer->GetAI();
+    Card* pCardToTrash = pAi->OnApprentice();
 
     if( pPlayer->IsCardInHand( pCardToTrash ) )
     {
@@ -35,8 +35,8 @@ void ApprenticeCard::OnActionPhase( Engine* pEngine )
         throw std::wstring( L"Error: ApprenticeCard::OnActionPhase" );
     }
 
-    Treasure* cost = (Treasure*) pCardToTrash->Cost( pEngine );
-    int numCardsToDraw = cost->Coins() + ( ( cost->Potions() ) ? 2 : 0 );
+    Treasure cost = pCardToTrash->Cost( pEngine );
+    int numCardsToDraw = cost.Coins() + ( ( cost.Potions() ) ? 2 : 0 );
 
     pPlayer->DrawCardsToHand( numCardsToDraw );
 

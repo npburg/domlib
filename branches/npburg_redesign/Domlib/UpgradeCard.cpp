@@ -22,18 +22,18 @@ UpgradeCard::~UpgradeCard( void )
 void UpgradeCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    AI* pAi = pPlayer->GetAI();
+    IAI* pAi = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
 
-    ICard* pCardToTrash = pAi->OnUpgrade();
+    Card* pCardToTrash = pAi->OnUpgrade();
 
     if( pPlayer->IsCardInHand( pCardToTrash ) )
     {
         pPlayer->TrashFromHand( pCardToTrash );
-        Treasure cost = *( (Treasure*) pCardToTrash->Cost( pEngine ) ) + Treasure( 1, 0 );
-        ICard* pCardToGain = pAi->OnGainACardExactly( &cost );
+        Treasure cost = pCardToTrash->Cost( pEngine ) + Treasure( 1, 0 );
+        Card* pCardToGain = pAi->OnGainACardExactly( &Treasure( cost ) );
         pPlayer->GainCardOnDiscard( pCardToGain );
     }
     else

@@ -823,6 +823,34 @@
 					RelativePath=".\Domlib.h"
 					>
 				</File>
+				<File
+					RelativePath=".\IAI.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\IAI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ICard.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\IEngine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\IGame.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\IPlayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ITreasure.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
