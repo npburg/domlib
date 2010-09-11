@@ -41,3 +41,11 @@
   * *SupplyPile* is the a pile of a supply card (kingdom cards, treasure cards victory cards) in the game. The count and contents is publicly known. In addition, the SupplyPile contains a count of embargo tokens and TradeTokens which are also public information.
   * *TradeRouteMat* is a count of TradeTokens which is public information. Unlike most of the other lists, piles and mats, this mat is managed by the Engine class instead of the Player class since it is a shared mat.
   * *VictoryPointMat* (called player mat in the rules) is a count of the VictoryTokens (called <shield symbol> tokens in the rules). The count is publicly known.
+==Function Naming Convention==
+  * *GainCardxxx*( Card ) – this prefix indicates that the card should be taken from a supply pile and put into the post fix destination. If the supply pile is empty then this is a no-op. It is up to the caller to know if it is valid to call this function if the supply pile is empty.
+    * For example: GainCardInHand( card ) this takes a card from the supply pile and put it in the Hand list.
+  * *OnGainACardxxx*( Cost ) – this prefix indicates that the player’s AI should be queried about a card from supply to gain and then place the card in the destination postfix.
+  * *PutCardxxx*( Card ) – this prefix indicates that the card should simply put into the postfix destination without knowing the source. It is up to the caller to handle the bookkeeping for the source of this card. 
+    * For example: PutCardInTrash( card ) this puts a reference to the card in the trash pile without knowing where it came from but this is just an example since TrashCard( card ) is the same as PutCardInTrash( card ).
+  * *TrashCardxxx*( Card ) – this prefix indicates that the card should go to the postfix source. If there is no postfix source then the card is simply trashed and it is up to the caller to handle the bookkeeping of the source.
+    * For example: TrashCardFromHand( card ) will take the card from the Hand list and put it in the TrashPile
