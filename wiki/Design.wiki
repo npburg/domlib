@@ -270,3 +270,161 @@ Note: The following cards need to be handled with care with the Throne Room / Ki
   * Add 2 coins to player’s turn.
 ====Workshop::OnActionPhase()====
   * Use the OnGainACard( cost = 4 ) helper function to handle this card.
+==Intrigue Set Cards==
+====Baron::OnActionPhase()====
+  * Add 1 buy to player’s turn
+  * If the player’s hand contains an Estate then query the player’s AI with OnBaron() for a Baron option.
+  * If discard estate is select then 
+  * Check the player’s hand for an estate
+  * Discard the estate from hand to the discard pile
+  * Add 4 coins the player’s turn
+  * Else gain an Estate in the discard pile (this is forced if the card is played)
+====Bridge::OnActionPhase()====
+  * Add 1 buy to player’s turn
+  * Add 1 coin to player’s turn
+  * When a card’s cost is queried, it should check for the number of Bridges in the current player’s InPlay list to adjust the cost.
+====Conspirator::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * If actions played in player’s turn is >= 3 [this action card should have already been accounted for] then 
+  * Draw 1 card to player’s hand
+  * Add 1 action to player’s turn
+====Coppersmith::OnActionPhase()====
+  * Do nothing.
+  * When the treasure value of coppers is calculated in the treasure phase, it should count the number of coppersmiths in the InPlayList and ThroneRoomList and adjust the value.
+====Courtyard::OnActionPhase()====
+  * Draw 3 cards into the player’s hand
+  * Query the player’s AI with OnCourtyard() for a card from the player’s hand to put back on the draw pile.
+  * Check that the card returned is in the player’s hand.
+  * Put back the card from the player’s hand to the draw pile.
+====Duke::OnActionPhase()====
+  * No-op
+====Duke::OnScoring()====
+  * Count the number of Duchies in the player’s Deck.
+  * Return the count divided by 5 rounded down.
+====Great Hall::OnActionPhase()====
+  * Draw a card from draw pile
+  * Add 1 action to player’s turn
+====Harem::OnActionPhase()====
+  * No-op
+====Ironworks::OnActionPhase()====
+  * Query the player’s AI for GainACard( cost = 4 )
+  * Check if card is in stock
+  * Place card into discard pile
+  * If card gained is an action card then add 1 action to player’s turn
+  * If card gained is a treasure card then add 1 coin to player’s turn
+  * If card gained is a victory card then draw 1 card to player’s hand
+  * (Perform all 3 checks since mixed type cards allow for each result.)
+====Masquerade::OnActionPhase()====
+  * Draw 2 cards into player’s hand
+  * Loop through the players and query each with OnMasqueradePass() which card from hand to pass to the next.
+  * Check that the card is in hand
+  * Pass the card on to the next player after querying that player’s AI which card to pass.
+  * End Loop
+  * Query the player’s AI with OnMasqueradeTrash() for a card to trash from hand.
+  * Check that the card returned is in hand (or do nothing on NullCard)
+  * Trash the returned card from the player’s hand.
+====Mining Village::OnActionPhase()====
+  * Draw 1 card into player’s hand
+  * Add 2 actions to player’s turn
+  * Query the player’s AI with OnMiningVillage() for a Mining Village option where to trash this card.
+  * If the option is to trash this card then add 2 coins to player’s turn.
+====Minion::OnActionPhase()====
+  * Add 1 action to player’s turn
+  * Query the player’s AI with OnMinion() for a minion option::
+    * MINION_PLUS_2_COIN
+    * MINION_ATTACK
+  * If MINON_PLUS_2_COIN then add 2 coin to player’s turn
+  * Else if MINION_ATTACK then discard hand and draw 4 cards
+  * Attack other players
+====Minion::OnAttack()====
+  * If player has 5 or more cards in hand then
+  * Discard hand 
+  * Draw 4 cards for other player.
+====Nobles::OnActionPhase()====
+  * Query the player’s AI for OnNobles() which returns
+    * NOBLES_PLUS_3_CARDS
+    * NOBLES_PLUS_2_ACTIONS
+  * Draw 3 cards to the player’s hand or add 2 actions to the player’s turn.
+====Pawn::OnActionPhase()====
+  * Query the player’s AI with OnPawn() for a pair of Pawn options
+  * Pawn options are:
+    * PAWN_PLUS_1_CARD
+    * PAWN_PLUS_1_ACTION
+    * PAWN_PLUS_1_BUY
+    * PAWN_PLUS_1_COIN
+  * Check that the options returned are different and perform each of them.
+====Saboteur::OnActionPhase()====
+  * Attack other players
+====Saboteur::OnAttack()====
+  * Reveal cards from draw pile until revealing a card costing >= 3
+  * Trash the selected card
+  * Query the player’s AI with OnGainACard()to gains a card costing trashedcard.coin – 2
+  * Put the revealed cards in the DiscardPile.
+====Scout::OnActionPhase()====
+  * Add 1 action to player’s turn
+  * Reveal 4 cards
+  * Move any victory cards from revealed pile into the player’s hand
+  * Query the player’s AI with OnReturnToDrawPile( cardList ) which gives the player a list of card and returns a list of cards to be placed back on the deck. (The list is pushes on the draw pile stack so the first card in the list is the first pushed on the draw pile stack so the last card in the list will be the new top card after Scout is played.)
+  * Check that the cards in the list returned is the same as the cards passed in.
+  * Put the cards from the list onto the DrawPile.
+====Shanty Town::OnActionPhase()====
+  * Add 2 actions to players turn
+  * Reveal hand()
+  * If no action cards in hand then draw 2 cards to the player’s hand.
+====Steward::OnActionPhase()====
+  * Query the player’s AI with OnSteward () to return a Steward option 
+    * STEWARD_PLUS_2_CARDS
+    * STEWARD_PLUS_2_COINS
+    * STEWARD_TRASH_2_CARDS
+  * If trash 2 cards is selected then query the player’s AI with OnStewardTrash() to return 2 cards to trash from hand.
+  * Check that 2 cards were returned and that the 2 cards returned are in the players hand.
+  * Trash the 2 cards returned from the player’s hand.
+====Secret Chamber::OnActionPhase()====
+  * Query the player’s AI for a list of cards to discard OnSecretChamber ()
+  * Check that the cards are in the player’s hand and for each card discarded, add +coins to the player’s turn.
+====Secret Chamber::Reaction( AttackCard )====
+  * Draw 2 cards into player’s hand.
+  * Query the player’s AI for 2 cards to place on top of the deck with SecretChamberReaction( AttackCard ) and pass in the attack card that triggered this.
+  * Check that 2 cards were returned and the returned cards are in the player’s hand.
+  * Put back the returned cards from the player’s hand to the draw pile.
+====Swindler::OnActionPhase()====
+  * Add 2 coin to player’s turn
+====Swindler::OnAttack()====
+  * Trash the top for of the player’s deck.
+  * Query the attacking player’s AI with OnSwindler( cost ) to return a card for the victim player to gain.
+  * Check that the card returned cost <= to the cost passed ot the function and is a valid supply pile.
+  * Gain a card from the supply to the victim player’s discard pile.
+  * If the supply pile is empty do nothing.
+====Torturer::OnActionPhase()====
+  * Draw 3 cards to the player’s hand.
+  * Attack other players
+====Torturer::OnAttack()====
+  * Query the player’s AI with OnTorturer() for two cards from hand to discard.
+  * Check the list of cards that the size is 2 and the cards are in the player’s hand.
+  * Discard returned cards from hand.
+  * Else put a curse in the player’s hand.
+====Trading Post::OnActionPhase()====
+  * Query the player’s AI with OnTradingPost() for two cards from hand to trash.
+  * Check that two cards were returned and the cards are in the player’s hand.
+  * Trash the cards returned.
+  * Gain a SilverCard into the player’s hand.
+====Tribute::OnActionPhase()====
+  * Reveals 2 cards from left player’s deck and then discards them to left player’s discard pile.
+  * If card1 is action then add 2 actions to player’s turn
+  * If card1 is treasure then add 2 coins to player’s turn
+  * If card1 is victory then draw 2 cards into the player’s hand
+  * If card2 == card1 then do nothing otherwise repeat checks for card2
+====Upgrade::OnActionPhase()====
+  * Draw 1 card into player’s hand
+  * Add 1 action to player’s turn
+  * Query the player’s AI with UpgradeTrash() to return a card from hand to trash.
+  * Check the card returned is in hand (need to check if the hand is empty in which case no cards are trashed or gained)
+  * Generate a list of cards that could be purchased (exclude any cards where the stock is empty)
+  * Use GainACardExactly() the finish the function with a cost one more than the trashed card. 
+====Wishing Well::OnActionPhase()====
+  * Draw 1 card into player’s hand
+  * Add 1 action to player’s turn
+  * Query player with OnWishing () to return a card to wish for from the player’s draw pile.
+  * Reveal top card of the draw pile.
+  * If card is equal to wished card then put the card into hand
+  * Else put the revealed card back on deck. 
