@@ -1,4 +1,18 @@
-#summary Domlib Engine Design
 #labels Phase-Requirements,Phase-Design,Featured
-
-TBD
+= Domlib Design Doc =
+== Classes ==
+  *AI: The AI class is the base class for any AI that is written by an AI developer. The default implementation will be provided in the DeafultAI so AI developers can extend this class if they do not want to override every interface.
+  *ICard - The ICard class provides the public interface to the AI to gain public information about the card such as the cost, plus action, etc, (note, some information may vary based on the context of the player for example PhilosopherStoneCard’s cost is determined by the size of the draw pile and discard pile.)
+  *Card – The Card class is derived from the ICard class to provide the AI information through that interface and the Card class serves as the base class for each specific card class in the game. (i.e. MoatCard, GoldCard, EstateCard, etc.) The Card class provides the basic implementation for the ICard class interfaces as well as the basic implementation for the phase it supports. The cards that derive from this class are expect to implement the phase functions to implement the behavior per phase if it is different than the default implementation..
+  *CardFactory – The Card class uses to Singleton pattern to prevent the creation of more than one card instance to be instantiated. The CardFactory manages the creation and distribution of the different cards for the Card class. It is a nested class of the Card class and a static member so it is always available and when the program exits, the CardFactory will clean up the Cards it generated.
+  *IEngine – The IEngine class provides the interface for the AI to request information about the state of the game.
+  *Engine – The engine manages the list of players, contains the main loop for playing the game and holds the SupplyPileManager and any global state such as the TradeRouteMat or the TrashPile.
+  *IGame – The IGame class provides the public interface for the Game class.
+  *Game – The game class contains the engine and provides the link from the application to the engine for setting up the game and registering the AIs. The reason this is separated from the Engine itself is because each AI is provide a reference to the IEngine to get the current state of the game engine to make decisions. The Engine also needs to provide a register AI function to the application; however, if this was part of the IEngine interface then an AI, while in the middle of the game, could register another AI or request the supply piles to be randomized again or any other changes to the game. The IGame/Game class provide the interface for the app to setup the game, while IEngine/Engine provide the current state of the game to the AI while the game is being played.
+  *IPlayer – The IPlayer class provides the basic interface for the AI to gain public information about a Player. This does not provide any private information about the Player the AI is registered with.
+  *IPlayerSelf – The IPlayerSelf class provides the basic interface for the AI to gain public and private information about a Player. This still does not provide information a player is not allowed to know about itself such as the contents of the draw pile.
+  *Player – The Player class manages all the lists, piles, mats and turn state that represent a player in the game.
+  *ITreasure – The ITreasure class provides the AI access to the Treasure classes external interface. The Treasure class is not provided externally since that would enable an AI to rewrite the Treasure class to modify it’s behavior.
+  *Treasure – The Treasure class represent the complex value of currency in the game (coins and potions). This class provides overrided operators such as (+, -, ==, <, etc.). 
+  *SupplyPile – The SupplyPile class manages the number of supply cards in a pile, the number of embargo tokens and trade route tokens and any other state of an individual pile.
+  *SupplyPileManager – The SupplyPileManager class manages all the supply piles in the game and some basic functionality the Engine such as helping determine the victory condition or setting up the piles used in the game.
