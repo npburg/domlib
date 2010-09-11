@@ -428,3 +428,197 @@ Note: The following cards need to be handled with care with the Throne Room / Ki
   * Reveal top card of the draw pile.
   * If card is equal to wished card then put the card into hand
   * Else put the revealed card back on deck. 
+==Seaside Set Cards==
+====Ambassador::OnActionPhase()====
+  * Query the player’s AI with OnAmbassador() for a list of cards to trash from hand.
+  * Check that the list is size 1 or 2 and that the cards are the same
+  * Add the cards to the supply pile
+  * Set AmbassadorCard to the card in the engine
+  * Attack players
+  * Set AmbassadorCard to the null card in the engine
+====Ambassador::OnAttack()====
+  * Player gains a copy of the AmbassadorCard (get state from engine) on DiscardPile.
+====Bazaar::OnActionPhase()====
+  * Draw 1 card into the player’s hand
+  * Add 2 actions to the player’s turn
+  * Add 1 coin to the player’s turn
+====Caravan::OnActionPhase()====
+  * Draw 1 card into the player’s hand
+  * Add 1 action to the player’s turn
+====Caravan::OnDurationPhase()====
+  * Draw 1 card into the player’s hand
+====Caravan::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Cutpurse::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * Attack other players
+====Cutpurse::OnAttack()====
+  * If player’s hand has no copper then reveal hand.
+  * Else discard copper from player’s hand
+====Embargo::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * Query the player’s AI on Embargo() which returns a card to embargo
+  * Check the card is a valid stock
+  * Add an embargo token to the stock pile
+  * (In the buy phase any purchase of a card with embargo tokens gets Curse card per embargo token)
+====Embargo::OnCleanup()====
+  * Trash this card from the InPlayList.
+====Explorer::OnActionPhase()====
+  * If player has a province in hand then query the player’s AI with OnExplorer() reveal province card from hand.
+  * If returns true then gain a Gold card into the player’s hand
+  * Else gain a silver card into the player’s hand
+====Fishing Village::OnActionPhase()====
+  * Add 2 actions to the player’s turn
+  * Add 1 coin to the player’s turn
+====Fishing Village::OnDurationPhase()====
+  * Add 1 action to the player’s turn
+  * Add 1 coin to the player’s turn
+====Fishing Village::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Ghost Ship::OnActionPhase()====
+  * Draw 2 cards into the player’s hand
+  * Attack other players
+====Ghost Ship::OnAttack()====
+  * Query the player’s AI with OnGhostShip() to return a list of cards to discard from hand such that the hand’s size will be <= 3.
+  * Check the cards returned are in the players hand and it would reduce the size of the hand to <= 3.
+  * Discard the cards return from the players hand.
+====Haven::OnActionPhase()====
+  * Add 1 card to player’s hand
+  * Add 1 action to player’s turn
+  * Query player for card from hand with Haven()
+  * Check the card is in the player hand
+  * Place card into HavenList
+====Haven::OnDurationPhase()====
+  * Move a card from the HavenList to the player’s hand.
+====Haven::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Island::OnActionPhase()====
+  * Query the player’s AI with OnIsland() for a card from hand to place on Island mat.
+  * Check is card is in hand
+  * Move card from hand to the Island mat.
+  * Move Island from InPlayList to Island mat
+====Lighthouse::OnActionPhase()====
+  * Add 1 action to the player’s turn
+  * Add 1 coin to the player’s turn
+====Lighthouse::OnDurationPhase()====
+  * Add 1 coin to the player’s turn
+====Lighthouse::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Lookout::OnActionPhase()====
+  * Add 1 action to player’s turn
+  * Generate list of 3 cards from draw pile
+  * Query the player’s AI with Lookout( cardList ) which returns LookoutStruct containing 3 cards from hand to trash, discard and put back.
+  * Check that each card in the struct is in the output list, watch out to handle duplicate cards correctly
+  * Dicard, trash and put back the cards from the struct accordingly.
+====Merchant Ship::OnActionPhase()====
+  * Add 2 coin to the player’s turn
+====Merchant Ship::OnDurationPhase()====
+  * Add 2 coin to the player’s turn
+====Merchant Ship::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Native Village::OnActionPhase()====
+  * Add 2 actions to the player’s turn
+  * Query the player’s AI with OnNativeVillage() for a Native Village option
+    * NATIVE_VILLAGE_PUT_AWAY_CARD
+    * NATIVE_VILLAGE_DRAW_CARDS
+  * If NATIVE_VILLAGE_PUT_AWAY_CARD then put the card from the top of the players deck on to the players native village mat (list)
+  * If NATIVE_VILLAGE_DRAW_CARDS then draw all the cards from the native village mat into the player’s hand
+====Navigator::OnActionPhase()====
+  * Add 2 coin to player’s turn
+  * Generate list of 5 cards from draw pile
+  * Query the player’s AI with OnNavigator( cardList) to return the list of cards reordered by the player to put back on top of the deck or returns and empty list to indicate that the list of 5 cards should be discarded
+  * Check that the list of cards returned is the same as the input list.
+  * If the list is empty then put the input list in the DiscardPile
+  * Else put the returned list into the draw pile.
+====Outpost::OnActionPhase()====
+  * If Outpost card in DurationList then return error.
+====Outpost::OnCleanupPhase()====
+  * Set the Outpost flag for next turn.
+====Output::OnDurationPhase()====
+  * Reset the Outpost flag.
+====Outpost::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Pearl Diver::OnActionPhase()====
+  * Draw 1 card to player’s hand
+  * Add 1 action to player’s turn
+  * Set aside the card from the bottom of the player’s DrawPile.
+  * Query the player’s AI with OnPearlDiver() for a pearl diver option.
+    * PEARLDIVER_TOP_OF_DRAWPILE
+    * PEARLDIVER_BOTTOM_OF_DRAWPILE
+  * Place the card back in the DrawPile based on the option returned.
+====Pirate Ship::OnActionPhase()====
+  * Query player for an option OnPirateShip() which should return
+  * PIRATESHIP_ATTACK
+  * PIRATESHIP_PLUS_COINS
+  * If PIRATESHIP_ATTACK then 
+{{{
+{
+    foundTreasure = false
+    attack other players
+    if( foundTreasure == true )
+    {
+        Add 1 pirate ship coin to player’s pirate ship mat (int)
+    }
+}
+}}}
+  * Else add pirate ship coins to player’s turn
+====Pirate Ship::OnAttack()====
+  * Reveal 2 cards from player’s draw pile.
+  * Add treasure cards to a list
+  * If list.size() > 0 then  foundTreasure = true
+  * if list.size() == 1 then set card in the list the card to trash 
+  * else query attacking player with OnPriateShipTrash ( cardList ) to return a treasure card to trash.
+  * Check the card returned is in the list.
+  * Trash the treasure from the other player’s reveal list
+====Salvager::OnActionPhase()====
+  * Add 1 buy to player’s turn
+  * Query the player’s AI with OnSalvager() for a card to trash from hand.
+  * Check that the card returned is in the player’s hand.
+  * Add the card’s cost to the player’s turn
+  * Trash the card from the player’s hand
+====Sea Hag::OnActionPhase()====
+  * Attack each other player
+====Sea Hag::OnAttack()====
+  * Discard a card from the player’s draw pile.
+  * Gain a Curse card to the player’s draw pile.
+====Smugglers::OnActionPhase()====
+  * Get the BuyList of cards from the player to the left.
+  * Filter out any cards costing more than 6 coins.
+  * Query the player with Smugglers( cardList ) to return a card from the list to gain
+  * Check that the card returned is in the list.
+  * Gain the card from the supply to the player’s DiscardPile.
+====Tactician::OnActionPhase()====
+  * Discard all cards from player’s hand
+====Tactician::OnDurationPhase()====
+  * Draw 5 cards into the player’s hand
+  * Add 1 buy to the player’s turn
+  * Add 1 action to the player’s turn
+====Tactician::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
+====Treasure Map::OnActionPhase()====
+  * If the player’s hand contains another copy, trash the copy.
+  * If the copy was trashed then the player gains 4 gold cards to the top the draw pile.
+====Treasure Map::OnCleanupPhase()====
+  * Trash this card from the InPlayList.
+====Treasury::OnActionPhase()====
+  * Draw 1 card into the player’s hand
+  * Add 1 action to the player’s turn
+  * Add 1 coin to the player’s turn
+====Treasury::OnCleanupPhase()====
+  * If BuyList does not have a victory card
+  * Then query the player’s AI with OnTreasury for a treasury option.
+  * If treasure option indicates to put the card back then move this card to draw pile.
+====Warehouse::OnActionPhase()====
+  * Draw 3 cards to player’s hand
+  * Add 1 action to player’s turn
+  * Query the player’s AI with OnWarehouse() for a list of 3 cards to discard from hand.
+  * Check that the list is size 3 and the cards are in hand (handle duplicate cards correctly)
+  * Discard the cards from the player’s hand.
+====Wharf::OnActionPhase()====
+  * Draw 2 cards into the player’s hand
+  * Add 1 buy to the player’s turn
+====Wharf::OnDurationPhase()====
+  * Draw 2 cards into the player’s hand
+  * Add 1 buy to the player’s turn
+====Wharf::OnCleanupPhase()====
+  * Move this card from InPlayList to the DurationList.
