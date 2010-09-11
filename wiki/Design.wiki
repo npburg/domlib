@@ -56,12 +56,12 @@ TODO: Add description of the Bridge pattern and it’s use with the AI interface
 ==Card Class==
 All cards are derived from the Card class and implement needed functions. The base class will have the default implementation since most operations will be common. The class will have any helper functions for common operations such as AttackCard. The class will also have a reference to the GameEngine to query the players or modify game state. The Card class will also implement AI interface version of Card which provides the user access to some but not all of the class functions. The Card class also implements a singleton model such that there is a private constructor for the class and all derived class, there is a static GetCard method to get a copy a card from a factory by passing in the CARDID. 
 
-===Action Card Execution===
+====Action Card Execution====
 Each card has a pointer to the game engine enabling the card to execute it’s own instruction. The game engine manages the players (piles, hands, mats, tokens etc) and the deck (piles) and any tokens.
 
 By default, any action card played, decrements the actions by 1 and the card is removed from the player’s hand to the “in-play” list. Duration cards moved from in-play to duration list in clean-up phase.
 
-===AttackCard Helper function===
+====AttackCard Helper function====
 Instead of writing the same loop to attack players for each attack write a single function which takes in the attack card played and a flag to indicate is self attack is possible (i.e. Spy)
 {{{
 For each (other) player
@@ -78,11 +78,11 @@ For each (other) player
 }
 }}}
 
-===Reaction Cards===
+====Reaction Cards====
 If an attack occurs the player is queried for a reaction card from hand.
 The card returned then has card.Reaction( AttackCard ) function called to perform a reaction action.
 
-===Card::GainACard() Helper function===
+====Card::GainACard() Helper function====
 This should call player::GainACard() function in the player but instead of having a card directly call this function it should call the Card::GainACard() which include checks to make sure play gained a valid card
 {{{
 Card::GainACard()
@@ -97,7 +97,7 @@ Card::GainACard()
 }}}
 This function always puts the card into the discard pile. If the card is suppose to go into the draw pile or hand then a more explicit function should be called.
 
-===Cleanup function===
+====Cleanup function====
 This allows the card to perform any special actions on the cards in the in-play list (including itself) before the in-play is moved to the discard pile.
 ==Game Class==
 TODO: Add info
