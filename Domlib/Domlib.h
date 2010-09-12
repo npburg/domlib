@@ -450,8 +450,8 @@ enum NativeVillageOpt
 
 enum PearlDiverOpt
 {
-    PEARLDIVER_TOP_OF_DECK,
-    PEARLDIVER_BOTTOM_OF_DECK,
+    PEARLDIVER_TOP_OF_DRAWPILE,
+    PEARLDIVER_BOTTOM_OF_DRAWPILE,
 };
 
 enum PirateShipOpt
