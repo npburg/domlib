@@ -1,13 +1,13 @@
 #include "StdAfx.h"
-#include "ThiefCard.h"
+#include "PirateShipCard.h"
 
 namespace Domlib
 {
 
-ThiefCard::ThiefCard( void )
+PirateShipCard::PirateShipCard( void )
     : Card( 
-        L"Thief",
-        CARDID_THIEF,
+        L"Pirate Ship",
+        CARDID_PIRATESHIP,
         CARDTYPE_ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
@@ -15,17 +15,39 @@ ThiefCard::ThiefCard( void )
 {
 }
 
-ThiefCard::~ThiefCard( void )
+PirateShipCard::~PirateShipCard( void )
 {
 }
 
-
-void ThiefCard::OnActionPhase( Engine* pEngine )
+void PirateShipCard::OnActionPhase( Engine* pEngine )
 {
-    Attack( pEngine, ATTACK_OTHERS );
+    Player* pPlayer = pEngine->GetCurrentPlayer();
+    IAI* pAi = pPlayer->GetAI();
+    PirateShipOpt pirateShipOpt = pAi->OnPirateShip();
+    
+    switch( pirateShipOpt )
+    {
+    case PIRATESHIP_ATTACK:
+    {
+        m_bFoundTreasure = false;
+        Attack( pEngine, ATTACK_OTHERS );
+        if( m_bFoundTreasure )
+        {
+            pPlayer->PlusPirateCoin();
+        }
+        break;
+    }
+    case PIRATESHIP_PLUS_COINS:
+        pPlayer->PlusCoins( pPlayer->PirateCoins() );
+        break;
+    default:
+        // TODO: report error
+        throw std::wstring( L"Error: PirateShipCard::OnActionPhase" );
+        break;    
+    }
 }
 
-void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
+void PirateShipCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
     Player* pAttackingPlayer = pEngine->GetCurrentPlayer();
     IAI* pAttackingAi = pAttackingPlayer->GetAI();
@@ -55,7 +77,7 @@ void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
         cardList.clear();
         break;
     case 2:
-        pCardToTrash    = pAttackingAi->OnThiefTrash( cardList );
+        pCardToTrash    = pAttackingAi->OnPirateShipTrash( cardList );
 
         // This can be dangerous since pCardToTrash is a pointer but
         // since every card is unique per game (instance of engine) then all pointers
@@ -78,31 +100,18 @@ void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
         else
         {
             // TODO: report error (return early)
-            throw std::wstring( L"Error: ThiefCard::OnAttack" );
+            throw std::wstring( L"Error: PirateShipCard::OnAttack" );
             return;
         }
         break;
     default:
         // TODO: report error. (early return)
-        throw std::wstring( L"Error: ThiefCard::OnAttack" );
+        throw std::wstring( L"Error: PirateShipCard::OnAttack" );
         return;
     }
     
-    ThiefOpt thiefOpt = 
-        pAttackingAi->OnThiefGain( pCardToTrash );
-    switch( thiefOpt )
-    {
-    case THIEF_STEAL_TREASURE_CARD:
-        pAttackingPlayer->PutCardInDiscard( pCardToTrash );
-        break;
-    case THIEF_TRASH_TREASURE_CARD:
-        pEngine->PutCardInTrash( pCardToTrash );
-        break;
-    default:
-        // TODO: report error
-        throw std::wstring( L"Error: ThiefCard::OnAttack" );
-        break;
-    }
+    pEngine->PutCardInTrash( pCardToTrash );
+    m_bFoundTreasure = true;
 }
 
 } // namespace Domlib

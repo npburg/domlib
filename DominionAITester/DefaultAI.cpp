@@ -225,11 +225,14 @@ Domlib::ICard* DefaultAI::OnWishingWell( void )
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
-Domlib::ICardList DefaultAI::OnAmbassador( void )
+Domlib::ICard* DefaultAI::OnAmbassadorReveal( void )
 {
-    Domlib::ICardList iCardList;
-    
-    return iCardList;
+    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+}
+
+int OnAmbassadorPutBack( Domlib::ICard* pCard )
+{
+    return 0;
 }
 
 Domlib::ICard* DefaultAI::OnEmbargo( void )
@@ -242,6 +245,13 @@ Domlib::ExplorerOpt DefaultAI::OnExplorer( void )
     return Domlib::EXPLORER_REVEAL_PROVINCE;
 }
 
+Domlib::ICardList DefaultAI::OnGhostShip( void )
+{
+    Domlib::ICardList iCardList;
+    
+    return iCardList;
+}
+
 Domlib::ICard* DefaultAI::OnHaven( void )
 {
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
@@ -252,9 +262,9 @@ Domlib::ICard* DefaultAI::OnIsland( void )
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
-Domlib::LookoutStruct DefaultAI::OnLookout( Domlib::ICardList cardList )
+Domlib::ILookoutStruct DefaultAI::OnLookout( Domlib::ICardList cardList )
 {
-    Domlib::LookoutStruct lookoutStruct;
+    Domlib::ILookoutStruct lookoutStruct;
     
     return lookoutStruct;
 }
@@ -271,7 +281,7 @@ Domlib::ICardList DefaultAI::OnNavigator( Domlib::ICardList cardList )
     return iCardList;
 }
 
-Domlib::PearlDiverOpt DefaultAI::OnPearlDiver( void )
+Domlib::PearlDiverOpt DefaultAI::OnPearlDiver( Domlib::ICard* pCard )
 {
     return Domlib::PEARLDIVER_BOTTOM_OF_DECK;
 }
@@ -279,6 +289,11 @@ Domlib::PearlDiverOpt DefaultAI::OnPearlDiver( void )
 Domlib::PirateShipOpt DefaultAI::OnPirateShip( void )
 {
     return Domlib::PIRATESHIP_ATTACK;
+}
+
+Domlib::ICard* DefaultAI::OnPirateShipTrash( Domlib::ICardList cardList )
+{
+    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 Domlib::ICard* DefaultAI::OnSalvager( void )

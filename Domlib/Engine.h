@@ -30,7 +30,14 @@ public:
     Player*     GetCurrentPlayer( void );
     Player*     GetNextPlayer( Player* pPlayer );
     Player*     GetLastPlayer( void );
-    void        PutInTrash( Card* pCard );
+    void        PutCardInTrash( Card* pCard );
+    void        PutCardInStock( Card* pCard );
+    void        PutCardInSupply( Card* pCard );
+    void        SetAmbassadorCard( Card* pCard );
+    Card*       GetAmbassadorCard( void );
+    void        OnEmbargo( Card* pCard );
+    void        SetOutpostFlag( bool flag );
+    void        SetPossessionFlag( bool flag );
 
 protected:
     bool IsGameOver( void ) const;
@@ -39,10 +46,11 @@ private:
     Player*             m_pCurrentPlayer;
     PlayerList          m_PlayerList;
     SupplyPileManager   m_SupplyPileManager;
-    ICardList    m_TrashList;
+    ICardList           m_TrashList;
     int                 m_TradeRouteMat;
     bool                m_OutpostFlag;
     bool                m_PossessionFlag;
+    Card*               m_pAmbassadorCard;
 };
 
 } // namespace Domlib
