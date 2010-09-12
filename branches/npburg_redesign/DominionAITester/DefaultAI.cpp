@@ -283,7 +283,7 @@ Domlib::ICardList DefaultAI::OnNavigator( Domlib::ICardList cardList )
 
 Domlib::PearlDiverOpt DefaultAI::OnPearlDiver( Domlib::ICard* pCard )
 {
-    return Domlib::PEARLDIVER_BOTTOM_OF_DECK;
+    return Domlib::PEARLDIVER_BOTTOM_OF_DRAWPILE;
 }
 
 Domlib::PirateShipOpt DefaultAI::OnPirateShip( void )
