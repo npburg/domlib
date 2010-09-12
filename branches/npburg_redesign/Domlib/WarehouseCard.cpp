@@ -22,12 +22,12 @@ WarehouseCard::~WarehouseCard( void )
 void WarehouseCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->DrawCardsToHand( 3 );
     pPlayer->PlusActions( 1 );
     
-    CardList cardList = pAi->OnWarehouse();
+    CardList cardList = pAI->OnWarehouse();
     if( cardList.size() == 3 &&
         pPlayer->AreCardsInHand( cardList ) )
     {

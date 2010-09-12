@@ -22,11 +22,11 @@ ChancellorCard::~ChancellorCard( void )
 void ChancellorCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     ChancellorOpt chancellorOpt;
 
     pPlayer->PlusCoins( 2 );
-    chancellorOpt = pAi->OnChancellor();
+    chancellorOpt = pAI->OnChancellor();
     switch( chancellorOpt )
     {
     case CHANCELLOR_DISCARD_DRAW_DECK:

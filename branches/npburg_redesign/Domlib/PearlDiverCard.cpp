@@ -22,13 +22,13 @@ PearlDiverCard::~PearlDiverCard( void )
 void PearlDiverCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
     
     Card* pCard = pPlayer->SetAsideCardFromUnderDraw();
-    PearlDiverOpt pearlDiverOpt = pAi->OnPearlDiver( pCard );
+    PearlDiverOpt pearlDiverOpt = pAI->OnPearlDiver( pCard );
     
     switch( pearlDiverOpt )
     {

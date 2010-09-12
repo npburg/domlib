@@ -18,7 +18,7 @@ typedef PlayerList::const_iterator  PlayerListConstIter;
 class Player
 {
 public:
-    Player( Engine* pEngine, IAI* pAi );
+    Player( Engine* pEngine, IAI* pAI );
     virtual ~Player( void );
 
     void PlayTurn( void );
@@ -49,6 +49,7 @@ public:
     void    TrashFromHand( CARDID cardId );
     void    TrashFromInPlay( Card* pCard );
     void    TrashFromInPlay( CARDID cardId );
+    void    TrashFromInPlay( CARDTYPE cardType );
     void    TrashCard( Card* pCard );
     Card*   TrashFromDeck();
     
@@ -64,8 +65,10 @@ public:
     void    PutCardOnDraw( CARDID cardId );
     void    PutCardUnderDraw( Card* pCard );
     void    PutCardInHand( Card* pCard );
+    void    PutCardInHand( CARDID cardId );
     void    PutCardInHaven( Card* pCard );
     void    PutCardOnIsland( Card* pCard );
+    void    PutCardInPlay( Card* pCard );
 
     void    PutCardsInDiscard( CardList cardList );
     void    PutCardsOnDraw( CardList cardList );
@@ -79,13 +82,14 @@ public:
     CardList  RevealCardsFromDeck( int numCards );
     CardList  RevealHand();
 
-    Card*     OnGainACard( ITreasure* cost );
-    Card*     OnGainACardExactly( ITreasure* cost );
+    Card*   OnGainACard( Treasure* cost );
+    Card*   OnGainACardExactly( Treasure* cost );
 
     void    TakeCardFromHand( Card* pCard );
     Card*   TakeCardFromHaven( void );
     void    TakeCardFromInPlay( CARDID cardId );
     void    TakeCardFromInPlay( Card* pCard );
+    void    TakeCardFromDiscard( CARDID cardId );
 
     void    TakeCardsFromHand( CardList cardList );
 
@@ -96,6 +100,7 @@ public:
     void    PlusActions( int numActions );
     void    PlusBuys( int numBuys );
     void    PlusPirateCoin( void );
+    void    PlusVictoryTokens( int numTokens );
 
     int     DrawSize( void );
     int     DiscardSize( void );
@@ -110,12 +115,25 @@ public:
     
     bool    TacticialFlag( void );
 
+    void    MinusQuarry( void );
+    void    MinusRoyalSeal( void );
+    
+    void    PlusCoppersmith( void );
+    void    PlusBridge( void );
+    void    PlusQuarry( void );
+    void    PlusRoyalSeal( void );
+
+    int     CardsInDiscard( CARDID cardId );
+
     // IPlayer Interfaces
     virtual CardList    GetHand( void );
     virtual CardList    GetBuyList( void );
     virtual int         CardsInHand( void );
     virtual int         CardsInHand( Card* pCard );
     virtual int         CardsInHand( CARDID cardId );
+    virtual int         CardsInHand( CARDTYPE cardType );
+    virtual int         CardsInPlay( CARDTYPE cardType );
+    virtual int         CardsBought( CARDTYPE cardType );
     virtual int         ActionsPlayed( void );
     virtual int         PirateCoins( void );
 
@@ -128,7 +146,7 @@ protected:
 
 private:
     const Engine*   m_pEngine;
-    const IAI*      m_pAi;
+    const IAI*      m_pAI;
 
     CardList        m_DrawPile;
     CardList        m_Hand;
@@ -145,6 +163,12 @@ private:
     CardList        m_PlayerMat;    // Holds Victory tokens from Prosperity
     int             m_ActionsPlayed;
     bool            m_TacticialFlag;
+    int             m_VictoryTokens;
+    
+    int             m_CoppersmithCount;
+    int             m_BridgeCount;
+    int             m_QuarryCount;
+    bool            m_RoyalSealFlag;
 };
 
 } // namespace Domlib

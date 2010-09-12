@@ -29,8 +29,8 @@ void BureaucratCard::OnActionPhase( Engine* pEngine )
 
 void BureaucratCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    IAI* pAi = pPlayer->GetAI();
-    Card* pVictoryCard = pAi->OnBureaucrat();
+    IAI* pAI = pPlayer->GetAI();
+    Card* pVictoryCard = pAI->OnBureaucrat();
     
     if( pVictoryCard->IsVictoryCard() &&
         pPlayer->IsCardInHand( pVictoryCard ) )

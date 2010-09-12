@@ -22,7 +22,7 @@ ApothecaryCard::~ApothecaryCard( void )
 void ApothecaryCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
@@ -46,7 +46,7 @@ void ApothecaryCard::OnActionPhase( Engine* pEngine )
     }
     
     CardList reorderedCardList = 
-        pAi->OnReturnToDrawPile( revealedCardList );
+        pAI->OnReturnToDrawPile( revealedCardList );
 
     if( Card::CardListsMatch( revealedCardList, reorderedCardList ) )
     {

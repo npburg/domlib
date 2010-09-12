@@ -22,16 +22,16 @@ AmbassadorCard::~AmbassadorCard( void )
 void AmbassadorCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
-    Card* pRevealedCard = pAi->OnAmbassadorReveal();
+    Card* pRevealedCard = pAI->OnAmbassadorReveal();
     if( !pPlayer->IsCardInHand( pRevealedCard ) )
     {
         // TODO: report error.
         throw std::wstring( L"Error: AmbassadorCard::OnActionPhase" );
     }
     
-    int numToPutBack = pAi->OnAmbassadorPutBack( pRevealedCard );
+    int numToPutBack = pAI->OnAmbassadorPutBack( pRevealedCard );
     
     if( pPlayer->CardsInHand( pRevealedCard ) < numToPutBack )
     {

@@ -22,7 +22,7 @@ LibraryCard::~LibraryCard( void )
 void LibraryCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList revealedCardList;
 
     while( pPlayer->CardsInHand() < 7 )
@@ -30,7 +30,7 @@ void LibraryCard::OnActionPhase( Engine* pEngine )
         Card* pRevealedCard = pPlayer->RevealCardFromDeck();
         if( pRevealedCard->IsActionCard() )
         {
-            LibraryOpt libraryOpt = pAi->OnLibrary( pRevealedCard );
+            LibraryOpt libraryOpt = pAI->OnLibrary( pRevealedCard );
             switch( libraryOpt )
             {
             case LIBRARY_DISCARD_ACTION_CARD:

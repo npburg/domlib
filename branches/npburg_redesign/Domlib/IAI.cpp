@@ -4,9 +4,9 @@
 namespace Domlib
 {
 
-IAI::IAI( AI* pAi ) 
+IAI::IAI( AI* pAI ) 
 {
-    m_pAi = pAi;
+    m_pAi = pAI;
 }
 
 IAI::~IAI( void ) 
@@ -356,9 +356,14 @@ LoanOpt IAI::OnLoan( Card* pCard )
     return m_pAi->OnLoan( &ICard( pCard ) );
 }
 
-Card* IAI::OnBiship( void )
+Card* IAI::OnBishopSelf( void )
 {
-    return m_pAi->OnBiship()->GetCard();
+    return m_pAi->OnBishopSelf()->GetCard();
+}
+
+Card* IAI::OnBishopOther( void )
+{
+    return m_pAi->OnBishopOther()->GetCard();
 }
 
 Card* IAI::OnContraband( void )
@@ -366,9 +371,9 @@ Card* IAI::OnContraband( void )
     return m_pAi->OnContraband()->GetCard();
 }
 
-int IAI::OnCountingHouse( CardList cardList )
+int IAI::OnCountingHouse( int numCoppersInDiscard )
 {
-    return m_pAi->OnCountingHouse( CardListToICardList( cardList ) );
+    return m_pAi->OnCountingHouse( numCoppersInDiscard );
 }
 
 Card* IAI::OnExpand( void )
@@ -411,9 +416,9 @@ CardList IAI::OnVaultSelf( void )
     return ICardListToCardList( m_pAi->OnVaultSelf() );
 }
 
-CardList IAI::OnValueOther( void )
+CardList IAI::OnVaultOther( void )
 {
-    return ICardListToCardList( m_pAi->OnValueOther() );
+    return ICardListToCardList( m_pAi->OnVaultOther() );
 }
 
 

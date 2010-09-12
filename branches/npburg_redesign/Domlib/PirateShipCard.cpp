@@ -22,8 +22,8 @@ PirateShipCard::~PirateShipCard( void )
 void PirateShipCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    PirateShipOpt pirateShipOpt = pAi->OnPirateShip();
+    IAI* pAI = pPlayer->GetAI();
+    PirateShipOpt pirateShipOpt = pAI->OnPirateShip();
     
     switch( pirateShipOpt )
     {

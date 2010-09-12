@@ -22,11 +22,11 @@ NavigatorCard::~NavigatorCard( void )
 void NavigatorCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->PlusCoins( 2 );
     CardList cardList = pPlayer->SetAside( 5 );
-    CardList reorderedCardList = pAi->OnNavigator( cardList );
+    CardList reorderedCardList = pAI->OnNavigator( cardList );
     
     if( CardListsMatch( cardList, reorderedCardList ) )
     {

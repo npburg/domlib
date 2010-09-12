@@ -4,16 +4,16 @@
 namespace Domlib
 {
 
-Player::Player( Engine* pEngine, IAI* pAi )
+Player::Player( Engine* pEngine, IAI* pAI )
     :
     m_pEngine( pEngine ),
-    m_pAi( pAi )
+    m_pAI( pAI )
 {
 }
 
 Player::~Player( void )
 {
-    delete m_pAi;
+    delete m_pAI;
 }
 
 void Player::PlayTurn( void )

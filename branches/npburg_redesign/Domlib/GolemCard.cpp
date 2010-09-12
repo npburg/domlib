@@ -27,7 +27,7 @@ void GolemCard::OnActionPhase( Engine* pEngine )
     throw std::wstring( L"GolemCard::OnActionPhase - To be implemented..." );
 
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList revealedCardList;
     CardList actionCardList;
 
@@ -54,7 +54,7 @@ void GolemCard::OnActionPhase( Engine* pEngine )
     pPlayer->PutCardsInDiscard( revealedCardList );
 
     CardList reorderedCardList = 
-        pAi->OnGolem( revealedCardList );
+        pAI->OnGolem( revealedCardList );
 
     if( Card::CardListsMatch( revealedCardList, reorderedCardList ) )
     {

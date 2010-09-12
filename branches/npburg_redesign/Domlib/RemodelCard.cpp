@@ -23,14 +23,14 @@ RemodelCard::~RemodelCard( void )
 void RemodelCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    Card* pCardToRemodel = pAi->OnRemodel();
+    IAI* pAI = pPlayer->GetAI();
+    Card* pCardToRemodel = pAI->OnRemodel();
 
     if( pPlayer->IsCardInHand( pCardToRemodel ) )
     {
         pPlayer->TrashFromHand( pCardToRemodel );
         Treasure cost = pCardToRemodel->Cost( pEngine ) + Treasure( 2, 0 );
-        pAi->OnGainACard( &cost );
+        pAI->OnGainACard( &cost );
     }
     else
     {

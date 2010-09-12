@@ -22,10 +22,10 @@ CellarCard::~CellarCard( void )
 void CellarCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList cardsToDiscard;
 
-    cardsToDiscard = pAi->OnCellar();
+    cardsToDiscard = pAI->OnCellar();
     if( pPlayer->AreCardsInHand( cardsToDiscard ) )
     {
         pPlayer->DiscardFromHand( cardsToDiscard );

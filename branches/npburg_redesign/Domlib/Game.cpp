@@ -12,7 +12,7 @@ Game::~Game( void )
 {
 }
 
-void Game::RegisterAI( AI* pAi )
+void Game::RegisterAI( AI* pAI )
 {
 }
 

@@ -14,7 +14,7 @@ struct LookoutStruct
 class IAI
 {    
 public:
-    IAI( AI* pAi );
+    IAI( AI* pAI );
     virtual ~IAI( void );
 
     ////////////////////
@@ -278,18 +278,20 @@ public:
     // from deck when Loan is played.
     virtual LoanOpt             OnLoan( Card* pCard );
 
+    // Return a card to trash from hand when Biship is played by self.
+    virtual Card*               OnBishopSelf( void );
+
     // Return a card to trash from hand (or return the Null card to decline
-    // to trash a card) when Biship is played.
-    virtual Card*               OnBiship( void );
+    // to trash a card) when Biship is played by other.
+    virtual Card*               OnBishopOther( void );
 
     // Return a card to block the player to the right from buying this turn
     // when Contraband is played.
     virtual Card*               OnContraband( void );
 
     // Return number of coppers to draw from discard pile when Counting House
-    // is played. (Discard pile is passed to the function since it is normally
-    // illegal to look through the discard pile.)
-    virtual int                 OnCountingHouse( CardList cardList );
+    // is played. 
+    virtual int                 OnCountingHouse( int numCoppersInDiscard );
 
     // Return a card to trash from hand to gain a card when Expand is played.
     virtual Card*               OnExpand( void );
@@ -322,7 +324,7 @@ public:
 
     // Return a list of 2 cards to discard (or an empty list) to draw a card
     // when Vault is played by other.
-    virtual CardList            OnValueOther( void );
+    virtual CardList            OnVaultOther( void );
 
 private:
     AI*     m_pAi;

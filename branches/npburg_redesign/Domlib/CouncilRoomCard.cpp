@@ -27,10 +27,12 @@ void CouncilRoomCard::OnActionPhase( Engine* pEngine )
     pCurrentPlayer->DrawCardsToHand( 4 );
     pCurrentPlayer->PlusBuys( 1 ) ;
 
-    while( pCurrentPlayer != pNextPlayer )
-    {
-        pNextPlayer->DrawCardsToHand( 1 ) ;
-    }
+    ActionForOthers( pEngine );
+}
+
+void CouncilRoomCard::OnActionPhaseOther( Engine* pEngine, Player* pPlayer )
+{
+    pPlayer->DrawCardsToHand( 1 ) ;
 }
 
 } // namespace Domlib

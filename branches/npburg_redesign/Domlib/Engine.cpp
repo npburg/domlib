@@ -18,11 +18,11 @@ Engine::~Engine( void )
     }
 }
 
-void Engine::RegisterPlayer( AI* pAi )
+void Engine::RegisterPlayer( AI* pAI )
 {
-    pAi->SetEngine( new IEngine( this ) );
+    pAI->SetEngine( new IEngine( this ) );
 
-    Player* pNewPlayer = new Player( this, new IAI( pAi ) );
+    Player* pNewPlayer = new Player( this, new IAI( pAI ) );
 
     m_PlayerList.push_back( pNewPlayer );
 }

@@ -12,6 +12,9 @@ public:
 
     void OnActionPhase( Engine* pEngine );
 
+protected:
+    void OnActionPhaseOther( Engine* pEngine, Player* pPlayer );
+
 private:
     CouncilRoomCard( void );
 

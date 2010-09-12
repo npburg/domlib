@@ -15,9 +15,9 @@ IGame::~IGame( void )
     delete m_pGame;
 }
 
-void IGame::RegisterAI( AI* pAi )
+void IGame::RegisterAI( AI* pAI )
 {
-    m_pGame->RegisterAI( pAi );
+    m_pGame->RegisterAI( pAI );
 }
 
 void IGame::RandomizeKingdomCards( int cardSet )

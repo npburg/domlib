@@ -30,8 +30,8 @@ void TorturerCard::OnActionPhase( Engine* pEngine )
 
 void TorturerCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    IAI* pAi = pPlayer->GetAI();
-    CardList cardsToTrash = pAi->OnTorturer();
+    IAI* pAI = pPlayer->GetAI();
+    CardList cardsToTrash = pAI->OnTorturer();
 
     if( cardsToTrash.size() == 0 )
     {

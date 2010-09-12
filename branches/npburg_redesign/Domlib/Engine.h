@@ -22,7 +22,7 @@ public:
     bool        IsCardInStock( CARDID cardId );
     bool        CardsAvailable( CARDID cardId );
 
-    void        RegisterPlayer( AI* pAi );
+    void        RegisterPlayer( AI* pAI );
     void        Play( void );
 
     Player*     GetFirstPlayer( void );
@@ -38,6 +38,10 @@ public:
     void        OnEmbargo( Card* pCard );
     void        SetOutpostFlag( bool flag );
     void        SetPossessionFlag( bool flag );
+    int         SupplyPilesEmpty( void );
+    void        SetContrabandCard( Card* pCard );
+    void        ClearContrabandCards( void );
+    int         TradeTokens( void );
 
 protected:
     bool IsGameOver( void ) const;

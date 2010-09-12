@@ -22,10 +22,10 @@ NativeVillageCard::~NativeVillageCard( void )
 void NativeVillageCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->PlusActions( 2 );
-    NativeVillageOpt nativeVillageOpt = pAi->OnNativeVillage();
+    NativeVillageOpt nativeVillageOpt = pAI->OnNativeVillage();
     
     switch( nativeVillageOpt )
     {

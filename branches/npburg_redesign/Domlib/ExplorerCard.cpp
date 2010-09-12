@@ -22,11 +22,11 @@ ExplorerCard::~ExplorerCard( void )
 void ExplorerCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     if( pPlayer->IsCardInHand( CARDID_PROVINCE ) )
     {
-        ExplorerOpt explorerOpt = pAi->OnExplorer();
+        ExplorerOpt explorerOpt = pAI->OnExplorer();
         switch( explorerOpt )
         {
         case Domlib::EXPLORER_REVEAL_PROVINCE:

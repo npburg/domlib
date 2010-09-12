@@ -22,10 +22,10 @@ BaronCard::~BaronCard( void )
 void BaronCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     pPlayer->PlusBuys( 1 );
-    BaronOpt baronOpt = pAi->OnBaron();
+    BaronOpt baronOpt = pAI->OnBaron();
     switch( baronOpt )
     {
     case BARON_DISCARD_ESTATE:

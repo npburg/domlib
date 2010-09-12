@@ -25,11 +25,11 @@ void ScoutCard::OnActionPhase( Engine* pEngine )
     
     pPlayer->PlusActions( 1 );
     
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList revealedCardList = 
         pPlayer->RevealCardsFromDeck( 4 );
     CardList reorderedCardList = 
-        pAi->OnReturnToDrawPile( revealedCardList );
+        pAI->OnReturnToDrawPile( revealedCardList );
 
     if( Card::CardListsMatch( revealedCardList, reorderedCardList ) )
     {

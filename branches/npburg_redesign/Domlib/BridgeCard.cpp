@@ -25,9 +25,7 @@ void BridgeCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PlusBuys( 1 );
     pPlayer->PlusCoins( 1 );
-    // TODO: should this set a flag or should this simply be "in-play" to 
-    // affect the cost of cards. This depends on how Thone room is implemented.
-    throw std::wstring( L"BridgeCard::OnActionPhase - To be implemented..." );
+    pPlayer->PlusBridge();
 }
 
 } // namespace Domlib
