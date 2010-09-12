@@ -166,9 +166,12 @@ public:
     // Seaside Set Card Interfaces
     //////////////////////////////
 
-    // Return a list of up to 2 cards from hand to return to the supply piles
-    // when Ambassador is played.
-    virtual Domlib::ICardList           OnAmbassador( void );
+    // Return a card from hand to reveal when Ambassador is played.
+    virtual Domlib::ICard*              OnAmbassadorReveal( void );
+
+    // Return the number of cards from hand to put back into supply when 
+    // Ambassador is played.
+    virtual int                         OnAmbassadorPutBack( Domlib::ICard* pCard );
 
     // Return a card to Embargo in the supply piles when Embargo is played.
     virtual Domlib::ICard*              OnEmbargo( void );
@@ -176,7 +179,11 @@ public:
     // Returns an Explorer option to reveal a province in hand when Explorer
     // is played.
     virtual Domlib::ExplorerOpt         OnExplorer( void );
-
+    
+    // Return a list of cards to put back on DrawPile from hand so the hand 
+    // size is no greater than 3 when Ghost Ship is played.
+    virtual Domlib::ICardList           OnGhostShip( void );
+    
     // Return a card to place with the Haven card in the duration pile when 
     // Haven is played.
     virtual Domlib::ICard*              OnHaven( void );
@@ -186,7 +193,7 @@ public:
 
     // Return a struct containing cards to trash, discard and return to draw
     // pile when Lookout is played.
-    virtual Domlib::LookoutStruct       OnLookout( Domlib::ICardList cardList );
+    virtual Domlib::ILookoutStruct      OnLookout( Domlib::ICardList cardList );
 
     // Return a Native Village option to set aside card from top of the draw pile 
     // or to draw cards into hand from Native Village mat when Native Village 
@@ -200,18 +207,21 @@ public:
 
     // Return Pearl Diver option to place reveal card on top of the deck or
     // back to the bottom of the deck when Pearl Diver is played.
-    virtual Domlib::PearlDiverOpt       OnPearlDiver( void );
+    virtual Domlib::PearlDiverOpt       OnPearlDiver( Domlib::ICard* pCard );
 
     // Return Pirate Ship option to attack other players or gain the plus
     // coins from Pirate Ship mat when Pirate Ship is played.
     virtual Domlib::PirateShipOpt       OnPirateShip( void );
+
+    // Return a card from the list to trash when Pirate Ship is played.
+    virtual Domlib::ICard*              OnPirateShipTrash( Domlib::ICardList cardList );
 
     // Return a card from hand to trash for plus coins when Salvager is played.
     virtual Domlib::ICard*              OnSalvager( void );
 
     // Return a card from the list to gain when Smugglers is played.
     virtual Domlib::ICard*              OnSmugglers( Domlib::ICardList cardList );
-
+        
     // Return a Treasury option to return the Treasury card to the draw pile
     // when Treasury is played.
     virtual Domlib::TreasuryOpt         OnTreasury( void );

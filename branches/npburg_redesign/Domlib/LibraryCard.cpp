@@ -25,7 +25,7 @@ void LibraryCard::OnActionPhase( Engine* pEngine )
     IAI* pAi = pPlayer->GetAI();
     CardList revealedCardList;
 
-    while( pPlayer->HandSize() < 7 )
+    while( pPlayer->CardsInHand() < 7 )
     {
         Card* pRevealedCard = pPlayer->RevealCardFromDeck();
         if( pRevealedCard->IsActionCard() )

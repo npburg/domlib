@@ -34,8 +34,7 @@ void MinionCard::OnActionPhase( Engine* pEngine )
         break;
     case MINION_DISCARD_HAND:
         {
-        CardList hand = pPlayer->GetHand();
-        pPlayer->DiscardFromHand( hand );
+        pPlayer->DiscardHand();
         pPlayer->DrawCardsToHand( 4 );
 
         Attack( pEngine, ATTACK_OTHERS );
@@ -50,7 +49,7 @@ void MinionCard::OnActionPhase( Engine* pEngine )
 
 void MinionCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    if( pPlayer->HandSize() >= 5 )
+    if( pPlayer->CardsInHand() >= 5 )
     {
         CardList hand = pPlayer->GetHand();
         pPlayer->DiscardFromHand( hand );

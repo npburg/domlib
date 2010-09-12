@@ -20,9 +20,19 @@ ICardList IPlayer::GetHand( void )
     return CardListToICardList( m_pPlayer->GetHand() );
 }
 
-int IPlayer::HandSize( void )
+int IPlayer::CardsInHand( void )
 {
-    return m_pPlayer->HandSize();
+    return m_pPlayer->CardsInHand();
+}
+
+int IPlayer::CardsInHand( ICard* pCard )
+{
+    return m_pPlayer->CardsInHand( pCard->GetCard() );
+}
+
+int IPlayer::CardsInHand( CARDID cardId )
+{
+    return m_pPlayer->CardsInHand( cardId );
 }
 
 int IPlayer::ActionsPlayed( void )

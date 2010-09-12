@@ -4,6 +4,7 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Treasure.h"
+#include "IAI.h"
 
 namespace Domlib
 {
@@ -52,8 +53,12 @@ public:
     virtual bool        IsCurseCard( void ) const;
     virtual bool        IsNullCard( void ) const;
 
-    static bool         CardListsMatch( CardList listA, 
-                                        CardList listB );
+    static bool         CardListsMatch( CardList cardListA, 
+                                        CardList cardListB );
+    static bool         CardListsMatch( CardList cardList, 
+                                        LookoutStruct lookoutStruct );
+    static bool         CardInList( Card* pCard,
+                                    CardList cardList );
 
 protected:
     Card( 

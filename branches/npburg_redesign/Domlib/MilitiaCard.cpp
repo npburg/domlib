@@ -37,7 +37,7 @@ void MilitiaCard::OnAttack( Engine* pEngine, Player* pPlayer )
     {
         pPlayer->DiscardFromHand( cardsToDiscard );
 
-        if( pPlayer->HandSize() > 3 )
+        if( pPlayer->CardsInHand() > 3 )
         {
             // TODO: report error
             throw std::wstring( L"Error: MilitiaCard::OnAttack" );

@@ -215,9 +215,14 @@ Card* IAI::OnWishingWell( void )
     return m_pAi->OnWishingWell()->GetCard();
 }
 
-CardList IAI::OnAmbassador( void )
+Card* IAI::OnAmbassadorReveal( void )
 {
-    return ICardListToCardList( m_pAi->OnAmbassador() );
+    return m_pAi->OnAmbassadorReveal()->GetCard();
+}
+
+int IAI::OnAmbassadorPutBack( Card* pCard )
+{
+    return m_pAi->OnAmbassadorPutBack( &ICard( pCard ) );
 }
 
 Card* IAI::OnEmbargo( void )
@@ -228,6 +233,11 @@ Card* IAI::OnEmbargo( void )
 ExplorerOpt IAI::OnExplorer( void )
 {
     return m_pAi->OnExplorer();
+}
+
+CardList IAI::OnGhostShip( void )
+{
+    return ICardListToCardList( m_pAi->OnGhostShip() );
 }
 
 Card* IAI::OnHaven( void )
@@ -242,7 +252,14 @@ Card* IAI::OnIsland( void )
 
 LookoutStruct IAI::OnLookout( CardList cardList )
 {
-    return m_pAi->OnLookout( CardListToICardList( cardList ) );
+    LookoutStruct lookoutStruct;
+    ILookoutStruct iLookoutStruct = m_pAi->OnLookout( CardListToICardList( cardList ) );
+    
+    lookoutStruct.pCardToDiscard    = iLookoutStruct.pCardToDiscard->GetCard();
+    lookoutStruct.PCardToPutBack    = iLookoutStruct.PCardToPutBack->GetCard();
+    lookoutStruct.pCardToTrash      = iLookoutStruct.pCardToTrash->GetCard();
+    
+    return lookoutStruct;
 }
 
 NativeVillageOpt IAI::OnNativeVillage( void )
@@ -257,14 +274,19 @@ CardList IAI::OnNavigator( CardList cardList )
                 CardListToICardList( cardList ) ) );
 }
 
-PearlDiverOpt IAI::OnPearlDiver( void )
+PearlDiverOpt IAI::OnPearlDiver( Card* pCard )
 {
-    return m_pAi->OnPearlDiver();
+    return m_pAi->OnPearlDiver( &ICard( pCard ) );
 }
 
 PirateShipOpt IAI::OnPirateShip( void )
 {
     return m_pAi->OnPirateShip();
+}
+
+Card* IAI::OnPirateShipTrash( CardList cardList )
+{
+    return m_pAi->OnPirateShipTrash( CardListToICardList( cardList ) )->GetCard();
 }
 
 Card* IAI::OnSalvager( void )
