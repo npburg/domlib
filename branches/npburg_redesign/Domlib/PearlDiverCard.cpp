@@ -32,10 +32,10 @@ void PearlDiverCard::OnActionPhase( Engine* pEngine )
     
     switch( pearlDiverOpt )
     {
-    case Domlib::PEARLDIVER_TOP_OF_DECK:
+    case Domlib::PEARLDIVER_TOP_OF_DRAWPILE:
         pPlayer->PutCardOnDraw( pCard );
         break;
-    case Domlib::PEARLDIVER_BOTTOM_OF_DECK:
+    case Domlib::PEARLDIVER_BOTTOM_OF_DRAWPILE:
         pPlayer->PutCardUnderDraw( pCard );
         break;
     default:
