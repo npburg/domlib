@@ -31,11 +31,11 @@ void TreasuryCard::OnActionPhase( Engine* pEngine )
 void TreasuryCard::OnCleanUpPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     if( pPlayer->IsCardInBuyList( CARDTYPE_VICTORY ) )
     {
-        TreasuryOpt treasuryOpt = pAi->OnTreasury();
+        TreasuryOpt treasuryOpt = pAI->OnTreasury();
         
         switch( treasuryOpt )
         {

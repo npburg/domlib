@@ -22,10 +22,10 @@ SalvagerCard::~SalvagerCard( void )
 void SalvagerCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->PlusBuys( 1 );
-    Card* pCard = pAi->OnSalvager();
+    Card* pCard = pAI->OnSalvager();
     // TODO: Check if NullCard returns true for an empty hand 
     //otherwise need to check for empty hand and null card returned.
 

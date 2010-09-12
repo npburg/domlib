@@ -22,12 +22,12 @@ MiningVilliageCard::~MiningVilliageCard( void )
 void MiningVilliageCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 2 );
 
-    MiningVillageOpt miningVillageOpt = pAi->OnMiningVillage();
+    MiningVillageOpt miningVillageOpt = pAI->OnMiningVillage();
     switch( miningVillageOpt )
     {
     case MININGVILLAGE_DO_NOT_TRASH_CARD:

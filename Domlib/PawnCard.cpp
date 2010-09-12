@@ -22,8 +22,8 @@ PawnCard::~PawnCard( void )
 void PawnCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    PawnOptPair pawnOptPair = pAi->OnPawn();
+    IAI* pAI = pPlayer->GetAI();
+    PawnOptPair pawnOptPair = pAI->OnPawn();
 
     if( pawnOptPair.first != pawnOptPair.second )
     {

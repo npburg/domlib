@@ -22,11 +22,11 @@ EmbargoCard::~EmbargoCard( void )
 void EmbargoCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     
     pPlayer->PlusCoins( 2 );
     
-    Card* pCard = pAi->OnEmbargo();
+    Card* pCard = pAI->OnEmbargo();
     pEngine->OnEmbargo( pCard );
 }
 

@@ -22,9 +22,9 @@ LookoutCard::~LookoutCard( void )
 void LookoutCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList cardList = pPlayer->SetAside( 3 );
-    LookoutStruct lookoutStruct =  pAi->OnLookout( cardList );
+    LookoutStruct lookoutStruct =  pAI->OnLookout( cardList );
     
     if( CardListsMatch( cardList, lookoutStruct ) )
     {

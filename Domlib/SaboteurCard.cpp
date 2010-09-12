@@ -26,7 +26,7 @@ void SaboteurCard::OnActionPhase( Engine* pEngine )
 
 void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     Card* pCardRevealed = pPlayer->RevealCardFromDeck();
     CardList revealedCardList;
 
@@ -46,7 +46,7 @@ void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )
     {
         pPlayer->TrashCard( pCardRevealed );
         Treasure cost = pCardRevealed->Cost( pEngine ) - Treasure( 2, 0 );
-        pAi->OnGainACard( &cost );
+        pAI->OnGainACard( &cost );
     }
 
     pPlayer->PutCardsInDiscard( revealedCardList );

@@ -138,6 +138,7 @@ enum CARDID
     CARDID_BANK,
     CARDID_BISHOP,
     CARDID_CITY,
+    CARDID_COLONY,
     CARDID_CONTRABAND,
     CARDID_COUNTINGHOUSE,
     CARDID_EXPAND,
@@ -151,6 +152,7 @@ enum CARDID
     CARDID_MONUMENT,
     CARDID_MOUNTEBANK,
     CARDID_PEDDLER,
+    CARDID_PLATINUM,
     CARDID_QUARRY,
     CARDID_RABBLE,
     CARDID_ROYALSEAL,
@@ -271,7 +273,7 @@ public:
     IGame( void );
     virtual ~IGame( void );
 
-    void    RegisterAI( AI* pAi );
+    void    RegisterAI( AI* pAI );
     void    RandomizeKingdomCards( int cardSet );
     void    Play( void );
     void*   GetResults( void );
@@ -787,18 +789,20 @@ public:
     // from deck when Loan is played.
     virtual LoanOpt             OnLoan( ICard* pCard ) = 0;
 
+    // Return a card to trash from hand when Biship is played by self.
+    virtual ICard*              OnBishopSelf( void ) = 0;
+
     // Return a card to trash from hand (or return the Null card to decline
-    // to trash a card) when Biship is played.
-    virtual ICard*              OnBiship( void ) = 0;
+    // to trash a card) when Biship is played by other.
+    virtual ICard*              OnBishopOther( void ) = 0;
 
     // Return a card to block the player to the right from buying this turn
     // when Contraband is played.
     virtual ICard*              OnContraband( void ) = 0;
 
     // Return number of coppers to draw from discard pile when Counting House
-    // is played. (Discard pile is passed to the function since it is normally
-    // illegal to look through the discard pile.)
-    virtual int                 OnCountingHouse( ICardList cardList ) = 0;
+    // is played. 
+    virtual int                 OnCountingHouse( int numCoppersInDiscard ) = 0;
 
     // Return a card to trash from hand to gain a card when Expand is played.
     virtual ICard*              OnExpand( void ) = 0;
@@ -831,7 +835,7 @@ public:
 
     // Return a list of 2 cards to discard (or an empty list) to draw a card
     // when Vault is played by other.
-    virtual ICardList           OnValueOther( void ) = 0;
+    virtual ICardList           OnVaultOther( void ) = 0;
 
 protected:
     IEngine*     m_pEngine;

@@ -31,10 +31,10 @@ void GhostShipCard::OnActionPhase( Engine* pEngine )
 
 void GhostShipCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList cardsToPutBack;
     
-    cardsToPutBack = pAi->OnGhostShip();
+    cardsToPutBack = pAI->OnGhostShip();
     if( pPlayer->AreCardsInHand( cardsToPutBack ) )
     {
         pPlayer->TakeCardsFromHand( cardsToPutBack );

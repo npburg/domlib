@@ -22,8 +22,8 @@ ApprenticeCard::~ApprenticeCard( void )
 void ApprenticeCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    Card* pCardToTrash = pAi->OnApprentice();
+    IAI* pAI = pPlayer->GetAI();
+    Card* pCardToTrash = pAI->OnApprentice();
 
     if( pPlayer->IsCardInHand( pCardToTrash ) )
     {

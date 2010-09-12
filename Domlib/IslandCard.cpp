@@ -22,9 +22,9 @@ IslandCard::~IslandCard( void )
 void IslandCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
-    Card* pCard = pAi->OnIsland();
+    Card* pCard = pAI->OnIsland();
     if( pPlayer->IsCardInHand( pCard ) )
     {
         pPlayer->TakeCardFromHand( pCard );

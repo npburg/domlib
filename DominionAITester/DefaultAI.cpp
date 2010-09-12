@@ -230,7 +230,7 @@ Domlib::ICard* DefaultAI::OnAmbassadorReveal( void )
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
-int OnAmbassadorPutBack( Domlib::ICard* pCard )
+int DefaultAI::OnAmbassadorPutBack( Domlib::ICard* pCard )
 {
     return 0;
 }
@@ -366,7 +366,12 @@ Domlib::LoanOpt DefaultAI::OnLoan( Domlib::ICard* pCard )
     return Domlib::LOAN_DISCARD_CARD;
 }
 
-Domlib::ICard* DefaultAI::OnBiship( void )
+Domlib::ICard* DefaultAI::OnBishopSelf( void )
+{
+    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+}
+
+Domlib::ICard* DefaultAI::OnBishopOther( void )
 {
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
@@ -376,9 +381,9 @@ Domlib::ICard* DefaultAI::OnContraband( void )
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
-int DefaultAI::OnCountingHouse( Domlib::ICardList cardList )
+int DefaultAI::OnCountingHouse( int numCoppersInDiscard )
 {
-    return 0;
+    return numCoppersInDiscard;
 }
 
 Domlib::ICard* DefaultAI::OnExpand( void )
@@ -427,7 +432,7 @@ Domlib::ICardList DefaultAI::OnVaultSelf( void )
     return iCardList;
 }
 
-Domlib::ICardList DefaultAI::OnValueOther( void )
+Domlib::ICardList DefaultAI::OnVaultOther( void )
 {
     Domlib::ICardList iCardList;
     

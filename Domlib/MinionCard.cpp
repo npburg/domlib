@@ -22,11 +22,11 @@ MinionCard::~MinionCard( void )
 void MinionCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     pPlayer->PlusActions( 1 );
 
-    MinionOpt minionOpt = pAi->OnMinion();
+    MinionOpt minionOpt = pAI->OnMinion();
     switch( minionOpt )
     {
     case MINION_PLUS_2_COINS:

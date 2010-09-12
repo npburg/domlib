@@ -270,9 +270,12 @@ public:
     // from deck when Loan is played.
     virtual Domlib::LoanOpt             OnLoan( Domlib::ICard* pCard );
 
+    // Return a card to trash from hand when Biship is played by self.
+    virtual Domlib::ICard*              OnBishopSelf( void );
+
     // Return a card to trash from hand (or return the Null card to decline
-    // to trash a card) when Biship is played.
-    virtual Domlib::ICard*              OnBiship( void );
+    // to trash a card) when Biship is played by other.
+    virtual Domlib::ICard*              OnBishopOther( void );
 
     // Return a card to block the player to the right from buying this turn
     // when Contraband is played.
@@ -281,7 +284,7 @@ public:
     // Return number of coppers to draw from discard pile when Counting House
     // is played. (Discard pile is passed to the function since it is normally
     // illegal to look through the discard pile.)
-    virtual int                 OnCountingHouse( Domlib::ICardList cardList );
+    virtual int                         OnCountingHouse( int numCoppersInDiscard );
 
     // Return a card to trash from hand to gain a card when Expand is played.
     virtual Domlib::ICard*              OnExpand( void );
@@ -314,5 +317,5 @@ public:
 
     // Return a list of 2 cards to discard (or an empty list) to draw a card
     // when Vault is played by other.
-    virtual Domlib::ICardList           OnValueOther( void );
+    virtual Domlib::ICardList           OnVaultOther( void );
 };

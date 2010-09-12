@@ -22,14 +22,14 @@ IronworksCard::~IronworksCard( void )
 void IronworksCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     // The interface for OnGainACard needs to be clarified.
     // Does the function get the card from supply and put it into
     // the discard pile?
     throw std::wstring( L"IronworksCard::OnActionPhase - To be implemented..." );
 
-    Card* pCardGained = pPlayer->OnGainACard( &ITreasure( 4, 0 ) );
+    Card* pCardGained = pPlayer->OnGainACard( &Treasure( 4, 0 ) );
 
     if( pCardGained->IsActionCard() )
     {

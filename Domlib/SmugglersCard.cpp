@@ -22,9 +22,9 @@ SmugglersCard::~SmugglersCard( void )
 void SmugglersCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    Player* pPlayerToLeft = pEngine->GetPreviousPlayer( pPlayer );
-    CardList buyList = pPlayerToLeft->GetBuyList();
+    IAI* pAI = pPlayer->GetAI();
+    Player* pPlayerToRight = pEngine->GetPreviousPlayer( pPlayer );
+    CardList buyList = pPlayerToRight->GetBuyList();
     
     for( CardListIter iter = buyList.begin();
          iter != buyList.end();
@@ -38,7 +38,7 @@ void SmugglersCard::OnActionPhase( Engine* pEngine )
     
     if( buyList.size() > 0 )
     {
-        Card* pCard = pAi->OnSmugglers( buyList );
+        Card* pCard = pAI->OnSmugglers( buyList );
         
         if( Card::CardInList( pCard, buyList ) )
         {

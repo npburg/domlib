@@ -30,11 +30,11 @@ void AlchemistCard::OnActionPhase( Engine* pEngine )
 void AlchemistCard::OnCleanUpPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     if( pPlayer->IsCardInPlay( CARDID_POTION ) )
     {
-        AlchemistOpt alchemistOpt = pAi->OnAlchemist();
+        AlchemistOpt alchemistOpt = pAI->OnAlchemist();
         
         switch( alchemistOpt )
         {

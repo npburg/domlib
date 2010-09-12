@@ -13,7 +13,7 @@ public:
     virtual ~Game( void );
 
     // IGame Interfaces
-    void    RegisterAI( AI* pAi );
+    void    RegisterAI( AI* pAI );
     void    RandomizeKingdomCards( int cardSet );
     void    Play( void );
     void*   GetResults( void );

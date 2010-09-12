@@ -22,8 +22,8 @@ StewardCard::~StewardCard( void )
 void StewardCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    StewardOpt stewardOpt = pAi->OnSteward();
+    IAI* pAI = pPlayer->GetAI();
+    StewardOpt stewardOpt = pAI->OnSteward();
 
     switch( stewardOpt )
     {
@@ -35,7 +35,7 @@ void StewardCard::OnActionPhase( Engine* pEngine )
         break;
     case STEWARD_TRASH_2_CARDS:
         {
-            CardList cardsToTrash = pAi->OnStewardTrash();
+            CardList cardsToTrash = pAI->OnStewardTrash();
             if( cardsToTrash.size() == 2 &&
                 pPlayer->AreCardsInHand( cardsToTrash ) )
             {

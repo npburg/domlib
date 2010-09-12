@@ -22,15 +22,15 @@ MineCard::~MineCard( void )
 void MineCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
-    Card* pCardToTrash = pAi->OnMineTrash();
+    IAI* pAI = pPlayer->GetAI();
+    Card* pCardToTrash = pAI->OnMineTrash();
 
     if( pCardToTrash->IsTreasureCard() &&
         pPlayer->IsCardInHand( pCardToTrash ) )
     {
         pPlayer->TrashFromHand( pCardToTrash );
         Treasure cost = pCardToTrash->Cost( pEngine ) + Treasure( 3, 0 );
-        Card* pCardToGain = pAi->OnMineGain( &cost );
+        Card* pCardToGain = pAI->OnMineGain( &cost );
         pPlayer->GainCardInHand( pCardToGain );
     }
     else

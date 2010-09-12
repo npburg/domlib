@@ -22,10 +22,10 @@ ChapelCard::~ChapelCard( void )
 void ChapelCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
     CardList cardsToTrash;
 
-    cardsToTrash = pAi->OnChapel();
+    cardsToTrash = pAI->OnChapel();
     if( pPlayer->AreCardsInHand( cardsToTrash ) )
     {
         pPlayer->TrashFromHand( cardsToTrash );

@@ -69,9 +69,12 @@ protected:
         Treasure treasureValue,
         Treasure cost );
 
-    void Attack( Engine* pEngine, AttackWhom attackWhom );
+            void ActionForOthers( Engine* pEngine );
+            void Attack( Engine* pEngine, AttackWhom attackWhom );
+
     virtual void OnAttack( Engine* pEngine, Player* pPlayer );
     virtual void OnReaction( Engine* pEngine, Player* pPlayer );
+    virtual void OnActionPhaseOther( Engine* pEngine, Player* pPlayer );
 
     const std::wstring      m_Name;
     const CARDID            m_CardId;

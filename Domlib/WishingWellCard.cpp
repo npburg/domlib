@@ -22,12 +22,12 @@ WishingWellCard::~WishingWellCard( void )
 void WishingWellCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    IAI* pAi = pPlayer->GetAI();
+    IAI* pAI = pPlayer->GetAI();
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
 
-    Card* pCardToWishFor = pAi->OnWishingWell();
+    Card* pCardToWishFor = pAI->OnWishingWell();
     Card* pCardRevealed = pPlayer->RevealCardFromDeck();
 
     if(  pCardRevealed->CardId() == pCardToWishFor->CardId() )

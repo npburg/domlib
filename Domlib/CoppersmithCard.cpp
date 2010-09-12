@@ -21,9 +21,9 @@ CoppersmithCard::~CoppersmithCard( void )
 
 void CoppersmithCard::OnActionPhase( Engine* pEngine )
 {
-    // TODO: It might be enough for this card to be in the "in-play" list;
-    // however, it depends on how Throne Room is implemented.
-    throw std::wstring( L"CoppersmithCard::OnActionPhase - To be implemented..." );
+    Player* pPlayer = pEngine->GetCurrentPlayer();
+    
+    pPlayer->PlusCoppersmith();
 }
 
 } // namespace Domlib
