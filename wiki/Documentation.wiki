@@ -3,6 +3,13 @@
 ==Background==
 Domlib is a Dominion card game engine with AI exports for decision making tasks. The goal is to allow the engine to iterate over a set of games to create a competitive environment for custom AIs. The design intent is to keep the AI exports simple and let the engine do all the game validation, phase execution, and card tasks.
 
+This article contains what the end-user AI developer needs to know to implement he or her custom AI hooks into the engine.
+
+==Design==
+If you're interested in the back-end engine design, please read the design document.
+
+[Design]
+
 =Domlib AI Interface=
 ==AI Class==
 TODO: Add description from the AI developer perspective.
