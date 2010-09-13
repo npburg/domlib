@@ -1,7 +1,7 @@
 #labels Phase-Requirements,Phase-Implementation,Featured
 = Domlib Documentation =
 
-= Table of Contents =
+== Table of Contents ==
 <wiki:toc max_depth="2" />
 
 =Domlib Library=
