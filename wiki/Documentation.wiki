@@ -22,14 +22,10 @@ TODO: Add description from the AI developer perspective.
 ==Required AI Functions==
 === General Interfaces ===
 || *Function* || *Description* ||
-|| `ICard* OnAttack( ICard* pAttackCard )` ||
-Return a reaction card in hand when an Attack card is played. ||
-|| `ICard* OnGainACard( const ITreasure* cost )` ||
-Return a card to gain up to the value of cost. ||
-|| `ICard* OnGainACardExactly( const ITreasure* cost )` ||
-Return a card to gain of the exact value of cost. ||
-|| `ICardList OnReturnToDrawPile( ICardList cardList )` ||
-Return a reordered list of cards to put back on top of the draw pile. The first card in the list is the first card pushed onto the draw pile stack so the last card in the list will be on the top of the draw pile when all the cards have been placed in the draw pile.||
+|| `ICard* OnAttack( ICard* pAttackCard )` || Return a reaction card in hand when an Attack card is played. ||
+|| `ICard* OnGainACard( const ITreasure* cost )` || Return a card to gain up to the value of cost. ||
+|| `ICard* OnGainACardExactly( const ITreasure* cost )` || Return a card to gain of the exact value of cost. ||
+|| `ICardList OnReturnToDrawPile( ICardList cardList )` || Return a reordered list of cards to put back on top of the draw pile. The first card in the list is the first card pushed onto the draw pile stack so the last card in the list will be on the top of the draw pile when all the cards have been placed in the draw pile.||
 || `ICard* OnTrashCardFromHand( void )` || Return a card to trash from hand. ||
 
 === Engine Interfaces ===
@@ -37,6 +33,25 @@ Return a reordered list of cards to put back on top of the draw pile. The first 
 || `ICard* PlayAction( void )` || Return an Action card from hand to play. ||
 || `ICard* PlayTreasure( void )` || Return a Treasure card to play. ||
 || `ICard* BuyCard( void )` || Return a card to buy. ||
+
+=== Base Cards ===
+|| *Function* || *Description* ||
+|| `ICard* OnBureaucrat( void )` || Return a Victory card in hand to place on top of the draw pile when Bureaucrat is played. ||
+
+=== Intrigue Cards ===
+TBD
+
+=== Seaside Cards ===
+TBD
+
+=== Alchemy Cards ===
+TBD
+
+=== Prosperity Cards ===
+TBD
+
+=== Promo Cards ===
+TBD
 
 {{{
 ///////////////////////////
@@ -301,6 +316,7 @@ ICardList           OnVaultSelf( void );
 // when Vault is played by other.
 ICardList           OnValueOther( void );
 }}}
+
 ==ICard Class==
 TODO: Add description from the AI developer perspective.
 ==IEngine Class==
