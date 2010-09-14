@@ -2,7 +2,7 @@
 = Domlib Documentation =
 
 == Table of Contents ==
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="4" />
 
 =Domlib Library=
 ==Background==
@@ -44,14 +44,15 @@ TODO: Add description from the AI developer perspective.
 || `ICard* OnMineTrash( void )` || Return a Treasure card from hand to trash when Mine is played. ||
 
 ==== Chancellor ====
-{{{ ChancellorOpt OnChancellor( void ) }}}
-
-*Description*
-Return a Chancellor option when Chancellor is played.
+{{{ ChancellorOpt OnChancellor( void )
 
 ChancellorOpt :=
  * CHANCELLOR_DISCARD_DRAW_DECK - Immediately put your draw pile into your discard.
- * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.
+ * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.}}}
+
+*Description*
+
+Return a Chancellor option when Chancellor is played.
 
 === Intrigue Cards ===
 TBD
