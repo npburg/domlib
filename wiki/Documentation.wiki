@@ -57,8 +57,8 @@ enum ChancellorOpt {
 
 Return a Chancellor option when Chancellor is played. Options include:
 
- * CHANCELLOR_DISCARD_DRAW_DECK - Immediately put your draw pile into your discard.
- * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.
+ * `CHANCELLOR_DISCARD_DRAW_DECK` - Immediately put your draw pile into your discard.
+ * `CHANCELLOR_NO_OP` - Do not put your draw pile into your discard.
 
 === Intrigue Cards ===
 TBD
