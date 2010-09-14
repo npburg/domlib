@@ -19,7 +19,11 @@ If you're interested in the back-end engine design, please read the design docum
 ==AI Class==
 TODO: Add description from the AI developer perspective.
 
-====Required AI Functions====
+==Required AI Functions==
+=== Engine Interfaces ===
+|| *Function* || Description ||
+|| {{{ ICard* PlayAction( void ); }}} || Return an Action card from hand to play. ||
+
 {{{
 ////////////////////
 // Engine Interfaces
