@@ -53,8 +53,6 @@ enum ChancellorOpt {
 };
 }}}
 
-*Description*
-
 Return a Chancellor option when Chancellor is played. Options include:
 
  * `CHANCELLOR_DISCARD_DRAW_DECK` - Immediately put your draw pile into your discard.
