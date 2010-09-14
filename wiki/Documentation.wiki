@@ -20,6 +20,14 @@ If you're interested in the back-end engine design, please read the design docum
 TODO: Add description from the AI developer perspective.
 
 ==Required AI Functions==
+=== General Interfaces ===
+|| *Function* || *Description* ||
+|| `ICard* OnAttack( ICard* pAttackCard )` || Return a reaction card in hand when an Attack card is played. ||
+|| `ICard* OnGainACard( const ITreasure* cost )` || Return a card to gain up to the value of cost. ||
+|| `ICard* OnGainACardExactly( const ITreasure* cost )` || Return a card to gain of the exact value of cost. ||
+|| `ICardList OnReturnToDrawPile( ICardList cardList )` || Return a reordered list of cards to put back on top of the draw pile. The first card in the list is the first card pushed onto the draw pile stack so the last card in the list will be on the top of the draw pile when all the cards have been placed in the draw pile. ||
+|| `ICard* OnTrashCardFromHand( void )` || Return a card to trash from hand. ||
+
 === Engine Interfaces ===
 || *Function* || *Description* ||
 || `ICard* PlayAction( void )` || Return an Action card from hand to play. ||
@@ -27,41 +35,6 @@ TODO: Add description from the AI developer perspective.
 || `ICard* BuyCard( void )` || Return a card to buy. ||
 
 {{{
-////////////////////
-// Engine Interfaces
-////////////////////
-
-// Return an Action card from hand to play.
-ICard*              PlayAction( void );
-
-// Return a Treasure card to play.
-ICard*              PlayTreasure( void );
-
-// Return a card to buy.
-ICard*              BuyCard( void );
-
-/////////////////////
-// General Interfaces
-/////////////////////
-
-// Return a reaction card in hand when an Attack card is played.
-ICard*              OnAttack( ICard* pAttackCard );
-
-// Return a card to gain up to the value of cost.
-ICard*              OnGainACard( const ITreasure* cost );
-
-// Return a card to gain of the exact value of cost.
-ICard*              OnGainACardExactly( const ITreasure* cost );
-
-// Return a reordered list of cards to put back on top of the draw pile.
-// The first card in the list is the first card pushed onto the draw pile
-// stack so the last card in the list will be on the top of the draw
-// pile when all the cards have been placed in the draw pile.
-ICardList           OnReturnToDrawPile( ICardList cardList );
-
-// Return a card to trash from hand.
-ICard*              OnTrashCardFromHand( void );
-
 ///////////////////////////
 // Base Set Card Interfaces
 ///////////////////////////
