@@ -1,29 +1,48 @@
-#include "IPlayer.h"
+#include "StdAfx.h"
+#include "Domlib.h"
+#include "Player.h"
 
 namespace Domlib
 {
 
-namespace AI
+IPlayer::IPlayer( Player* pPlayer )
 {
-
-IPlayer::IPlayer( void )
-{
-};
+    m_pPlayer = pPlayer;
+}
 
 IPlayer::~IPlayer( void )
 {
-};
-
-IGameEngine* IPlayer::Engine( void )
-{
-    return m_pEngine;
+    // Do nothing. The player was allocated and freed by the caller.
 }
 
-void IPlayer::SetGameEngine( IGameEngine* pGameEngine )
+ICardList IPlayer::GetHand( void )
 {
-    m_pEngine = pGameEngine;
+    return CardListToICardList( m_pPlayer->GetHand() );
 }
 
-}; // namespace Domlib::AI
+int IPlayer::CardsInHand( void )
+{
+    return m_pPlayer->CardsInHand();
+}
 
-}; // namespace Domlib
+int IPlayer::CardsInHand( ICard* pCard )
+{
+    return m_pPlayer->CardsInHand( pCard->GetCard() );
+}
+
+int IPlayer::CardsInHand( CARDID cardId )
+{
+    return m_pPlayer->CardsInHand( cardId );
+}
+
+int IPlayer::ActionsPlayed( void )
+{
+    return m_pPlayer->ActionsPlayed();
+}
+
+int IPlayer::GetCardCountInHandType( CARDTYPE cardType )
+{
+    return m_pPlayer->GetCardCountInHandType( cardType );
+}
+
+} // namespace Domlib
