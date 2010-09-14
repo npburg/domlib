@@ -22,9 +22,9 @@ TODO: Add description from the AI developer perspective.
 ==Required AI Functions==
 === Engine Interfaces ===
 || *Function* || *Description* ||
-|| 'ICard* PlayAction( void )' || Return an Action card from hand to play. ||
-|| 'ICard* PlayTreasure( void )' || Return a Treasure card to play. ||
-|| 'ICard* BuyCard( void )' || Return a card to buy. ||
+|| `ICard* PlayAction( void )` || Return an Action card from hand to play. ||
+|| `ICard* PlayTreasure( void )` || Return a Treasure card to play. ||
+|| `ICard* BuyCard( void )` || Return a card to buy. ||
 
 {{{
 ////////////////////
