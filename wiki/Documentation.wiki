@@ -46,15 +46,19 @@ TODO: Add description from the AI developer perspective.
 ==== Chancellor ====
 {{{
 ChancellorOpt OnChancellor( void )
-}}}
 
-`ChancellorOpt :=
- * CHANCELLOR_DISCARD_DRAW_DECK - Immediately put your draw pile into your discard.
- * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.`
+enum ChancellorOpt {
+     CHANCELLOR_DISCARD_DRAW_DECK,
+     CHANCELLOR_NO_OP
+};
+}}}
 
 *Description*
 
-Return a Chancellor option when Chancellor is played.
+Return a Chancellor option when Chancellor is played. Options include:
+
+ * CHANCELLOR_DISCARD_DRAW_DECK - Immediately put your draw pile into your discard.
+ * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.
 
 === Intrigue Cards ===
 TBD
