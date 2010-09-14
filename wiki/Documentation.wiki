@@ -44,11 +44,13 @@ TODO: Add description from the AI developer perspective.
 || `ICard* OnMineTrash( void )` || Return a Treasure card from hand to trash when Mine is played. ||
 
 ==== Chancellor ====
-{{{ ChancellorOpt OnChancellor( void )
+{{{
+ChancellorOpt OnChancellor( void )
+}}}
 
-ChancellorOpt :=
+`ChancellorOpt :=
  * CHANCELLOR_DISCARD_DRAW_DECK - Immediately put your draw pile into your discard.
- * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.}}}
+ * CHANCELLOR_NO_OP - Do not put your draw pile into your discard.`
 
 *Description*
 
