@@ -127,7 +127,7 @@ Card* IAI::OnThiefTrash( CardList cardList )
 
 Card* IAI::OnThroneRoom( void )
 {
-    return m_pAI->OnThroneRoom( void )->GetCard();
+    return m_pAI->OnThroneRoom()->GetCard();
 }
 
 BaronOpt IAI::OnBaron( void )

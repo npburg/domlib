@@ -100,7 +100,7 @@ public:
     virtual Card*               OnThiefTrash( CardList cardList );
 
     // Return an Action Card from hand when Throne Room is played.
-    virtual Card*               OnThroneRoom( void ) = 0;
+    virtual Card*               OnThroneRoom( void );
 
     ///////////////////////////////
     // Intrigue Set Card Interfaces

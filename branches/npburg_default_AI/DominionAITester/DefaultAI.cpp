@@ -43,7 +43,13 @@ Domlib::ICard* DefaultAI::OnGainACard( const Domlib::ITreasure* cost )
 
 Domlib::ICard* DefaultAI::OnGainACardExactly( const Domlib::ITreasure* cost )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList cardList = m_pEngine->CardsCostingExactly( cost );
+    
+    if( cardList.size() )
+    {
+        return (*cardList.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -62,7 +68,21 @@ Domlib::ICard* DefaultAI::OnTrashCardFromHand( void )
 
 Domlib::ICard* DefaultAI::OnBureaucrat( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_VICTORY ) )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            if( (*iter)->IsVictoryCard() )
+            {
+                return (*iter);
+            }
+        }
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -97,24 +117,53 @@ Domlib::LibraryOpt DefaultAI::OnLibrary( Domlib::ICard* pCard )
 
 Domlib::ICardList DefaultAI::OnMilitia( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList discardList;
+    int numCardsInHand = m_pPlayer->CardsInHand();
+
+    if( numCardsInHand > 3 )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            discardList.push_back( (*iter) );
+            if( numCardsInHand - discardList.size() <= 3 )
+            {
+                return discardList;
+            }
+        }
+    }
     
-    return iCardList;
+    return discardList;
 }
 
 
 Domlib::ICard* DefaultAI::OnMineTrash( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_TREASURE ) )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            if( (*iter)->IsTreasureCard() )
+            {
+                return (*iter);
+            }
+        }
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICard* DefaultAI::OnMineGain( const Domlib::ITreasure* cost )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID_COPPER );
 }
 
 
@@ -144,14 +193,27 @@ Domlib::ThiefOpt DefaultAI::OnThiefGain( Domlib::ICard* pCard )
 
 Domlib::ICard* DefaultAI::OnThiefTrash( Domlib::ICardList cardList )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return (*cardList.begin());
 }
 
 
-Domlib::ICard* OnThroneRoom( void )
+Domlib::ICard* DefaultAI::OnThroneRoom( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_ACTION ) )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            if( (*iter)->IsActionCard() )
+            {
+                return (*iter);
+            }
+        }
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -164,7 +226,13 @@ Domlib::BaronOpt DefaultAI::OnBaron( void )
 
 Domlib::ICard* DefaultAI::OnCourtyard( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList hand = m_pPlayer->GetHand();
+
+    if( hand.size() )
+    {
+        return (*hand.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -177,7 +245,13 @@ Domlib::ICard* DefaultAI::OnIronworks( const Domlib::ITreasure* cost )
 
 Domlib::ICard* DefaultAI::OnMasqueradePass( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList hand = m_pPlayer->GetHand();
+
+    if( hand.size() )
+    {
+        return (*hand.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -208,8 +282,10 @@ Domlib::NoblesOpt DefaultAI::OnNobles( void )
 
 Domlib::PawnOptPair DefaultAI::OnPawn( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
     Domlib::PawnOptPair pawnOptPair;
+
+    pawnOptPair.first = Domlib::PAWN_PLUS_1_ACTION;
+    pawnOptPair.second = Domlib::PAWN_PLUS_1_CARD;
     
     return pawnOptPair;
 }
@@ -225,10 +301,22 @@ Domlib::ICardList DefaultAI::OnSecretChamber( void )
 
 Domlib::ICardList DefaultAI::OnSecretChamberReaction( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList cardsToReturn;
+    Domlib::ICardList hand = m_pPlayer->GetHand();
     
-    return iCardList;
+
+    for( Domlib::ICardListIter iter = hand.begin();
+         iter != hand.end();
+         iter ++ )
+    {
+        cardsToReturn.push_back( (*iter) );
+        if( cardsToReturn.size() >= 2 )
+        {
+            break;
+        }
+    }
+    
+    return cardsToReturn;
 }
 
 
@@ -240,16 +328,35 @@ Domlib::StewardOpt DefaultAI::OnSteward( void )
 
 Domlib::ICardList DefaultAI::OnStewardTrash( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList cardsToTrash;
+    Domlib::ICardList hand = m_pPlayer->GetHand();
     
-    return iCardList;
+
+    for( Domlib::ICardListIter iter = hand.begin();
+         iter != hand.end();
+         iter ++ )
+    {
+        cardsToTrash.push_back( (*iter) );
+        if( cardsToTrash.size() >= 2 )
+        {
+            break;
+        }
+    }
+    
+    return cardsToTrash;
 }
 
 
 Domlib::ICard* DefaultAI::OnSwindler( Domlib::ICard* pCard )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList cardList = 
+        m_pEngine->CardsCostingExactly( &pCard->Cost( m_pEngine ) );
+    
+    if( cardList.size() )
+    {
+        return (*cardList.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -264,29 +371,51 @@ Domlib::ICardList DefaultAI::OnTorturer( void )
 
 Domlib::ICardList DefaultAI::OnTradingPost( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList cardsToTrash;
+    Domlib::ICardList hand = m_pPlayer->GetHand();
     
-    return iCardList;
+
+    for( Domlib::ICardListIter iter = hand.begin();
+         iter != hand.end();
+         iter ++ )
+    {
+        cardsToTrash.push_back( (*iter) );
+        if( cardsToTrash.size() >= 2 )
+        {
+            break;
+        }
+    }
+    
+    return cardsToTrash;
 }
 
 
 Domlib::ICard* DefaultAI::OnUpgrade( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICard* DefaultAI::OnWishingWell( void )
 {
-    return Domlib::ICard::GetCard( Domlib::COPPER );
+    return Domlib::ICard::GetCard( Domlib::CARDID_COPPER );
 }
 
 
 Domlib::ICard* DefaultAI::OnAmbassadorReveal( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -299,7 +428,13 @@ int DefaultAI::OnAmbassadorPutBack( Domlib::ICard* pCard )
 
 Domlib::ICard* DefaultAI::OnEmbargo( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList cardsAvailable = m_pEngine->CardsAvailable();
+
+    if( cardsAvailable.size() )
+    {
+        return (*cardsAvailable.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -312,23 +447,49 @@ Domlib::ExplorerOpt DefaultAI::OnExplorer( void )
 
 Domlib::ICardList DefaultAI::OnGhostShip( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList cardsToReturn;
+    int numCardsInHand = m_pPlayer->CardsInHand();
+
+    if( numCardsInHand > 3 )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            cardsToReturn.push_back( *iter );
+            if( numCardsInHand - cardsToReturn.size() <= 3 )
+            {
+                return cardsToReturn;
+            }
+        }
+    }
     
-    return iCardList;
+    return cardsToReturn;
 }
 
 
 Domlib::ICard* DefaultAI::OnHaven( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICard* DefaultAI::OnIsland( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -375,21 +536,37 @@ Domlib::PirateShipOpt DefaultAI::OnPirateShip( void )
 
 Domlib::ICard* DefaultAI::OnPirateShipTrash( Domlib::ICardList cardList )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( cardList.size() )
+    {
+        return (*cardList.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICard* DefaultAI::OnSalvager( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICard* DefaultAI::OnSmugglers( Domlib::ICardList cardList )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::IPlayerOther* pPlayerOther = m_pEngine->GetPrevPlayer();
+    Domlib::ICardList gainList = pPlayerOther->GainList();
+
+    if( gainList.size() )
+    {
+        return (*gainList.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -402,10 +579,21 @@ Domlib::TreasuryOpt DefaultAI::OnTreasury( void )
 
 Domlib::ICardList DefaultAI::OnWarehouse( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList discardList;
+    Domlib::ICardList hand = m_pPlayer->GetHand();
+
+    for( Domlib::ICardListIter iter = hand.begin();
+         iter != hand.end();
+         iter++ )
+    {
+        discardList.push_back( *iter );
+        if( discardList.size() == 3 )
+        {
+            break;
+        }
+    }
     
-    return iCardList;
+    return discardList;
 }
 
 
@@ -417,17 +605,19 @@ Domlib::AlchemistOpt DefaultAI::OnAlchemist( void )
 
 Domlib::ICard* DefaultAI::OnApprentice( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
 
 Domlib::ICardList DefaultAI::OnGolem( Domlib::ICardList cardList )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
-    
-    return iCardList;
+    return cardList;
 }
 
 
@@ -451,7 +641,12 @@ Domlib::ScryingPoolOpt DefaultAI::OnScryingPoolSelf( Domlib::ICard* pCard )
 
 Domlib::ICard* DefaultAI::OnTransmute( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    if( m_pPlayer->CardsInHand() )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        return (*hand.begin());
+    }
+    
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -470,7 +665,13 @@ Domlib::LoanOpt DefaultAI::OnLoan( Domlib::ICard* pCard )
 
 Domlib::ICard* DefaultAI::OnBishopSelf( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList hand = m_pPlayer->GetHand();
+
+    if( hand.size() )
+    {
+        return (*hand.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -483,7 +684,6 @@ Domlib::ICard* DefaultAI::OnBishopOther( void )
 
 Domlib::ICard* DefaultAI::OnContraband( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 
@@ -510,16 +710,38 @@ Domlib::ICardList DefaultAI::OnForge( void )
 
 Domlib::ICardList DefaultAI::OnGoons( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
-    Domlib::ICardList iCardList;
+    Domlib::ICardList discardList;
+    int numCardsInHand = m_pPlayer->CardsInHand();
+
+    if( numCardsInHand > 3 )
+    {
+        Domlib::ICardList hand = m_pPlayer->GetHand();
+        
+        for( Domlib::ICardListIter iter = hand.begin();
+             iter != hand.end();
+             iter++ )
+        {
+            discardList.push_back( *iter );
+            if( numCardsInHand - discardList.size() <= 3 )
+            {
+                return discardList;
+            }
+        }
+    }
     
-    return iCardList;
+    return discardList;
 }
 
 
 Domlib::ICard* DefaultAI::OnKingsCourt( void )
 {
-    // TODO: Need to add logic to meet the basic competency requirement
+    Domlib::ICardList hand = m_pPlayer->GetHand();
+
+    if( hand.size() )
+    {
+        return (*hand.begin());
+    }
+
     return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
 }
 

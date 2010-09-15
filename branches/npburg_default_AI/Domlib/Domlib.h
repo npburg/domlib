@@ -9,7 +9,7 @@ class ICard;
 class IEngine;
 class IGame;
 class IPlayer;
-class IPlayerSelf;
+class IPlayerOther;
 class ITreasure;
 
 typedef std::list<ICard*>           ICardList;
@@ -247,9 +247,13 @@ class IEngine
 public:
     virtual ~IEngine( void );
 
-    Engine*     GetEngine( void );
-    bool        IsCardInStock( CARDID cardId );
-    bool        CardsAvailable( CARDID cardId );
+    Engine*         GetEngine( void );
+    bool            IsCardInStock( CARDID cardId );
+    ICardList       CardsAvailable( void );
+    bool            CardsAvailable( CARDID cardId );
+    ICardList       CardsCostingExactly( const ITreasure* cost );
+    ICardList       CardsCostingUpTo( const ITreasure* cost );
+    IPlayerOther*   GetPrevPlayer( void );
     
 protected:
     IEngine( Engine* pEngine );
@@ -295,6 +299,7 @@ public:
     virtual ~IPlayerOther( void );
 
     int         CardsInHand( void );
+    ICardList   GainList( void );
 
 protected:
     IPlayerOther( Player* pPlayer );
@@ -314,8 +319,10 @@ public:
     virtual ~IPlayer( void );
 
     ICardList   GetHand( void );
+    int         CardsInHand( void );
     int         CardsInHand( ICard* pCard );
     int         CardsInHand( CARDID cardId );
+    int         CardsInHand( CARDTYPE cardType );
     int         ActionsPlayed( void );
     int         GetCardCountInHandType( CARDTYPE cardType );
 
