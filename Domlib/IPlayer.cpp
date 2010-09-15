@@ -6,8 +6,8 @@ namespace Domlib
 {
 
 IPlayer::IPlayer( Player* pPlayer )
+    : IPlayerOther( pPlayer )
 {
-    m_pPlayer = pPlayer;
 }
 
 IPlayer::~IPlayer( void )
@@ -18,11 +18,6 @@ IPlayer::~IPlayer( void )
 ICardList IPlayer::GetHand( void )
 {
     return CardListToICardList( m_pPlayer->GetHand() );
-}
-
-int IPlayer::CardsInHand( void )
-{
-    return m_pPlayer->CardsInHand();
 }
 
 int IPlayer::CardsInHand( ICard* pCard )

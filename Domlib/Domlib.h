@@ -287,19 +287,33 @@ private:
 //
 // IPlayer Class
 //
-// TODO: Need to split this class into Player-Self and Player-Other since
-//       an AI should be able to access more information about the Player-Self
-//       than it can access about Player-Other.
-//
 ///////////////////////////////////////////////////////////////////////////////
 class Player;
-class IPlayer
+class IPlayerOther
+{
+public:
+    virtual ~IPlayerOther( void );
+
+    int         CardsInHand( void );
+
+protected:
+    IPlayerOther( Player* pPlayer );
+
+    Player* m_pPlayer;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// IPlayer Class
+//
+///////////////////////////////////////////////////////////////////////////////
+class IPlayer : public IPlayerOther
 {
 public:
     virtual ~IPlayer( void );
 
     ICardList   GetHand( void );
-    int         CardsInHand( void );
     int         CardsInHand( ICard* pCard );
     int         CardsInHand( CARDID cardId );
     int         ActionsPlayed( void );
@@ -307,9 +321,6 @@ public:
 
 protected:
     IPlayer( Player* pPlayer );
-    
-private:
-    Player* m_pPlayer;
 };
 
 
@@ -610,6 +621,9 @@ public:
     // Return a Treasure Card from the card list to trash when Thief is played.
     virtual ICard*              OnThiefTrash( ICardList cardList ) = 0;
 
+    // Return an Action Card from hand when Throne Room is played.
+    virtual ICard*              OnThroneRoom( void ) = 0;
+
     ///////////////////////////////
     // Intrigue Set Card Interfaces
     ///////////////////////////////
@@ -839,6 +853,7 @@ public:
 
 protected:
     IEngine*     m_pEngine;
+    IPlayer*     m_pPlayer;
 };
 
 

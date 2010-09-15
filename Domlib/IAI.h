@@ -99,6 +99,9 @@ public:
     // Return a Treasure Card from the card list to trash when Thief is played.
     virtual Card*               OnThiefTrash( CardList cardList );
 
+    // Return an Action Card from hand when Throne Room is played.
+    virtual Card*               OnThroneRoom( void ) = 0;
+
     ///////////////////////////////
     // Intrigue Set Card Interfaces
     ///////////////////////////////
@@ -327,7 +330,7 @@ public:
     virtual CardList            OnVaultOther( void );
 
 private:
-    AI*     m_pAi;
+    AI*     m_pAI;
 };
 
 } // namespace Domlib
