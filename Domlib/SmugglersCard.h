@@ -8,10 +8,14 @@ class SmugglersCard :
     public Domlib::Card
 {
 public:
-    SmugglersCard( void );
     virtual ~SmugglersCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    SmugglersCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

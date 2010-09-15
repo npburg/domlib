@@ -8,10 +8,14 @@ class IslandCard :
     public Domlib::Card
 {
 public:
-    IslandCard( void );
     virtual ~IslandCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    IslandCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class BazaarCard :
     public Domlib::Card
 {
 public:
-    BazaarCard( void );
     virtual ~BazaarCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    BazaarCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class CityCard :
     public Domlib::Card
 {
 public:
-    CityCard(void);
     virtual ~CityCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    CityCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class TalismanCard :
     public Domlib::Card
 {
 public:
-    TalismanCard(void);
     virtual ~TalismanCard(void);
 
     void OnCleanUpPhase( Engine* pEngine );
+
+protected:
+    TalismanCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

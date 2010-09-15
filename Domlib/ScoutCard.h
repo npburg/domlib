@@ -8,10 +8,14 @@ class ScoutCard :
     public Domlib::Card
 {
 public:
-    ScoutCard( void );
     virtual ~ScoutCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ScoutCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class ApothecaryCard :
     public Domlib::Card
 {
 public:
-    ApothecaryCard( void );
     virtual ~ApothecaryCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ApothecaryCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

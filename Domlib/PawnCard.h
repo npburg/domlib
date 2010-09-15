@@ -8,10 +8,14 @@ class PawnCard :
     public Domlib::Card
 {
 public:
-    PawnCard( void );
     virtual ~PawnCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    PawnCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

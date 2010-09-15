@@ -8,11 +8,17 @@ class MinionCard :
     public Domlib::Card
 {
 public:
-    MinionCard( void );
     virtual ~MinionCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    MinionCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class UpgradeCard :
     public Domlib::Card
 {
 public:
-    UpgradeCard( void );
     virtual ~UpgradeCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    UpgradeCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

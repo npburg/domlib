@@ -8,14 +8,21 @@ class PirateShipCard :
     public Domlib::Card
 {
 public:
-    PirateShipCard( void );
     virtual ~PirateShipCard( void );
     
     void OnActionPhase( Engine* pEngine );
-    void OnAttack( Engine* pEngine, Player* pPlayer );
     
 protected:
+    void OnAttack( Engine* pEngine, Player* pPlayer );
+
+    // TODO: Warning this field means Pirate Ship is not stateless so
+    //       could have threading issues.
     bool    m_bFoundTreasure;
+
+private:
+    PirateShipCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

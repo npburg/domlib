@@ -8,11 +8,17 @@ class GhostShipCard :
     public Domlib::Card
 {
 public:
-    GhostShipCard( void );
     virtual ~GhostShipCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    GhostShipCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

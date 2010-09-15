@@ -8,11 +8,17 @@ class SecretChamberCard :
     public Domlib::Card
 {
 public:
-    SecretChamberCard( void );
     virtual ~SecretChamberCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnReaction( Engine* pEngine, Player* pPlayer );
+
+private:
+    SecretChamberCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

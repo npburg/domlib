@@ -8,11 +8,15 @@ class MintCard :
     public Domlib::Card
 {
 public:
-    MintCard(void);
     virtual ~MintCard(void);
     
     void OnActionPhase( Engine* pEngine );
     void OnBuy( Engine* pEngine );
+
+private:
+    MintCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

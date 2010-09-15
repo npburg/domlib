@@ -8,11 +8,15 @@ class PeddlerCard :
     public Domlib::Card
 {
 public:
-    PeddlerCard(void);
     virtual ~PeddlerCard(void);
     
     void OnActionPhase( Engine* pEngine );
     Treasure Cost( Engine* pEngine );
+
+private:
+    PeddlerCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,8 +8,12 @@ class ColonyCard :
     public Domlib::Card
 {
 public:
-    ColonyCard(void);
     virtual ~ColonyCard(void);
+
+private:
+    ColonyCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

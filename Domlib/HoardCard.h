@@ -8,10 +8,14 @@ class HoardCard :
     public Domlib::Card
 {
 public:
-    HoardCard(void);
     virtual ~HoardCard(void);
 
     void OnCleanUpPhase( Engine* pEngine );
+
+private: 
+    HoardCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

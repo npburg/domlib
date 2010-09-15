@@ -8,8 +8,12 @@ class HaremCard :
     public Domlib::Card
 {
 public:
-    HaremCard( void );
     virtual ~HaremCard( void );
+
+private:
+    HaremCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

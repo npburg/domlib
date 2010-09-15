@@ -8,11 +8,15 @@ class ContrabandCard :
     public Domlib::Card
 {
 public:
-    ContrabandCard(void);
     virtual ~ContrabandCard(void);
     
     Treasure    OnTreasurePhase( Engine* pEngine );
     void        OnCleanUpPhase( Engine* pEngine );
+
+private:
+    ContrabandCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

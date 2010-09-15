@@ -8,11 +8,17 @@ class TorturerCard :
     public Domlib::Card
 {
 public:
-    TorturerCard( void );
     virtual ~TorturerCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    TorturerCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

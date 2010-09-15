@@ -8,8 +8,12 @@ class PotionCard :
     public Domlib::Card
 {
 public:
-    PotionCard( void );
     virtual ~PotionCard( void );
+
+private:
+    PotionCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

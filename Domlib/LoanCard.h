@@ -8,10 +8,14 @@ class LoanCard :
     public Domlib::Card
 {
 public:
-    LoanCard(void);
     virtual ~LoanCard(void);
     
     Treasure OnTreasurePhase( Engine* pEngine );
+
+private:
+    LoanCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

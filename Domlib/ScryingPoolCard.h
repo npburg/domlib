@@ -8,11 +8,17 @@ class ScryingPoolCard :
     public Domlib::Card
 {
 public:
-    ScryingPoolCard( void );
     virtual ~ScryingPoolCard( void );
 
     void OnActionPhase( Engine* pEngine );
+    
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    ScryingPoolCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

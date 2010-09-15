@@ -8,10 +8,14 @@ class CourtyardCard :
     public Domlib::Card
 {
 public:
-    CourtyardCard( void );
     virtual ~CourtyardCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    CourtyardCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

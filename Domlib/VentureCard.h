@@ -8,10 +8,14 @@ class VentureCard :
     public Domlib::Card
 {
 public:
-    VentureCard(void);
     virtual ~VentureCard(void);
     
     Treasure OnTreasurePhase( Engine* pEngine );
+
+private:
+    VentureCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib
