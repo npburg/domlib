@@ -92,7 +92,7 @@ public:
     virtual Domlib::ICard*              OnThiefTrash( Domlib::ICardList cardList );
 
     // Return an Action Card from hand when Throne Room is played.
-    virtual ICard*              OnThroneRoom( void ) = 0;
+    virtual Domlib::ICard*              OnThroneRoom( void ) = 0;
 
     ///////////////////////////////
     // Intrigue Set Card Interfaces
