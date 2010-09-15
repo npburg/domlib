@@ -1191,6 +1191,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\ErrorHandling.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Game.cpp"
 					>
 				</File>
@@ -1243,6 +1247,10 @@
 				Name="AI Interfaces"
 				Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx;h;hpp"
 				>
+				<File
+					RelativePath=".\Domlib.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\Domlib.h"
 					>
@@ -1310,10 +1318,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\ReadMe.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

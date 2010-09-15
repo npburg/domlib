@@ -4,6 +4,8 @@
 namespace Domlib
 {
 
+Card::CardFactory Card::m_CardDeck;
+
 Card::Card( 
            std::wstring name,
            CARDID cardId, 
@@ -29,6 +31,11 @@ void Card::OnActionPhase( Engine* pEngine ) {}
 
 void Card::OnReaction( Engine* pEngine, Player* pPlayer ) {}
 
+void Card::OnActionPhaseOther( Engine* pEngine, Player* pPlayer )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
 Treasure Card::OnTreasurePhase( Engine* pEngine )
 {
     return this->TreasureValue( pEngine );
@@ -41,6 +48,11 @@ void Card::OnCleanUpPhase( Engine* pEngine ) {}
 void Card::OnBuy( Engine* pEngine ) {}
 
 int Card::OnScoring( Engine* pEngine ) { return VictoryPoints( pEngine ); }
+
+void Card::ActionForOthers( Engine* pEngine )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
 
 void Card::OnAttack( Engine* pEngine, Player* pPlayer ) {}
 
