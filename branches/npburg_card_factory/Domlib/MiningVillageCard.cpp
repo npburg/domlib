@@ -1,10 +1,10 @@
 #include "StdAfx.h"
-#include "MiningVilliageCard.h"
+#include "MiningVillageCard.h"
 
 namespace Domlib
 {
 
-MiningVilliageCard::MiningVilliageCard( void )
+MiningVillageCard::MiningVillageCard( void )
     : Card( 
         L"Mining Village",
         CARDID_MININGVILLAGE,
@@ -15,11 +15,11 @@ MiningVilliageCard::MiningVilliageCard( void )
 {
 }
 
-MiningVilliageCard::~MiningVilliageCard( void )
+MiningVillageCard::~MiningVillageCard( void )
 {
 }
 
-void MiningVilliageCard::OnActionPhase( Engine* pEngine )
+void MiningVillageCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     IAI* pAI = pPlayer->GetAI();
@@ -38,7 +38,7 @@ void MiningVilliageCard::OnActionPhase( Engine* pEngine )
         break;
     default:
         // TODO: report error
-        throw std::wstring( L"Error: MiningVilliageCard::OnActionPhase()" );
+        throw std::wstring( L"Error: MiningVillageCard::OnActionPhase()" );
         break;
     }
 }
