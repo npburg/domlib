@@ -10,8 +10,8 @@ EstateCard::EstateCard( void )
         CARDID_ESTATE,
         CARDTYPE_VICTORY,
         1,
-        Treasure( 2, 0 ),
-        Treasure( 0, 0 ) )
+        Treasure( 0, 0 ),
+        Treasure( 2, 0 ) )
 {
 }
 

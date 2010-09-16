@@ -29,7 +29,7 @@ void WitchCard::OnActionPhase( Engine* pEngine )
 
 void WitchCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    pPlayer->GainCardInHand( CARDID_CURSE );
+	pPlayer->GainCardOnDiscard( CARDID_CURSE );
 }
 
 } // namespace Domlib

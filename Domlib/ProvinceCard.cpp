@@ -10,8 +10,8 @@ ProvinceCard::ProvinceCard( void )
         CARDID_PROVINCE,
         CARDTYPE_VICTORY,
         6,
-        Treasure( 8, 0 ),
-        Treasure( 0, 0 ) )
+        Treasure( 0, 0 ),
+        Treasure( 8, 0 ) )
 {
 }
 

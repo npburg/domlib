@@ -10,8 +10,8 @@ DuchyCard::DuchyCard( void )
         CARDID_DUCHY,
         CARDTYPE_VICTORY,
         3,
-        Treasure( 5, 0 ),
-        Treasure( 0, 0 ) )
+        Treasure( 0, 0 ),
+        Treasure( 5, 0 ) )
 {
 }
 
