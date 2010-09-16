@@ -35,19 +35,27 @@ TODO: Add description from the AI developer perspective.
 || `ICard* BuyCard( void )` || Return a card to buy. ||
 
 === Base Cards ===
-|| *Function* || *Description* ||
-|| `ICard* OnBureaucrat( void )` || Return a Victory card in hand to place on top of the draw pile when Bureaucrat is played. ||
-|| `ICardList OnCellar( void )` || Return list of cards from hand to discard when Cellar is played. ||
-|| `ICardList OnChapel( void )` || Return a list of cards from hand to trash when Chapel is played. ||
-|| `LibraryOpt OnLibrary( ICard* pCard )` || Return a Library option to determine if the Action card is discarded when Library is played. ||
-|| `ICardList OnMilitia( void )` || Return a list of cards to discard from hand so the hand size is no greater than 3 when Militia is played. ||
-|| `ICard* OnMineTrash( void )` || Return a Treasure card from hand to trash when Mine is played. ||
+
+==== Bureaucrat ====
+{{{
+ICard* OnBureaucrat( void )
+}}}
+
+Return a Victory card in hand to place on top of the draw pile when Bureaucrat is played.
+
+==== Cellar ====
+{{{
+ICardList OnCellar( void )
+}}}
+
+Return list of cards from hand to discard when Cellar is played.
 
 ==== Chancellor ====
 {{{
 ChancellorOpt OnChancellor( void )
 
-enum ChancellorOpt {
+enum ChancellorOpt
+{
      CHANCELLOR_DISCARD_DRAW_DECK,
      CHANCELLOR_NO_OP
 };
@@ -57,6 +65,43 @@ Return a Chancellor option when Chancellor is played. Options include:
 
  * `CHANCELLOR_DISCARD_DRAW_DECK` - Immediately put your draw pile into your discard.
  * `CHANCELLOR_NO_OP` - Do not put your draw pile into your discard.
+
+==== Chapel ====
+{{{
+ICardList OnChapel( void )
+}}}
+
+Return a list of cards from hand to trash when Chapel is played.
+
+=== Library ====
+{{{
+LibraryOpt OnLibrary( ICard* pCard )
+
+enum LibraryOpt
+{
+    LIBRARY_DISCARD_ACTION_CARD,
+    LIBRARY_KEEP_ACTION_CARD,
+};
+}}}
+
+Return a Library option to determine if the Action card is discarded when Library is played. Options include:
+
+ * 'LIBRARY_DISCARD_ACTION_CARD' - Discard the passed action card.
+ * 'LIBRARY_KEEP_ACTION_CARD' - Keep the passed action card in hand.
+
+==== Militia ====
+{{{
+ICardList OnMilitia( void )
+}}}
+
+Return a list of cards to discard from hand so the hand size is no greater than 3 when Militia is played.
+
+==== Mine ====
+{{{
+ICard* OnMineTrash( void )
+}}}
+
+Return a Treasure card from hand to trash when Mine is played.
 
 === Intrigue Cards ===
 TBD
