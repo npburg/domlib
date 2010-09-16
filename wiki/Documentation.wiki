@@ -73,7 +73,7 @@ ICardList OnChapel( void )
 
 Return a list of cards from hand to trash when Chapel is played.
 
-=== Library ====
+==== Library ====
 {{{
 LibraryOpt OnLibrary( ICard* pCard )
 
@@ -103,41 +103,65 @@ ICard* OnMineTrash( void )
 
 Return a Treasure card from hand to trash when Mine is played.
 
-=== Intrigue Cards ===
-TBD
+{{{
+ICard* OnMineGain( const ITreasure* cost );
+}}}
 
-=== Seaside Cards ===
-TBD
+Return a Treasure card from supply up to the cost when Mine is played.
 
-=== Alchemy Cards ===
-TBD
+==== Remodel ====
+{{{
+ICard* OnRemodel( void );
+}}}
 
-=== Prosperity Cards ===
-TBD
+Return a card in hand to trash when Remodel is played.
 
-=== Promo Cards ===
-TBD
+==== Spy ====
+{{{
+SpyOpt OnSpyOther( ICard* pCard );
+
+enum SpyOpt
+{
+    SPY_DISCARD_CARD,
+    SPY_PUT_BACK_CARD,
+};
+}}}
+
+Return a Spy option when Spy is played on other. Options include:
+
+ * `SPY_DISCARD_CARD` - Discard the other player's card.
+ * `SPY_PUT_BACK_CARD` - Put the other player's card back on his or her deck.
 
 {{{
-// Return a Treasure card from supply up to the cost when Mine is played.
-ICard*              OnMineGain( const ITreasure* cost );
+SpyOpt OnSpySelf( ICard* pCard );
+}}}
 
-// Return a card in hand to trash when Remodel is played.
-ICard*              OnRemodel( void );
+Return a Spy option when Spy is played on self. Options are above but apply to yourself.
 
-// Return a Spy option when Spy is played on other.
-SpyOpt              OnSpyOther( ICard* pCard );
+==== Theif ===
+{{{
+ThiefOpt OnThiefGain( ICard* pCard );
 
-// Return a Spy option when Spy is played on self.
-SpyOpt              OnSpySelf( ICard* pCard );
+enum ThiefOpt
+{
+    THIEF_TRASH_TREASURE_CARD,
+    THIEF_STEAL_TREASURE_CARD,
+};
+}}}
 
-// Return a Thief option to determine if the Treasure card is stolen when 
-// Thief is played.
-ThiefOpt            OnThiefGain( ICard* pCard );
+Return a Thief option to determine if the Treasure card is stolen when Thief is played. Options include:
 
-// Return a Treasure Card from the card list to trash when Thief is played.
-ICard*              OnThiefTrash( ICardList cardList );
+ * `THIEF_TRASH_TREASURE_CARD` - Trash the treasure card.
+ * `THIEF_STEAL_TREASURE_CARD` - Steal the treasure card, placing it in your discard pile.
 
+{{{
+ICard* OnThiefTrash( ICardList cardList );
+}}}
+
+Return a Treasure Card from the card list to trash when Thief is played.
+
+=== Intrigue Cards ===
+{{{
 ///////////////////////////////
 // Intrigue Set Card Interfaces
 ///////////////////////////////
@@ -208,7 +232,10 @@ ICard*              OnUpgrade( void );
 
 // Return a card to wish for when Wishing Well is played.
 ICard*              OnWishingWell( void );
+}}}
 
+=== Seaside Cards ===
+{{{
 //////////////////////////////
 // Seaside Set Card Interfaces
 //////////////////////////////
@@ -265,7 +292,10 @@ TreasuryOpt         OnTreasury( void );
 
 // Return a list of 3 cards from hand to discard when Warehouse is played.
 ICardList           OnWarehouse( void );
+}}}
 
+=== Alchemy Cards ===
+{{{
 //////////////////////////////
 // Alchemy Set Card Interfaces
 //////////////////////////////
@@ -298,7 +328,10 @@ ICard*              OnTransmute( void );
 
 // Return an Action card which cost up to 5 coins when University is played.
 ICard*              OnUniversity( void );
+}}}
 
+=== Prosperity Cards ===
+{{{
 /////////////////////////////////
 // Prosperity Set Card Interfaces
 /////////////////////////////////
@@ -356,12 +389,16 @@ ICardList           OnValueOther( void );
 
 ==ICard Class==
 TODO: Add description from the AI developer perspective.
+
 ==IEngine Class==
 TODO: Add description from the AI developer perspective.
+
 ==IGame Class==
 TODO: Add description from the AI developer perspective.
+
 ==IPlayer Class==
 TODO: Add description from the AI developer perspective.
+
 ==ITreasure Class==
 TODO: Add description from the AI developer perspective.
 
