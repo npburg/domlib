@@ -265,6 +265,8 @@ Domlib::ICard* DefaultAI::OnIsland( void )
 Domlib::ILookoutStruct DefaultAI::OnLookout( Domlib::ICardList cardList )
 {
     Domlib::ILookoutStruct lookoutStruct;
+
+    memset( &lookoutStruct, 0, sizeof(Domlib::ILookoutStruct) );
     
     return lookoutStruct;
 }
