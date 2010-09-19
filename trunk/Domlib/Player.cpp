@@ -290,4 +290,19 @@ int Player::GetDeckSize( void )
     return 0;
 }
 
+int Player::GetCardCountInHandType( CARDTYPE cardType )
+{
+    throw std::wstring( L"Error: Player::GetCardCountInHandType - To be implemented..." );
+    
+    return 0;
+}
+
+CardList Player::GainList( void )
+{
+    throw std::wstring( L"Error: Player::GetCardCountInHandType - To be implemented..." );
+    CardList cardList;
+    
+    return cardList;
+}
+
 } // namespace Domlib

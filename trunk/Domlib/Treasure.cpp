@@ -7,13 +7,16 @@ namespace Domlib
 Treasure::Treasure( void )
 {
 }
-/*
-Treasure::Treasure( Treasure& treasure )
+
+
+Treasure::Treasure( const ITreasure& treasure )
+    :
+    m_Coins( treasure.Coins() ),
+    m_Potions( treasure.Potions() )
 {
-    m_Coins     = t.m_Coins;
-    m_Potions   = t.m_Potions;
 }
-*/
+
+
 Treasure::Treasure( const int coins, const int potions )
     :
     m_Coins( coins ),

@@ -7,6 +7,7 @@ namespace Domlib
 {
 
 class Player;
+class Treasure;
 
 typedef std::list<Player*>          PlayerList;
 typedef PlayerList::iterator        PlayerListIter;
@@ -20,7 +21,9 @@ public:
 
     // IEngine Interfaces
     bool        IsCardInStock( CARDID cardId );
+    CardList    PilesAvailable( void );
     bool        CardsAvailable( CARDID cardId );
+    CardList    CardsCostingExactly( const Treasure* cost );
 
     void        RegisterPlayer( AI* pAI );
     void        Play( void );
