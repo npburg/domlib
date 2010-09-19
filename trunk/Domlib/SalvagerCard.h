@@ -8,10 +8,14 @@ class SalvagerCard :
     public Domlib::Card
 {
 public:
-    SalvagerCard( void );
     virtual ~SalvagerCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    SalvagerCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

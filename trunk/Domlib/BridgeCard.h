@@ -8,10 +8,14 @@ class BridgeCard :
     public Domlib::Card
 {
 public:
-    BridgeCard( void );
     virtual ~BridgeCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    BridgeCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

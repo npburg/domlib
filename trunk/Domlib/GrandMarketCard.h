@@ -8,10 +8,14 @@ class GrandMarketCard :
     public Domlib::Card
 {
 public:
-    GrandMarketCard(void);
     virtual ~GrandMarketCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    GrandMarketCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

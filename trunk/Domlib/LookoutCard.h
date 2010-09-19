@@ -8,10 +8,14 @@ class LookoutCard :
     public Domlib::Card
 {
 public:
-    LookoutCard( void );
     virtual ~LookoutCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    LookoutCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

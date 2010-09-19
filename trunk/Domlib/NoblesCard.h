@@ -8,10 +8,14 @@ class NoblesCard :
     public Domlib::Card
 {
 public:
-    NoblesCard( void );
     virtual ~NoblesCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    NoblesCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

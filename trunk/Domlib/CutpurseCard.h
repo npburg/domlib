@@ -8,11 +8,17 @@ class CutpurseCard :
     public Domlib::Card
 {
 public:
-    CutpurseCard( void );
     virtual ~CutpurseCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    CutpurseCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

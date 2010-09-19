@@ -8,10 +8,14 @@ class MonumentCard :
     public Domlib::Card
 {
 public:
-    MonumentCard(void);
     virtual ~MonumentCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    MonumentCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

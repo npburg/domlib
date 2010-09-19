@@ -8,11 +8,15 @@ class TreasureMapCard :
     public Domlib::Card
 {
 public:
-    TreasureMapCard( void );
     virtual ~TreasureMapCard( void );
     
     void OnActionPhase( Engine* pEngine );
     void OnCleanUpPhase( Engine* pEngine );
+
+private:
+    TreasureMapCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

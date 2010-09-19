@@ -8,11 +8,15 @@ class RoyalSealCard :
     public Domlib::Card
 {
 public:
-    RoyalSealCard(void);
     virtual ~RoyalSealCard(void);
     
     Treasure OnTreasurePhase( Engine* pEngine );
     void OnCleanUpPhase( Engine* pEngine );
+
+private:
+    RoyalSealCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

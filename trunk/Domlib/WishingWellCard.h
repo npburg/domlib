@@ -8,10 +8,14 @@ class WishingWellCard :
     public Domlib::Card
 {
 public:
-    WishingWellCard( void );
     virtual ~WishingWellCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    WishingWellCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

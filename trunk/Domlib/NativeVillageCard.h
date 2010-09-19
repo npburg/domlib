@@ -8,10 +8,14 @@ class NativeVillageCard :
     public Domlib::Card
 {
 public:
-    NativeVillageCard( void );
     virtual ~NativeVillageCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    NativeVillageCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

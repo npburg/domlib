@@ -8,10 +8,14 @@ class WarehouseCard :
     public Domlib::Card
 {
 public:
-    WarehouseCard( void );
     virtual ~WarehouseCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    WarehouseCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

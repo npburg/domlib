@@ -8,10 +8,14 @@ class UniversityCard :
     public Domlib::Card
 {
 public:
-    UniversityCard( void );
     virtual ~UniversityCard( void );
 
     void OnActionPhase( Engine* pEngine );
+    
+private:
+    UniversityCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

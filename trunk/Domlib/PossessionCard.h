@@ -8,10 +8,14 @@ class PossessionCard :
     public Domlib::Card
 {
 public:
-    PossessionCard( void );
     virtual ~PossessionCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    PossessionCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

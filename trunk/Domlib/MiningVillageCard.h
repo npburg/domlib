@@ -4,14 +4,18 @@
 namespace Domlib
 {
 
-class MiningVilliageCard :
+class MiningVillageCard :
     public Domlib::Card
 {
 public:
-    MiningVilliageCard( void );
-    virtual ~MiningVilliageCard( void );
+    virtual ~MiningVillageCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    MiningVillageCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

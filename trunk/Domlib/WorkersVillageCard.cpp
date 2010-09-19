@@ -19,7 +19,7 @@ WorkersVillageCard::~WorkersVillageCard(void)
 {
 }
 
-void OnActionPhase( Engine* pEngine )
+void WorkersVillageCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     

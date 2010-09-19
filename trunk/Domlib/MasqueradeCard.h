@@ -8,10 +8,14 @@ class MasqueradeCard :
     public Domlib::Card
 {
 public:
-    MasqueradeCard( void );
     virtual ~MasqueradeCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private: 
+    MasqueradeCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

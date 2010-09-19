@@ -8,10 +8,14 @@ class CountingHouseCard :
     public Domlib::Card
 {
 public:
-    CountingHouseCard(void);
     virtual ~CountingHouseCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    CountingHouseCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

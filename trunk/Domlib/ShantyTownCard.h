@@ -8,10 +8,14 @@ class ShantyTownCard :
     public Domlib::Card
 {
 public:
-    ShantyTownCard( void );
     virtual ~ShantyTownCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ShantyTownCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib
