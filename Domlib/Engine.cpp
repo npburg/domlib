@@ -125,4 +125,52 @@ bool Engine::IsGameOver( void ) const
     return true;
 }
 
+int Engine::TradeTokens( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return 0;
+}
+
+void Engine::SetContrabandCard( Card* pCard )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+void Engine::ClearContrabandCards( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+int Engine::SupplyPilesEmpty( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return 0;
+}
+
+void Engine::SetOutpostFlag( bool flag )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+void Engine::OnEmbargo(Domlib::Card* pCard)
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+void Engine::SetAmbassadorCard( Card* pCard )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+void Engine::PutCardInSupply( Card* pCard )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+Card* Engine::GetAmbassadorCard( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return Card::GetCard( CARDID_NULL );
+}
+
 } // namespace Domlib

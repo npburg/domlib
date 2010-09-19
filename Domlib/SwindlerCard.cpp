@@ -30,7 +30,7 @@ void SwindlerCard::OnActionPhase( Engine* pEngine )
 
 void SwindlerCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    Card* pCardTrashed = pPlayer->TrashFromDeck();
+    Card* pCardTrashed = pPlayer->TrashCardFromDeck();
 
     if( pCardTrashed->IsNullCard() )
     {
