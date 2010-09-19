@@ -91,6 +91,9 @@ public:
     // Return a Treasure Card from the card list to trash when Thief is played.
     virtual Domlib::ICard*              OnThiefTrash( Domlib::ICardList cardList );
 
+    // Return an Action Card from hand when Throne Room is played.
+    virtual Domlib::ICard*              OnThroneRoom( void );
+
     ///////////////////////////////
     // Intrigue Set Card Interfaces
     ///////////////////////////////
