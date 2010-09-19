@@ -249,11 +249,11 @@ public:
 
     Engine*         GetEngine( void );
     bool            IsCardInStock( CARDID cardId );
-    ICardList       CardsAvailable( void );
+    ICardList       PilesAvailable( void );
     bool            CardsAvailable( CARDID cardId );
     ICardList       CardsCostingExactly( const ITreasure* cost );
     ICardList       CardsCostingUpTo( const ITreasure* cost );
-    IPlayerOther*   GetPrevPlayer( void );
+    IPlayerOther*   GetPreviousPlayer( IPlayer* pPlayer );
     
 protected:
     IEngine( Engine* pEngine );
@@ -298,13 +298,16 @@ class IPlayerOther
 public:
     virtual ~IPlayerOther( void );
 
-    int         CardsInHand( void );
-    ICardList   GainList( void );
+    virtual int         CardsInHand( void );
+    virtual ICardList   GainList( void );
+    virtual Player*     GetPlayer( void );
 
 protected:
     IPlayerOther( Player* pPlayer );
 
     Player* m_pPlayer;
+    
+    friend IEngine;
 };
 
 

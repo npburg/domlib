@@ -9,7 +9,7 @@ class Treasure
 {
 public:
     Treasure( void );
-    //Treasure( Treasure& treasure );
+    Treasure( const ITreasure& treasure );
     Treasure( const int coins, const int potions );
     virtual ~Treasure( void );
 
