@@ -304,7 +304,6 @@ Domlib::ICardList DefaultAI::OnSecretChamberReaction( void )
     Domlib::ICardList cardsToReturn;
     Domlib::ICardList hand = m_pPlayer->GetHand();
     
-
     for( Domlib::ICardListIter iter = hand.begin();
          iter != hand.end();
          iter ++ )
@@ -331,7 +330,6 @@ Domlib::ICardList DefaultAI::OnStewardTrash( void )
     Domlib::ICardList cardsToTrash;
     Domlib::ICardList hand = m_pPlayer->GetHand();
     
-
     for( Domlib::ICardListIter iter = hand.begin();
          iter != hand.end();
          iter ++ )
@@ -374,7 +372,6 @@ Domlib::ICardList DefaultAI::OnTradingPost( void )
     Domlib::ICardList cardsToTrash;
     Domlib::ICardList hand = m_pPlayer->GetHand();
     
-
     for( Domlib::ICardListIter iter = hand.begin();
          iter != hand.end();
          iter ++ )
