@@ -136,6 +136,7 @@ public:
     virtual int         CardsBought( CARDTYPE cardType );
     virtual int         ActionsPlayed( void );
     virtual int         PirateCoins( void );
+    virtual CardList    GainList( void );
 
 protected:
     void OnDurationPhase( void );

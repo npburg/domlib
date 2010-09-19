@@ -425,7 +425,7 @@ int DefaultAI::OnAmbassadorPutBack( Domlib::ICard* pCard )
 
 Domlib::ICard* DefaultAI::OnEmbargo( void )
 {
-    Domlib::ICardList cardsAvailable = m_pEngine->CardsAvailable();
+    Domlib::ICardList cardsAvailable = m_pEngine->PilesAvailable();
 
     if( cardsAvailable.size() )
     {
@@ -556,7 +556,7 @@ Domlib::ICard* DefaultAI::OnSalvager( void )
 
 Domlib::ICard* DefaultAI::OnSmugglers( Domlib::ICardList cardList )
 {
-    Domlib::IPlayerOther* pPlayerOther = m_pEngine->GetPrevPlayer();
+    Domlib::IPlayerOther* pPlayerOther = m_pEngine->GetPreviousPlayer( m_pPlayer );
     Domlib::ICardList gainList = pPlayerOther->GainList();
 
     if( gainList.size() )

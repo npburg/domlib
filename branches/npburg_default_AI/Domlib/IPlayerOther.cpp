@@ -20,4 +20,14 @@ int IPlayerOther::CardsInHand( void )
     return m_pPlayer->CardsInHand();
 }
 
+ICardList IPlayerOther::GainList( void )
+{
+    return CardListToICardList( m_pPlayer->GainList() );
+}
+
+Player* IPlayerOther::GetPlayer( void )
+{
+    return m_pPlayer;
+}
+
 } // namespace Domlib
