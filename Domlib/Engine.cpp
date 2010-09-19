@@ -18,11 +18,22 @@ Engine::~Engine( void )
     }
 }
 
+
 bool Engine::IsCardInStock( CARDID cardId )
 {
     DOMLIB_NOT_IMPLEMENTED;
     return false;
 }
+
+
+CardList Engine::PilesAvailable( void )
+{
+    throw std::wstring( L"Error: Engine::PilesAvailable - To be implemented..." );
+    CardList cardList;
+    
+    return cardList;
+}
+
 
 bool Engine::CardsAvailable( CARDID cardId )
 {
@@ -30,6 +41,14 @@ bool Engine::CardsAvailable( CARDID cardId )
     return false;
 }
 
+
+CardList Engine::CardsCostingExactly( const Treasure* cost )
+{
+    throw std::wstring( L"Error: Engine::CardsCostingExactly - To be implemented..." );
+    CardList cardList;
+    
+    return cardList;
+}
 
 void Engine::RegisterPlayer( AI* pAI )
 {

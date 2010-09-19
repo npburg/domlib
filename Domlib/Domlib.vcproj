@@ -1280,6 +1280,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\IPlayerOther.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ITreasure.cpp"
 					>
 				</File>
