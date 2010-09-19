@@ -18,6 +18,19 @@ Engine::~Engine( void )
     }
 }
 
+bool Engine::IsCardInStock( CARDID cardId )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return false;
+}
+
+bool Engine::CardsAvailable( CARDID cardId )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return false;
+}
+
+
 void Engine::RegisterPlayer( AI* pAI )
 {
     pAI->SetEngine( new IEngine( this ) );
@@ -26,7 +39,6 @@ void Engine::RegisterPlayer( AI* pAI )
 
     m_PlayerList.push_back( pNewPlayer );
 }
-
 
 void Engine::Play( void )
 {
@@ -51,7 +63,47 @@ void Engine::Play( void )
     {
         std::wcout << L"Exception raised: " << errorString << L"\n";
     }
+}
 
+Player* Engine::GetFirstPlayer( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return NULL;
+}
+
+Player* Engine::GetPreviousPlayer( Player* pPlayer )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return NULL;
+}
+
+Player* Engine::GetCurrentPlayer( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return NULL;
+}
+
+Player* Engine::GetNextPlayer( Player* pPlayer )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return NULL;
+}
+
+Player* Engine::GetLastPlayer( void )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return NULL;
+}
+
+void Engine::PutCardInTrash( Card* pCard )
+{
+    DOMLIB_NOT_IMPLEMENTED;
+}
+
+bool Engine::IsGameOver( void ) const
+{
+    DOMLIB_NOT_IMPLEMENTED;
+    return true;
 }
 
 } // namespace Domlib
