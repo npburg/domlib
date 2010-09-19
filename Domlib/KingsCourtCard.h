@@ -8,10 +8,14 @@ class KingsCourtCard :
     public Domlib::Card
 {
 public:
-    KingsCourtCard(void);
     virtual ~KingsCourtCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    KingsCourtCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

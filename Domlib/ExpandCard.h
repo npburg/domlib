@@ -8,10 +8,14 @@ class ExpandCard :
     public Domlib::Card
 {
 public:
-    ExpandCard(void);
     virtual ~ExpandCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ExpandCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

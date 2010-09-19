@@ -8,11 +8,15 @@ class MerchantShipCard :
     public Domlib::Card
 {
 public:
-    MerchantShipCard( void );
     virtual ~MerchantShipCard( void );
     
     void OnActionPhase( Engine* pEngine );
     void OnDurationPhase( Engine* pEngine );
+
+private:
+    MerchantShipCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

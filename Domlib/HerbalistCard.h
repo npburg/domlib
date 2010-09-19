@@ -8,11 +8,15 @@ class HerbalistCard :
     public Domlib::Card
 {
 public:
-    HerbalistCard( void );
     virtual ~HerbalistCard( void );
 
     void OnActionPhase( Engine* pEngine );
     void OnCleanUpPhase( Engine* pEngine );
+
+private:
+    HerbalistCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

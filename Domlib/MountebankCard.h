@@ -8,11 +8,17 @@ class MountebankCard :
     public Domlib::Card
 {
 public:
-    MountebankCard(void);
     virtual ~MountebankCard(void);
     
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    MountebankCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

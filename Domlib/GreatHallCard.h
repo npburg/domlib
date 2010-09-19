@@ -8,10 +8,14 @@ class GreatHallCard :
     public Domlib::Card
 {
 public:
-    GreatHallCard( void );
     virtual ~GreatHallCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    GreatHallCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

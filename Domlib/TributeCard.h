@@ -8,10 +8,14 @@ class TributeCard :
     public Domlib::Card
 {
 public:
-    TributeCard( void );
     virtual ~TributeCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    TributeCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

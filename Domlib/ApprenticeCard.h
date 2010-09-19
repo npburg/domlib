@@ -8,10 +8,14 @@ class ApprenticeCard :
     public Domlib::Card
 {
 public:
-    ApprenticeCard( void );
     virtual ~ApprenticeCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ApprenticeCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

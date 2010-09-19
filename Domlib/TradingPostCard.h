@@ -8,10 +8,14 @@ class TradingPostCard :
     public Domlib::Card
 {
 public:
-    TradingPostCard( void );
     virtual ~TradingPostCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    TradingPostCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

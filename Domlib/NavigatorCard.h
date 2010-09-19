@@ -8,10 +8,14 @@ class NavigatorCard :
     public Domlib::Card
 {
 public:
-    NavigatorCard( void );
     virtual ~NavigatorCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    NavigatorCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

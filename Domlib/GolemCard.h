@@ -8,10 +8,14 @@ class GolemCard :
     public Domlib::Card
 {
 public:
-    GolemCard( void );
     virtual ~GolemCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    GolemCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

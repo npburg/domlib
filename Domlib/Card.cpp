@@ -205,4 +205,26 @@ bool Card::IsNullCard( void ) const
     return ( m_CardType == CARDTYPE_NULL );
 }
 
+bool Card::CardListsMatch( CardList cardListA,
+                           CardList cardListB )
+{
+    throw std::wstring( L"Error: Card::CardListsMatch - To be implemented..." );
+    return false;
+}
+
+bool Card::CardListsMatch( CardList cardList,
+                          LookoutStruct lookoutStruct)
+{
+    throw std::wstring( L"Error: Card::CardListsMatch - To be implemented..." );
+    return false;
+}
+
+
+bool Card::CardInList( Card* pCard,
+                       CardList cardList )
+{
+    throw std::wstring( L"Error: Card::CardInList - To be implemented..." );
+    return false;
+}
+
 } // namespace Domlib

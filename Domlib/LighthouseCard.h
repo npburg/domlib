@@ -8,11 +8,15 @@ class LighthouseCard :
     public Domlib::Card
 {
 public:
-    LighthouseCard( void );
     virtual ~LighthouseCard( void );
     
     void OnActionPhase( Engine* pEngine );
     void OnDurationPhase( Engine* pEngine );
+
+private:
+    LighthouseCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

@@ -8,10 +8,14 @@ class IronworksCard :
     public Domlib::Card
 {
 public:
-    IronworksCard( void );
     virtual ~IronworksCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    IronworksCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

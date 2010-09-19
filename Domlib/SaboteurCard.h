@@ -8,11 +8,17 @@ class SaboteurCard :
     public Domlib::Card
 {
 public:
-    SaboteurCard( void );
     virtual ~SaboteurCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnAttack( Engine* pEngine, Player* pPlayer );
+
+private:
+    SaboteurCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

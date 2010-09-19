@@ -8,11 +8,15 @@ class AlchemistCard :
     public Domlib::Card
 {
 public:
-    AlchemistCard( void );
     virtual ~AlchemistCard( void );
 
     void OnActionPhase( Engine* pEngine );
     void OnCleanUpPhase( Engine* pEngine );
+
+private:
+    AlchemistCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

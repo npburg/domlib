@@ -11,6 +11,8 @@ public:
     virtual ~MoatCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+protected:
     void OnReaction( Engine* pEngine );
 
 private:

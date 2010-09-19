@@ -518,11 +518,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\MiningVilliageCard.cpp"
+						RelativePath=".\MiningVillageCard.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\MiningVilliageCard.h"
+						RelativePath=".\MiningVillageCard.h"
 						>
 					</File>
 					<File

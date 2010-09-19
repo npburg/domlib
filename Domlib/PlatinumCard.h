@@ -8,8 +8,12 @@ class PlatinumCard :
     public Domlib::Card
 {
 public:
-    PlatinumCard(void);
     virtual ~PlatinumCard(void);
+
+private:
+    PlatinumCard(void);
+
+    friend Card;
 };
 
 } // namespace Domlib

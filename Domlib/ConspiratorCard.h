@@ -8,10 +8,14 @@ class ConspiratorCard :
     public Domlib::Card
 {
 public:
-    ConspiratorCard( void );
     virtual ~ConspiratorCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ConspiratorCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

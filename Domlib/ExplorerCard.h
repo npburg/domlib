@@ -8,10 +8,14 @@ class ExplorerCard :
     public Domlib::Card
 {
 public:
-    ExplorerCard( void );
     virtual ~ExplorerCard( void );
     
     void OnActionPhase( Engine* pEngine );
+
+private:
+    ExplorerCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

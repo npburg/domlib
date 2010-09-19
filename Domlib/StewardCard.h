@@ -8,10 +8,14 @@ class StewardCard :
     public Domlib::Card
 {
 public:
-    StewardCard( void );
     virtual ~StewardCard( void );
 
     void OnActionPhase( Engine* pEngine );
+
+private:
+    StewardCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib

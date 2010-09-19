@@ -8,10 +8,14 @@ class PhilosophersStoneCard :
     public Domlib::Card
 {
 public:
-    PhilosophersStoneCard( void );
     virtual ~PhilosophersStoneCard( void );
 
     Treasure OnTreasurePhase( Engine* pEngine );
+
+private:
+    PhilosophersStoneCard( void );
+
+    friend Card;
 };
 
 } // namespace Domlib
