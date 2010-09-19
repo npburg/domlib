@@ -6,7 +6,7 @@ namespace Domlib
 
 IAI::IAI( AI* pAI ) 
 {
-    m_pAi = pAI;
+    m_pAI = pAI;
 }
 
 IAI::~IAI( void ) 
@@ -15,245 +15,250 @@ IAI::~IAI( void )
 
 Card* IAI::PlayAction( void )
 {
-    return m_pAi->PlayAction()->GetCard();
+    return m_pAI->PlayAction()->GetCard();
 }
 
 Card* IAI::PlayTreasure( void )
 {
-    return m_pAi->PlayTreasure()->GetCard();
+    return m_pAI->PlayTreasure()->GetCard();
 }
 
 Card* IAI::BuyCard( void )
 {
-    return m_pAi->BuyCard()->GetCard();
+    return m_pAI->BuyCard()->GetCard();
 }
 
 Card* IAI::OnAttack( Card* pAttackCard )
 {
-    return m_pAi->OnAttack( &ICard( pAttackCard ) )->GetCard();
+    return m_pAI->OnAttack( &ICard( pAttackCard ) )->GetCard();
 }
 
 Card* IAI::OnGainACard( const Treasure* cost )
 {
-    return m_pAi->OnGainACard( &ITreasure( *cost ) )->GetCard();
+    return m_pAI->OnGainACard( &ITreasure( *cost ) )->GetCard();
 }
 
     
 Card* IAI::OnGainACardExactly( const Treasure* cost )
 {
-    return m_pAi->OnGainACardExactly( &ITreasure( *cost ) )->GetCard();
+    return m_pAI->OnGainACardExactly( &ITreasure( *cost ) )->GetCard();
 }
 
 CardList IAI::OnReturnToDrawPile( CardList cardList )
 {
     return ICardListToCardList( 
-                m_pAi->OnReturnToDrawPile( 
+                m_pAI->OnReturnToDrawPile( 
                 CardListToICardList( cardList ) ) );
 }
 
 Card* IAI::OnTrashCardFromHand( void )
 {
-    return m_pAi->OnTrashCardFromHand()->GetCard();
+    return m_pAI->OnTrashCardFromHand()->GetCard();
 }   
 
 Card* IAI::OnBureaucrat( void )
 {
-    return m_pAi->OnBureaucrat()->GetCard();
+    return m_pAI->OnBureaucrat()->GetCard();
 }   
 
 
 CardList IAI::OnCellar( void )
 {
-    return ICardListToCardList( m_pAi->OnCellar() );
+    return ICardListToCardList( m_pAI->OnCellar() );
 }
 
 
 ChancellorOpt IAI::OnChancellor( void )
 {
-    return m_pAi->OnChancellor();
+    return m_pAI->OnChancellor();
 }
 
 
 CardList IAI::OnChapel( void )
 {
-    return ICardListToCardList( m_pAi->OnChapel() );
+    return ICardListToCardList( m_pAI->OnChapel() );
 }
 
 
 LibraryOpt IAI::OnLibrary( Card* pCard )
 {
-    return m_pAi->OnLibrary( &ICard( pCard ) );
+    return m_pAI->OnLibrary( &ICard( pCard ) );
 }
 
 CardList IAI::OnMilitia( void )
 {
-    return ICardListToCardList( m_pAi->OnMilitia() );
+    return ICardListToCardList( m_pAI->OnMilitia() );
 }
 
 Card* IAI::OnMineTrash( void )
 {
-    return m_pAi->OnMineTrash()->GetCard();
+    return m_pAI->OnMineTrash()->GetCard();
 }
 
 Card* IAI::OnMineGain( const Treasure* cost )
 {
-    return m_pAi->OnMineGain( &ITreasure( *cost ) )->GetCard();
+    return m_pAI->OnMineGain( &ITreasure( *cost ) )->GetCard();
 }
 
 Card* IAI::OnRemodel( void )
 {
-    return m_pAi->OnRemodel()->GetCard();
+    return m_pAI->OnRemodel()->GetCard();
 }
 
 SpyOpt IAI::OnSpyOther( Card* pCard )
 {
-    return m_pAi->OnSpyOther( &ICard( pCard ) );
+    return m_pAI->OnSpyOther( &ICard( pCard ) );
 }
 
 SpyOpt IAI::OnSpySelf( Card* pCard )
 {
-    return m_pAi->OnSpySelf( &ICard( pCard ) );
+    return m_pAI->OnSpySelf( &ICard( pCard ) );
 }
 
 ThiefOpt IAI::OnThiefGain( Card* pCard )
 {
-    return m_pAi->OnThiefGain( &ICard( pCard ) );
+    return m_pAI->OnThiefGain( &ICard( pCard ) );
 }
 
 Card* IAI::OnThiefTrash( CardList cardList )
 {
-    return m_pAi->OnThiefTrash( CardListToICardList( cardList ) )->GetCard();
+    return m_pAI->OnThiefTrash( CardListToICardList( cardList ) )->GetCard();
+}
+
+Card* IAI::OnThroneRoom( void )
+{
+    return m_pAI->OnThroneRoom()->GetCard();
 }
 
 BaronOpt IAI::OnBaron( void )
 {
-    return m_pAi->OnBaron();
+    return m_pAI->OnBaron();
 }
 
 Card* IAI::OnCourtyard( void )
 {
-    return m_pAi->OnCourtyard()->GetCard();
+    return m_pAI->OnCourtyard()->GetCard();
 }
 
 Card* IAI::OnIronworks( const Treasure* cost )
 {
-    return m_pAi->OnIronworks( &ITreasure( *cost ) )->GetCard();
+    return m_pAI->OnIronworks( &ITreasure( *cost ) )->GetCard();
 }
 
 Card* IAI::OnMasqueradePass( void )
 {
-    return m_pAi->OnMasqueradePass()->GetCard();
+    return m_pAI->OnMasqueradePass()->GetCard();
 }
 
 Card* IAI::OnMasqueradeTrash( void )
 {
-    return m_pAi->OnMasqueradeTrash()->GetCard();
+    return m_pAI->OnMasqueradeTrash()->GetCard();
 }
 
 MiningVillageOpt IAI::OnMiningVillage( void )
 {
-    return m_pAi->OnMiningVillage();
+    return m_pAI->OnMiningVillage();
 }
 
 MinionOpt IAI::OnMinion( void )
 {
-    return m_pAi->OnMinion();
+    return m_pAI->OnMinion();
 }
 
 NoblesOpt IAI::OnNobles( void )
 {
-    return m_pAi->OnNobles();
+    return m_pAI->OnNobles();
 }
 
 PawnOptPair IAI::OnPawn( void )
 {
-    return m_pAi->OnPawn();
+    return m_pAI->OnPawn();
 }
 
 CardList IAI::OnSecretChamber( void )
 {
-    return ICardListToCardList( m_pAi->OnSecretChamber() );
+    return ICardListToCardList( m_pAI->OnSecretChamber() );
 }
 
 CardList IAI::OnSecretChamberReaction( void )
 {
-    return ICardListToCardList( m_pAi->OnSecretChamberReaction() );
+    return ICardListToCardList( m_pAI->OnSecretChamberReaction() );
 }
 
 StewardOpt IAI::OnSteward( void )
 {
-    return m_pAi->OnSteward();
+    return m_pAI->OnSteward();
 }
 
 CardList IAI::OnStewardTrash( void )
 {
-    return ICardListToCardList( m_pAi->OnStewardTrash() );
+    return ICardListToCardList( m_pAI->OnStewardTrash() );
 }
 
 Card* IAI::OnSwindler( Card* pCard )
 {
-    return m_pAi->OnSwindler( &ICard( pCard ) )->GetCard();
+    return m_pAI->OnSwindler( &ICard( pCard ) )->GetCard();
 }
 
 CardList IAI::OnTorturer( void )
 {
-    return ICardListToCardList( m_pAi->OnTorturer() );
+    return ICardListToCardList( m_pAI->OnTorturer() );
 }
 
 CardList IAI::OnTradingPost( void )
 {
-    return ICardListToCardList( m_pAi->OnTradingPost() );
+    return ICardListToCardList( m_pAI->OnTradingPost() );
 }
 
 Card* IAI::OnUpgrade( void )
 {
-    return m_pAi->OnUpgrade()->GetCard();
+    return m_pAI->OnUpgrade()->GetCard();
 }
 
 Card* IAI::OnWishingWell( void )
 {
-    return m_pAi->OnWishingWell()->GetCard();
+    return m_pAI->OnWishingWell()->GetCard();
 }
 
 Card* IAI::OnAmbassadorReveal( void )
 {
-    return m_pAi->OnAmbassadorReveal()->GetCard();
+    return m_pAI->OnAmbassadorReveal()->GetCard();
 }
 
 int IAI::OnAmbassadorPutBack( Card* pCard )
 {
-    return m_pAi->OnAmbassadorPutBack( &ICard( pCard ) );
+    return m_pAI->OnAmbassadorPutBack( &ICard( pCard ) );
 }
 
 Card* IAI::OnEmbargo( void )
 {
-    return m_pAi->OnEmbargo()->GetCard();
+    return m_pAI->OnEmbargo()->GetCard();
 }
 
 ExplorerOpt IAI::OnExplorer( void )
 {
-    return m_pAi->OnExplorer();
+    return m_pAI->OnExplorer();
 }
 
 CardList IAI::OnGhostShip( void )
 {
-    return ICardListToCardList( m_pAi->OnGhostShip() );
+    return ICardListToCardList( m_pAI->OnGhostShip() );
 }
 
 Card* IAI::OnHaven( void )
 {
-    return m_pAi->OnHaven()->GetCard();
+    return m_pAI->OnHaven()->GetCard();
 }
 
 Card* IAI::OnIsland( void )
 {
-    return m_pAi->OnIsland()->GetCard();
+    return m_pAI->OnIsland()->GetCard();
 }
 
 LookoutStruct IAI::OnLookout( CardList cardList )
 {
     LookoutStruct lookoutStruct;
-    ILookoutStruct iLookoutStruct = m_pAi->OnLookout( CardListToICardList( cardList ) );
+    ILookoutStruct iLookoutStruct = m_pAI->OnLookout( CardListToICardList( cardList ) );
     
     lookoutStruct.pCardToDiscard    = iLookoutStruct.pCardToDiscard->GetCard();
     lookoutStruct.PCardToPutBack    = iLookoutStruct.PCardToPutBack->GetCard();
@@ -264,161 +269,161 @@ LookoutStruct IAI::OnLookout( CardList cardList )
 
 NativeVillageOpt IAI::OnNativeVillage( void )
 {
-    return m_pAi->OnNativeVillage();
+    return m_pAI->OnNativeVillage();
 }
 
 CardList IAI::OnNavigator( CardList cardList )
 {
     return ICardListToCardList( 
-                m_pAi->OnNavigator( 
+                m_pAI->OnNavigator( 
                 CardListToICardList( cardList ) ) );
 }
 
 PearlDiverOpt IAI::OnPearlDiver( Card* pCard )
 {
-    return m_pAi->OnPearlDiver( &ICard( pCard ) );
+    return m_pAI->OnPearlDiver( &ICard( pCard ) );
 }
 
 PirateShipOpt IAI::OnPirateShip( void )
 {
-    return m_pAi->OnPirateShip();
+    return m_pAI->OnPirateShip();
 }
 
 Card* IAI::OnPirateShipTrash( CardList cardList )
 {
-    return m_pAi->OnPirateShipTrash( CardListToICardList( cardList ) )->GetCard();
+    return m_pAI->OnPirateShipTrash( CardListToICardList( cardList ) )->GetCard();
 }
 
 Card* IAI::OnSalvager( void )
 {
-    return m_pAi->OnSalvager()->GetCard();
+    return m_pAI->OnSalvager()->GetCard();
 }
 
 Card* IAI::OnSmugglers( CardList cardList )
 {
-    return m_pAi->OnSmugglers( CardListToICardList( cardList ) )->GetCard();
+    return m_pAI->OnSmugglers( CardListToICardList( cardList ) )->GetCard();
 }
 
 TreasuryOpt IAI::OnTreasury( void )
 {
-    return m_pAi->OnTreasury();
+    return m_pAI->OnTreasury();
 }
 
 CardList IAI::OnWarehouse( void )
 {
-    return ICardListToCardList( m_pAi->OnWarehouse() );
+    return ICardListToCardList( m_pAI->OnWarehouse() );
 }
 
 AlchemistOpt IAI::OnAlchemist( void )
 {
-    return m_pAi->OnAlchemist();
+    return m_pAI->OnAlchemist();
 }
 
 Card* IAI::OnApprentice( void )
 {
-    return m_pAi->OnApprentice()->GetCard();
+    return m_pAI->OnApprentice()->GetCard();
 }
 
 CardList IAI::OnGolem( CardList cardList )
 {
     return ICardListToCardList( 
-                m_pAi->OnGolem( 
+                m_pAI->OnGolem( 
                 CardListToICardList( cardList ) ) );
 }
 
 Card* IAI::OnHerbalist( void )
 {
-    return m_pAi->OnHerbalist()->GetCard();
+    return m_pAI->OnHerbalist()->GetCard();
 }
 
 ScryingPoolOpt IAI::OnScryingPoolOther( Card* pCard )
 {
-    return m_pAi->OnScryingPoolOther( &ICard( pCard ) );
+    return m_pAI->OnScryingPoolOther( &ICard( pCard ) );
 }
 
 ScryingPoolOpt IAI::OnScryingPoolSelf( Card* pCard )
 {
-    return m_pAi->OnScryingPoolSelf( &ICard( pCard ) );
+    return m_pAI->OnScryingPoolSelf( &ICard( pCard ) );
 }
 
 Card* IAI::OnTransmute( void )
 {
-    return m_pAi->OnTransmute()->GetCard();
+    return m_pAI->OnTransmute()->GetCard();
 }
 
 Card* IAI::OnUniversity( void )
 {
-    return m_pAi->OnUniversity()->GetCard();
+    return m_pAI->OnUniversity()->GetCard();
 }
 
 LoanOpt IAI::OnLoan( Card* pCard )
 {
-    return m_pAi->OnLoan( &ICard( pCard ) );
+    return m_pAI->OnLoan( &ICard( pCard ) );
 }
 
 Card* IAI::OnBishopSelf( void )
 {
-    return m_pAi->OnBishopSelf()->GetCard();
+    return m_pAI->OnBishopSelf()->GetCard();
 }
 
 Card* IAI::OnBishopOther( void )
 {
-    return m_pAi->OnBishopOther()->GetCard();
+    return m_pAI->OnBishopOther()->GetCard();
 }
 
 Card* IAI::OnContraband( void )
 {
-    return m_pAi->OnContraband()->GetCard();
+    return m_pAI->OnContraband()->GetCard();
 }
 
 int IAI::OnCountingHouse( int numCoppersInDiscard )
 {
-    return m_pAi->OnCountingHouse( numCoppersInDiscard );
+    return m_pAI->OnCountingHouse( numCoppersInDiscard );
 }
 
 Card* IAI::OnExpand( void )
 {
-    return m_pAi->OnExpand()->GetCard();
+    return m_pAI->OnExpand()->GetCard();
 }
 
 CardList IAI::OnForge( void )
 {
-    return ICardListToCardList( m_pAi->OnForge() );
+    return ICardListToCardList( m_pAI->OnForge() );
 }
 
 CardList IAI::OnGoons( void )
 {
-    return ICardListToCardList( m_pAi->OnGoons() );
+    return ICardListToCardList( m_pAI->OnGoons() );
 }
 
 Card* IAI::OnKingsCourt( void )
 {
-    return m_pAi->OnKingsCourt()->GetCard();
+    return m_pAI->OnKingsCourt()->GetCard();
 }
 
 Card* IAI::OnMint( void )
 {
-    return m_pAi->OnMint()->GetCard();
+    return m_pAI->OnMint()->GetCard();
 }
 
 MountebankOpt IAI::OnMountebank( void )
 {
-    return m_pAi->OnMountebank();
+    return m_pAI->OnMountebank();
 }
 
 RoyalSealOpt IAI::OnRoyalSeal( Card* pCard )
 {
-    return m_pAi->OnRoyalSeal( &ICard( pCard ) );
+    return m_pAI->OnRoyalSeal( &ICard( pCard ) );
 }
 
 CardList IAI::OnVaultSelf( void )
 {
-    return ICardListToCardList( m_pAi->OnVaultSelf() );
+    return ICardListToCardList( m_pAI->OnVaultSelf() );
 }
 
 CardList IAI::OnVaultOther( void )
 {
-    return ICardListToCardList( m_pAi->OnVaultOther() );
+    return ICardListToCardList( m_pAI->OnVaultOther() );
 }
 
 

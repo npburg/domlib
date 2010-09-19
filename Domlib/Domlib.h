@@ -9,7 +9,7 @@ class ICard;
 class IEngine;
 class IGame;
 class IPlayer;
-class IPlayerSelf;
+class IPlayerOther;
 class ITreasure;
 
 typedef std::list<ICard*>           ICardList;
@@ -247,9 +247,13 @@ class IEngine
 public:
     virtual ~IEngine( void );
 
-    Engine*     GetEngine( void );
-    bool        IsCardInStock( CARDID cardId );
-    bool        CardsAvailable( CARDID cardId );
+    Engine*         GetEngine( void );
+    bool            IsCardInStock( CARDID cardId );
+    ICardList       PilesAvailable( void );
+    bool            CardsAvailable( CARDID cardId );
+    ICardList       CardsCostingExactly( const ITreasure* cost );
+    ICardList       CardsCostingUpTo( const ITreasure* cost );
+    IPlayerOther*   GetPreviousPlayer( IPlayer* pPlayer );
     
 protected:
     IEngine( Engine* pEngine );
@@ -287,13 +291,32 @@ private:
 //
 // IPlayer Class
 //
-// TODO: Need to split this class into Player-Self and Player-Other since
-//       an AI should be able to access more information about the Player-Self
-//       than it can access about Player-Other.
-//
 ///////////////////////////////////////////////////////////////////////////////
 class Player;
-class IPlayer
+class IPlayerOther
+{
+public:
+    virtual ~IPlayerOther( void );
+
+    virtual int         CardsInHand( void );
+    virtual ICardList   GainList( void );
+    virtual Player*     GetPlayer( void );
+
+protected:
+    IPlayerOther( Player* pPlayer );
+
+    Player* m_pPlayer;
+    
+    friend IEngine;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// IPlayer Class
+//
+///////////////////////////////////////////////////////////////////////////////
+class IPlayer : public IPlayerOther
 {
 public:
     virtual ~IPlayer( void );
@@ -302,14 +325,12 @@ public:
     int         CardsInHand( void );
     int         CardsInHand( ICard* pCard );
     int         CardsInHand( CARDID cardId );
+    int         CardsInHand( CARDTYPE cardType );
     int         ActionsPlayed( void );
     int         GetCardCountInHandType( CARDTYPE cardType );
 
 protected:
     IPlayer( Player* pPlayer );
-    
-private:
-    Player* m_pPlayer;
 };
 
 
@@ -610,6 +631,9 @@ public:
     // Return a Treasure Card from the card list to trash when Thief is played.
     virtual ICard*              OnThiefTrash( ICardList cardList ) = 0;
 
+    // Return an Action Card from hand when Throne Room is played.
+    virtual ICard*              OnThroneRoom( void ) = 0;
+
     ///////////////////////////////
     // Intrigue Set Card Interfaces
     ///////////////////////////////
@@ -839,6 +863,7 @@ public:
 
 protected:
     IEngine*     m_pEngine;
+    IPlayer*     m_pPlayer;
 };
 
 
