@@ -25,7 +25,7 @@ void TacticianCard::OnActionPhase( Engine* pEngine )
     
     if( pPlayer->CardsInHand() > 0 )
     {
-        pPlayer->SetTacticialFlag( true );
+        pPlayer->SetTacticianFlag( true );
         pPlayer->DiscardHand();
     }
 }
@@ -34,12 +34,12 @@ void TacticianCard::OnDurationPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     
-    if( pPlayer->TacticialFlag() )
+    if( pPlayer->TacticianFlag() )
     {
         pPlayer->DrawCardsToHand( 5 );
         pPlayer->PlusActions( 1 );
         pPlayer->PlusBuys( 1 );
-        pPlayer->SetTacticialFlag( false );
+        pPlayer->SetTacticianFlag( false );
     }
 }
 

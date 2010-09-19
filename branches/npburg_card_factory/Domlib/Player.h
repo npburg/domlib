@@ -51,7 +51,7 @@ public:
     void    TrashFromInPlay( CARDID cardId );
     void    TrashFromInPlay( CARDTYPE cardType );
     void    TrashCard( Card* pCard );
-    Card*   TrashFromDeck();
+    Card*   TrashCardFromDeck();
     
     void    GainCardOnDiscard( Card* pCard );
     void    GainCardOnDiscard( CARDID cardId );
@@ -110,10 +110,10 @@ public:
     int     GetCardCountInDeckType( CARDTYPE cardType );
     int     GetCardCountInHandType( CARDTYPE cardType );
 
-    void    SetGolemFlag( bool );
-    void    SetTacticialFlag( bool );
+    void    SetGolemFlag( bool flag );
+    void    SetTacticianFlag( bool flag );
     
-    bool    TacticialFlag( void );
+    bool    TacticianFlag( void );
 
     void    MinusQuarry( void );
     void    MinusRoyalSeal( void );
@@ -163,7 +163,7 @@ private:
     bool            m_GolemFlag;
     CardList        m_PlayerMat;    // Holds Victory tokens from Prosperity
     int             m_ActionsPlayed;
-    bool            m_TacticialFlag;
+    bool            m_TacticianFlag;
     int             m_VictoryTokens;
     
     int             m_CoppersmithCount;
