@@ -7,8 +7,8 @@ namespace Domlib
 VentureCard::VentureCard(void)
     : Card( 
         L"Venture",
-        CARDID_VENTURE,
-        CARDTYPE_TREASURE,
+        CARDID::VENTURE,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 1, 0 ),
         Treasure( 5, 0 ) )
@@ -23,7 +23,7 @@ Treasure VentureCard::OnTreasurePhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     CardList revealedCards;
-    Card* pRevealedCard = Card::GetCard( CARDID_NULL );
+    Card* pRevealedCard = Card::GetCard( CARDID::NULLCARD );
     
     do
     {

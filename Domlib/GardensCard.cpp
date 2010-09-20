@@ -7,8 +7,8 @@ namespace Domlib
 GardensCard::GardensCard( void )
     : Card( 
         L"Gardens",
-        CARDID_GARDENS,
-        CARDTYPE_VICTORY,
+        CARDID::GARDENS,
+        CARDTYPE::VICTORY,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 PossessionCard::PossessionCard( void )
     : Card( 
         L"Possession",
-        CARDID_POSSESSION,
-        CARDTYPE_ACTION,
+        CARDID::POSSESSION,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 6, 1 ) )

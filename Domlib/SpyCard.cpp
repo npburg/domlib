@@ -7,8 +7,8 @@ namespace Domlib
 SpyCard::SpyCard( void )
 : Card(
        L"Spy",
-       CARDID_SPY,
-       CARDTYPE_ACTION_ATTACK,
+       CARDID::SPY,
+       CARDTYPE::ACTION_ATTACK,
        0,
        Treasure( 0, 0 ),
        Treasure( 4, 0 ) )
@@ -25,7 +25,7 @@ void SpyCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->DrawCardsToHand( 1 );
     pPlayer->PlusActions( 1 );
-    Attack( pEngine, ATTACK_ALL );
+    Attack( pEngine, AttackWhom::ALL );
 }
 
 void SpyCard::OnAttack( Engine* pEngine, Player* pPlayer )
@@ -44,12 +44,12 @@ void SpyCard::OnAttack( Engine* pEngine, Player* pPlayer )
         spyOpt = pAttackingAi->OnSpyOther( pCard );
     }
     
-    switch( spyOpt )
+    switch( spyOpt.underlying() )
     {
-    case SPY_DISCARD_CARD:
+    case SpyOpt::DISCARD_CARD:
         pPlayer->PutCardInDiscard( pCard );
         break;
-    case SPY_PUT_BACK_CARD:
+    case SpyOpt::PUT_BACK_CARD:
         pPlayer->PutCardOnDraw( pCard );
         break;
     default:

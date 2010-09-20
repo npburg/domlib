@@ -7,8 +7,8 @@ namespace Domlib
 MoatCard::MoatCard( void )
     : Card( 
         L"Moat",
-        CARDID_MOAT,
-        CARDTYPE_ACTION,
+        CARDID::MOAT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 WitchCard::WitchCard( void )
     : Card( 
         L"Witch",
-        CARDID_WITCH,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::WITCH,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -24,12 +24,12 @@ void WitchCard::OnActionPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
     pPlayer->DrawCardsToHand( 2 );
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void WitchCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    pPlayer->GainCardInHand( CARDID_CURSE );
+    pPlayer->GainCardInHand( CARDID::CURSE );
 }
 
 } // namespace Domlib

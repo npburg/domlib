@@ -7,8 +7,8 @@ namespace Domlib
 ExplorerCard::ExplorerCard( void )
     : Card( 
         L"Explorer",
-        CARDID_EXPLORER,
-        CARDTYPE_ACTION,
+        CARDID::EXPLORER,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -24,17 +24,17 @@ void ExplorerCard::OnActionPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
     IAI* pAI = pPlayer->GetAI();
     
-    if( pPlayer->IsCardInHand( CARDID_PROVINCE ) )
+    if( pPlayer->IsCardInHand( CARDID::PROVINCE ) )
     {
         ExplorerOpt explorerOpt = pAI->OnExplorer();
-        switch( explorerOpt )
+        switch( explorerOpt.underlying() )
         {
-        case Domlib::EXPLORER_REVEAL_PROVINCE:
+        case Domlib::ExplorerOpt::REVEAL_PROVINCE:
             // TODO: reveal province
-            pPlayer->GainCardInHand( CARDID_GOLD );
+            pPlayer->GainCardInHand( CARDID::GOLD );
             break;
-        case Domlib::EXPLORER_DO_NOT_REVEAL_PROVINCE:
-            pPlayer->GainCardInHand( CARDID_SILVER );
+        case Domlib::ExplorerOpt::DO_NOT_REVEAL_PROVINCE:
+            pPlayer->GainCardInHand( CARDID::SILVER );
             break;
         default:
             // TODO: report error
@@ -44,7 +44,7 @@ void ExplorerCard::OnActionPhase( Engine* pEngine )
     }
     else
     {
-        pPlayer->GainCardInHand( CARDID_SILVER );
+        pPlayer->GainCardInHand( CARDID::SILVER );
     }
 }
 

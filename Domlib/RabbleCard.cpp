@@ -7,8 +7,8 @@ namespace Domlib
 RabbleCard::RabbleCard(void)
     : Card( 
         L"Rabble",
-        CARDID_RABBLE,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::RABBLE,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -24,7 +24,7 @@ void RabbleCard::OnActionPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
     
     pPlayer->DrawCardsToHand( 3 );
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void RabbleCard::OnAttack( Engine* pEngine, Player* pPlayer )

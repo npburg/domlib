@@ -7,8 +7,8 @@ namespace Domlib
 IslandCard::IslandCard( void )
     : Card( 
         L"Island",
-        CARDID_ISLAND,
-        CARDTYPE_ACTION_VICTORY,
+        CARDID::ISLAND,
+        CARDTYPE::ACTION_VICTORY,
         2,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

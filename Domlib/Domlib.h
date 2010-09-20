@@ -19,183 +19,222 @@ typedef ICardList::const_iterator   ICardListConstIter;
 
 ///////////////////////////////////////////////////////////////////////////////
 //
+// safe_enum Class
+//
+///////////////////////////////////////////////////////////////////////////////
+template< typename def, typename inner = typename def::type > 
+class safe_enum : public def
+{
+private:
+    typedef typename def::type type;
+    inner val;
+    
+public:
+    safe_enum( void ) {}
+    safe_enum( type v ) : val( v ) {}
+
+    inner underlying( void ) const { return val; }
+    
+    bool operator == (const safe_enum &s) const { return this->val == s.val; }
+    bool operator != (const safe_enum &s) const { return this->val != s.val; }
+    bool operator <  (const safe_enum &s) const { return this->val <  s.val; }
+    bool operator <= (const safe_enum &s) const { return this->val <= s.val; }
+    bool operator >  (const safe_enum &s) const { return this->val >  s.val; }
+    bool operator >= (const safe_enum &s) const { return this->val >= s.val; }
+};
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
 // ICard Class
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-enum CARDID
+struct CARDID_def
 {
-    CARDID_UNKNOWN,
-    CARDID_NULL,
+    enum type
+    {
+        UNKNOWN,
+        NULLCARD,
 
-    // Common Cards
-    CARDID_COPPER,
-    CARDID_SILVER,
-    CARDID_GOLD,
-    CARDID_ESTATE,
-    CARDID_DUCHY,
-    CARDID_PROVINCE,
-    CARDID_CURSE,
+        // Common Cards
+        COPPER,
+        SILVER,
+        GOLD,
+        ESTATE,
+        DUCHY,
+        PROVINCE,
+        CURSE,
 
-    // Base Set - Kingdom Cards
-    CARDID_ADVENTURER,
-    CARDID_BUREAUCRAT,
-    CARDID_CELLAR,
-    CARDID_CHAPEL,
-    CARDID_CHANCELLOR,
-    CARDID_COUNCILROOM,
-    CARDID_FEAST,
-    CARDID_FESTIVAL,
-    CARDID_GARDENS,
-    CARDID_LABORATORY,
-    CARDID_LIBRARY,
-    CARDID_MARKET,
-    CARDID_MILITIA,
-    CARDID_MINE,
-    CARDID_MOAT,
-    CARDID_MONEYLENDER,
-    CARDID_REMODEL,
-    CARDID_SMITHY,
-    CARDID_SPY,
-    CARDID_THIEF,
-    CARDID_THRONEROOM,
-    CARDID_VILLAGE,
-    CARDID_WITCH,
-    CARDID_WOODCUTTER,
-    CARDID_WORKSHOP,
+        // Base Set - Kingdom Cards
+        ADVENTURER,
+        BUREAUCRAT,
+        CELLAR,
+        CHAPEL,
+        CHANCELLOR,
+        COUNCILROOM,
+        FEAST,
+        FESTIVAL,
+        GARDENS,
+        LABORATORY,
+        LIBRARY,
+        MARKET,
+        MILITIA,
+        MINE,
+        MOAT,
+        MONEYLENDER,
+        REMODEL,
+        SMITHY,
+        SPY,
+        THIEF,
+        THRONEROOM,
+        VILLAGE,
+        WITCH,
+        WOODCUTTER,
+        WORKSHOP,
 
-    // Intrigue - Kingdom Cards
-    CARDID_BARON,
-    CARDID_BRIDGE,
-    CARDID_COPPERSMITH,
-    CARDID_CONSPIRATOR,
-    CARDID_COURTYARD,
-    CARDID_DUKE,
-    CARDID_GREATHALL,
-    CARDID_HAREM,    
-    CARDID_IRONWORKS,
-    CARDID_MASQUERADE,
-    CARDID_MININGVILLAGE,
-    CARDID_MINION,
-    CARDID_NOBLES,
-    CARDID_PAWN,
-    CARDID_SCOUT,
-    CARDID_SABOTEUR,
-    CARDID_SECRETCHAMBER,
-    CARDID_SHANTYTOWN,
-    CARDID_STEWARD,
-    CARDID_SWINDLER,
-    CARDID_TORTURER,
-    CARDID_TRADINGPOST,
-    CARDID_TRIBUTE,
-    CARDID_UPGRADE,
-    CARDID_WISHINGWELL,
+        // Intrigue - Kingdom Cards
+        BARON,
+        BRIDGE,
+        COPPERSMITH,
+        CONSPIRATOR,
+        COURTYARD,
+        DUKE,
+        GREATHALL,
+        HAREM,    
+        IRONWORKS,
+        MASQUERADE,
+        MININGVILLAGE,
+        MINION,
+        NOBLES,
+        PAWN,
+        SCOUT,
+        SABOTEUR,
+        SECRETCHAMBER,
+        SHANTYTOWN,
+        STEWARD,
+        SWINDLER,
+        TORTURER,
+        TRADINGPOST,
+        TRIBUTE,
+        UPGRADE,
+        WISHINGWELL,
 
-    // Seaside - Kingdom Cards
-    CARDID_AMBASSADOR,
-    CARDID_BAZAAR,
-    CARDID_CARAVAN,
-    CARDID_CUTPURSE,
-    CARDID_EMBARGO,
-    CARDID_EXPLORER,
-    CARDID_FISHINGVILLAGE,
-    CARDID_GHOSTSHIP,
-    CARDID_HAVEN,
-    CARDID_ISLAND,
-    CARDID_LIGHTHOUSE,
-    CARDID_LOOKOUT,
-    CARDID_MERCHANTSHIP,
-    CARDID_NATIVEVILLAGE,
-    CARDID_NAVIGATOR,
-    CARDID_OUTPOST,
-    CARDID_PEARLDIVER,
-    CARDID_PIRATESHIP,
-    CARDID_SALVAGER,
-    CARDID_SEAHAG,
-    CARDID_SMUGGLERS,
-    CARDID_TACTICIAN,
-    CARDID_TREASUREMAP,
-    CARDID_TREASURY,
-    CARDID_WAREHOUSE,
-    CARDID_WHARF,
+        // Seaside - Kingdom Cards
+        AMBASSADOR,
+        BAZAAR,
+        CARAVAN,
+        CUTPURSE,
+        EMBARGO,
+        EXPLORER,
+        FISHINGVILLAGE,
+        GHOSTSHIP,
+        HAVEN,
+        ISLAND,
+        LIGHTHOUSE,
+        LOOKOUT,
+        MERCHANTSHIP,
+        NATIVEVILLAGE,
+        NAVIGATOR,
+        OUTPOST,
+        PEARLDIVER,
+        PIRATESHIP,
+        SALVAGER,
+        SEAHAG,
+        SMUGGLERS,
+        TACTICIAN,
+        TREASUREMAP,
+        TREASURY,
+        WAREHOUSE,
+        WHARF,
 
-    // Alchemy - Kingdom Cards
-    CARDID_APOTHECARY,
-    CARDID_ALCHEMIST,
-    CARDID_APPRENTICE,
-    CARDID_FAMILIAR,
-    CARDID_GOLEM,
-    CARDID_HERBALIST,
-    CARDID_PHILOSOPHERSSTONE,
-    CARDID_POTION,
-    CARDID_POSSESSION,
-    CARDID_SCRYINGPOOL,
-    CARDID_TRANSMUTE,
-    CARDID_UNIVERSITY,
-    CARDID_VINEYARD,
+        // Alchemy - Kingdom Cards
+        APOTHECARY,
+        ALCHEMIST,
+        APPRENTICE,
+        FAMILIAR,
+        GOLEM,
+        HERBALIST,
+        PHILOSOPHERSSTONE,
+        POTION,
+        POSSESSION,
+        SCRYINGPOOL,
+        TRANSMUTE,
+        UNIVERSITY,
+        VINEYARD,
 
-    // Prosperity - Kingdom Cards
-    CARDID_BANK,
-    CARDID_BISHOP,
-    CARDID_CITY,
-    CARDID_COLONY,
-    CARDID_CONTRABAND,
-    CARDID_COUNTINGHOUSE,
-    CARDID_EXPAND,
-    CARDID_FORGE,
-    CARDID_GOONS,
-    CARDID_GRANDMARKET,
-    CARDID_HOARD,
-    CARDID_KINGSCOURT,
-    CARDID_LOAN,
-    CARDID_MINT,
-    CARDID_MONUMENT,
-    CARDID_MOUNTEBANK,
-    CARDID_PEDDLER,
-    CARDID_PLATINUM,
-    CARDID_QUARRY,
-    CARDID_RABBLE,
-    CARDID_ROYALSEAL,
-    CARDID_TALISMAN,
-    CARDID_TRADEROUTE,
-    CARDID_VAULT,
-    CARDID_VENTURE,
-    CARDID_WATCHTOWER,
-    CARDID_WORKERSVILLAGE,
-
-    // Promo - Kingdom Cards
-    // TBD
+        // Prosperity - Kingdom Cards
+        BANK,
+        BISHOP,
+        CITY,
+        COLONY,
+        CONTRABAND,
+        COUNTINGHOUSE,
+        EXPAND,
+        FORGE,
+        GOONS,
+        GRANDMARKET,
+        HOARD,
+        KINGSCOURT,
+        LOAN,
+        MINT,
+        MONUMENT,
+        MOUNTEBANK,
+        PEDDLER,
+        PLATINUM,
+        QUARRY,
+        RABBLE,
+        ROYALSEAL,
+        TALISMAN,
+        TRADEROUTE,
+        VAULT,
+        VENTURE,
+        WATCHTOWER,
+        WORKERSVILLAGE,
+    };
 };
+typedef safe_enum< CARDID_def > CARDID;
 
-enum CARDTYPE
+
+struct CARDTYPE_def
 {
-    CARDTYPE_UNKNOWN,
+    enum type
+    {
+        UNKNOWN,
 
-    CARDTYPE_NULL,
+        NULLCARD,
 
-    CARDTYPE_ACTION,
-    CARDTYPE_ACTION_ATTACK,
-    CARDTYPE_ACTION_REACTION,
-    CARDTYPE_ACTION_VICTORY,
-    CARDTYPE_ACTION_DURATION,
+        ACTION,
+        ACTION_ATTACK,
+        ACTION_REACTION,
+        ACTION_VICTORY,
+        ACTION_DURATION,
 
-    CARDTYPE_TREASURE,
-    CARDTYPE_TREASURE_VICTORY,
+        TREASURE,
+        TREASURE_VICTORY,
 
-    CARDTYPE_VICTORY,
+        VICTORY,
 
-    CARDTYPE_CURSE,
+        CURSE,
+    };
 };
+typedef safe_enum< CARDTYPE_def > CARDTYPE;
 
-enum CARDSET
+
+struct CARDSET_def
 {
-    CARDSET_UNKNOWN     = 0,
-    CARDSET_BASE        = ( 1 << 1 ),
-    CARDSET_INTRIGUE    = ( 1 << 2 ),
-    CARDSET_SEASIDE     = ( 1 << 3 ),
-    CARDSET_ALCHEMY     = ( 1 << 4 ),
-    CARDSET_PROSPERITY  = ( 1 << 5 ),
+    enum type
+    {
+        UNKNOWN     = 0,
+        BASE        = ( 1 << 1 ),
+        INTRIGUE    = ( 1 << 2 ),
+        SEASIDE     = ( 1 << 3 ),
+        ALCHEMY     = ( 1 << 4 ),
+        PROSPERITY  = ( 1 << 5 ),
+    };
 };
+typedef safe_enum< CARDSET_def > CARDSET;
 
 class Card;
 
@@ -377,86 +416,138 @@ private:
 ////////////////////////
 // Base Set Card Options
 ////////////////////////
-
-enum ChancellorOpt
+struct ChancellorOpt_def
 {
-    CHANCELLOR_DISCARD_DRAW_DECK,
-    CHANCELLOR_NO_OP,
+    enum type
+    {
+        DISCARD_DRAW_DECK,
+        NO_OP,
+    };
 };
+typedef safe_enum< ChancellorOpt_def > ChancellorOpt;
 
-enum LibraryOpt
-{
-    LIBRARY_DISCARD_ACTION_CARD,
-    LIBRARY_KEEP_ACTION_CARD,
-};
 
-enum SpyOpt
+struct LibraryOpt_def
 {
-    SPY_DISCARD_CARD,
-    SPY_PUT_BACK_CARD,
+    enum type
+    {
+        DISCARD_ACTION_CARD,
+        KEEP_ACTION_CARD,
+    };
 };
+typedef safe_enum< LibraryOpt_def > LibraryOpt;
 
-enum ThiefOpt
+
+struct SpyOpt_def
 {
-    THIEF_TRASH_TREASURE_CARD,
-    THIEF_STEAL_TREASURE_CARD,
+    enum type
+    {
+        DISCARD_CARD,
+        PUT_BACK_CARD,
+    };
 };
+typedef safe_enum< SpyOpt_def > SpyOpt;
+
+
+struct ThiefOpt_def
+{
+    enum type
+    {
+        TRASH_TREASURE_CARD,
+        STEAL_TREASURE_CARD,
+    };
+};
+typedef safe_enum< ThiefOpt_def > ThiefOpt;
 
 
 ////////////////////////////
 // Intrigue Set Card Options
 ////////////////////////////
 
-enum BaronOpt
+struct BaronOpt_def
 {
-    BARON_DISCARD_ESTATE,
-    BARON_DO_NOT_DISCARD_ESTATE,
+    enum type
+    {
+        DISCARD_ESTATE,
+        DO_NOT_DISCARD_ESTATE,
+    };
 };
+typedef safe_enum< BaronOpt_def > BaronOpt;
 
-enum MiningVillageOpt
+
+struct MiningVillageOpt_def
 {
-    MININGVILLAGE_TRASH_CARD,
-    MININGVILLAGE_DO_NOT_TRASH_CARD,
+    enum type
+    {
+        TRASH_CARD,
+        DO_NOT_TRASH_CARD,
+    };
 };
+typedef safe_enum< MiningVillageOpt_def >  MiningVillageOpt;
 
-enum MinionOpt
+
+struct MinionOpt_def
 {
-    MINION_PLUS_2_COINS,
-    MINION_DISCARD_HAND,
+    enum type
+    {
+        PLUS_2_COINS,
+        DISCARD_HAND,
+    };
 };
+typedef safe_enum< MinionOpt_def > MinionOpt;
 
-enum NoblesOpt
+
+struct NoblesOpt_def
 {
-    NOBLES_PLUS_3_CARDS,
-    NOBLES_PLUS_2_ACTIONS,
+    enum type
+    {
+        PLUS_3_CARDS,
+        PLUS_2_ACTIONS,
+    };
 };
+typedef safe_enum< NoblesOpt_def > NoblesOpt;
 
-enum PawnOpt
+
+struct PawnOpt_def
 {
-    PAWN_PLUS_1_CARD,
-    PAWN_PLUS_1_ACTION,
-    PAWN_PLUS_1_BUY,
-    PAWN_PLUS_1_COIN,
+    enum type
+    {
+        PLUS_1_CARD,
+        PLUS_1_ACTION,
+        PLUS_1_BUY,
+        PLUS_1_COIN,
+    };
 };
+typedef safe_enum< PawnOpt_def > PawnOpt;
+typedef std::pair< PawnOpt, PawnOpt > PawnOptPair;
 
-typedef std::pair<PawnOpt, PawnOpt> PawnOptPair;
 
-enum StewardOpt
+struct StewardOpt_def
 {
-    STEWARD_PLUS_2_CARDS,
-    STEWARD_PLUS_2_COINS,
-    STEWARD_TRASH_2_CARDS,
+    enum type
+    {
+        PLUS_2_CARDS,
+        PLUS_2_COINS,
+        TRASH_2_CARDS,
+    };
 };
+typedef safe_enum< StewardOpt_def > StewardOpt;
+
 
 ///////////////////////////
 // Seaside Set Card Options
 ///////////////////////////
 
-enum ExplorerOpt
+struct ExplorerOpt_def
 {
-    EXPLORER_REVEAL_PROVINCE,
-    EXPLORER_DO_NOT_REVEAL_PROVINCE,
+    enum type
+    {
+        REVEAL_PROVINCE,
+        DO_NOT_REVEAL_PROVINCE,
+    };
 };
+typedef safe_enum< ExplorerOpt_def > ExplorerOpt;
+
 
 struct ILookoutStruct
 {
@@ -465,67 +556,114 @@ struct ILookoutStruct
     ICard* PCardToPutBack;
 };
 
-enum NativeVillageOpt
-{
-    NATIVEVILLAGE_SET_ASIDE_CARD,
-    NATIVEVILLAGE_DRAW_CARDS,
-};
 
-enum PearlDiverOpt
+struct NativeVillageOpt_def
 {
-    PEARLDIVER_TOP_OF_DRAWPILE,
-    PEARLDIVER_BOTTOM_OF_DRAWPILE,
+    enum type
+    {
+        SET_ASIDE_CARD,
+        DRAW_CARDS,
+    };
 };
+typedef safe_enum< NativeVillageOpt_def > NativeVillageOpt;
 
-enum PirateShipOpt
-{
-    PIRATESHIP_ATTACK,
-    PIRATESHIP_PLUS_COINS,
-};
 
-enum TreasuryOpt
+struct PearlDiverOpt_def
 {
-    TREASURY_DISCARD,
-    TREASURY_PUT_BACK,
+    enum type
+    {
+        TOP_OF_DRAWPILE,
+        BOTTOM_OF_DRAWPILE,
+    };
 };
+typedef safe_enum< PearlDiverOpt_def > PearlDiverOpt;
+
+
+struct PirateShipOpt_def
+{
+    enum type
+    {
+        ATTACK,
+        PLUS_COINS,
+    };
+};
+typedef safe_enum< PirateShipOpt_def > PirateShipOpt;
+
+
+struct TreasuryOpt_def
+{
+    enum type
+    {
+        DISCARD,
+        PUT_BACK,
+    };
+};
+typedef safe_enum< TreasuryOpt_def > TreasuryOpt;
+
 
 ///////////////////////////
 // Alchemy Set Card Options
 ///////////////////////////
 
-enum AlchemistOpt
+struct AlchemistOpt_def
 {
-    ALCHEMIST_DISCARD,
-    ALCHEMIST_PUT_BACK,
+    enum type
+    {
+        DISCARD,
+        PUT_BACK,
+    };
 };
+typedef safe_enum< AlchemistOpt_def > AlchemistOpt;
 
-enum ScryingPoolOpt
+
+struct ScryingPoolOpt_def
 {
-    SCRYINGPOOL_DISCARD_CARD,
-    SCRYINGPOOL_PUT_BACK_CARD,
+    enum type
+    {
+        DISCARD_CARD,
+        PUT_BACK_CARD,
+    };
 };
+typedef safe_enum< ScryingPoolOpt_def > ScryingPoolOpt;
+
 
 ///////////////////////////
 // Alchemy Set Card Options
 ///////////////////////////
 
-enum LoanOpt
+struct LoanOpt_def
 {
-    LOAN_DISCARD_CARD,
-    LOAN_TRASH_CARD,
+    enum type
+    {
+        DISCARD_CARD,
+        TRASH_CARD,
+    };
 };
+typedef safe_enum< LoanOpt_def > LoanOpt;
 
-enum MountebankOpt
-{
-    MOUNTEBANK_DISCARD_CURSE,
-    MOUNTEBANK_DO_NOT_DISCARD_CURSE,
-};
 
-enum RoyalSealOpt
+struct MountebankOpt_def
 {
-    ROYALSEAL_DISCARD_CARD,
-    ROYALSEAL_PUT_BACK_CARD,
+    enum type
+    {
+        DISCARD_CURSE,
+        DO_NOT_DISCARD_CURSE,
+    };
 };
+typedef safe_enum< MountebankOpt_def > MountebankOpt;
+
+
+struct RoyalSealOpt_def
+{
+    enum type
+    {
+        DISCARD_CARD,
+        PUT_BACK_CARD,
+    };
+};
+typedef safe_enum< RoyalSealOpt_def > RoyalSealOpt;
+
+
 
 class __declspec(novtable) AI
 {

@@ -7,8 +7,8 @@ namespace Domlib
 VineyardCard::VineyardCard( void )
     : Card( 
         L"Vineyard",
-        CARDID_VINEYARD,
-        CARDTYPE_TREASURE,
+        CARDID::VINEYARD,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 0, 0 ),
         Treasure( 0, 1 ) )
@@ -22,7 +22,7 @@ VineyardCard::~VineyardCard( void )
 int VineyardCard::OnScoring( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    int numActionCardsInDeck = pPlayer->GetCardCountInDeckType( CARDTYPE_ACTION );
+    int numActionCardsInDeck = pPlayer->GetCardCountInDeckType( CARDTYPE::ACTION );
     return (int)( numActionCardsInDeck / 3 );
 }
 

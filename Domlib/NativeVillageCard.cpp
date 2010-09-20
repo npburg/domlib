@@ -7,8 +7,8 @@ namespace Domlib
 NativeVillageCard::NativeVillageCard( void )
     : Card( 
         L"Native Village",
-        CARDID_NATIVEVILLAGE,
-        CARDTYPE_ACTION,
+        CARDID::NATIVEVILLAGE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )
@@ -27,12 +27,12 @@ void NativeVillageCard::OnActionPhase( Engine* pEngine )
     pPlayer->PlusActions( 2 );
     NativeVillageOpt nativeVillageOpt = pAI->OnNativeVillage();
     
-    switch( nativeVillageOpt )
+    switch( nativeVillageOpt.underlying() )
     {
-    case NATIVEVILLAGE_DRAW_CARDS:
+    case NativeVillageOpt::DRAW_CARDS:
         pPlayer->DrawCardsFromNativeVillage();
         break;
-    case NATIVEVILLAGE_SET_ASIDE_CARD:
+    case NativeVillageOpt::SET_ASIDE_CARD:
         pPlayer->DrawCardToNativeVillage();
         break;
     default:

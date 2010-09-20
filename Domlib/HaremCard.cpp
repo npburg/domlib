@@ -7,8 +7,8 @@ namespace Domlib
 HaremCard::HaremCard( void )
     : Card( 
         L"Harem",
-        CARDID_HAREM,
-        CARDTYPE_TREASURE_VICTORY,
+        CARDID::HAREM,
+        CARDTYPE::TREASURE_VICTORY,
         2,
         Treasure( 2, 0 ),
         Treasure( 6, 0 ) )

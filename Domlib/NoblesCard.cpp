@@ -7,8 +7,8 @@ namespace Domlib
 NoblesCard::NoblesCard( void )
     : Card( 
         L"Nobles",
-        CARDID_NOBLES,
-        CARDTYPE_ACTION_VICTORY,
+        CARDID::NOBLES,
+        CARDTYPE::ACTION_VICTORY,
         0,
         Treasure( 0, 0 ),
         Treasure( 6, 0 ) )
@@ -25,12 +25,12 @@ void NoblesCard::OnActionPhase( Engine* pEngine )
     IAI* pAI = pPlayer->GetAI();
     NoblesOpt noblesOpt = pAI->OnNobles();
 
-    switch( noblesOpt )
+    switch( noblesOpt.underlying() )
     {
-    case NOBLES_PLUS_3_CARDS:
+    case NoblesOpt::PLUS_3_CARDS:
         pPlayer->DrawCardsToHand( 3 );
         break;
-    case NOBLES_PLUS_2_ACTIONS:
+    case NoblesOpt::PLUS_2_ACTIONS:
         pPlayer->PlusActions( 2 );
         break;
     default:

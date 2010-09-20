@@ -7,8 +7,8 @@ namespace Domlib
 LaboratoryCard::LaboratoryCard( void )
     : Card( 
         L"Laboratory",
-        CARDID_LABORATORY,
-        CARDTYPE_ACTION,
+        CARDID::LABORATORY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

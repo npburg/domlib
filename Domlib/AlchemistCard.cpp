@@ -7,8 +7,8 @@ namespace Domlib
 AlchemistCard::AlchemistCard( void )
     : Card( 
         L"Alchemist",
-        CARDID_ALCHEMIST,
-        CARDTYPE_ACTION,
+        CARDID::ALCHEMIST,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 1 ) )
@@ -32,18 +32,18 @@ void AlchemistCard::OnCleanUpPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
     IAI* pAI = pPlayer->GetAI();
 
-    if( pPlayer->IsCardInPlay( CARDID_POTION ) )
+    if( pPlayer->IsCardInPlay( CARDID::POTION ) )
     {
         AlchemistOpt alchemistOpt = pAI->OnAlchemist();
         
-        switch( alchemistOpt )
+        switch( alchemistOpt.underlying() )
         {
-        case ALCHEMIST_DISCARD:
+        case AlchemistOpt::DISCARD:
             // Do nothing, the card will be cleaned up as normal.
             break;
-        case ALCHEMIST_PUT_BACK:
-            pPlayer->TakeCardFromInPlay( CARDID_ALCHEMIST );
-            pPlayer->PutCardOnDraw( CARDID_ALCHEMIST );
+        case AlchemistOpt::PUT_BACK:
+            pPlayer->TakeCardFromInPlay( CARDID::ALCHEMIST );
+            pPlayer->PutCardOnDraw( CARDID::ALCHEMIST );
             break;
         default:
             // TODO: report error

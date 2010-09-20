@@ -7,8 +7,8 @@ namespace Domlib
 RoyalSealCard::RoyalSealCard(void)
     : Card( 
         L"Royal Seal",
-        CARDID_ROYALSEAL,
-        CARDTYPE_TREASURE,
+        CARDID::ROYALSEAL,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 2, 0 ),
         Treasure( 5, 0 ) )

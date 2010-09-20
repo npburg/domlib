@@ -7,8 +7,8 @@ namespace Domlib
 GolemCard::GolemCard( void )
     : Card( 
         L"Golem",
-        CARDID_GOLEM,
-        CARDTYPE_ACTION,
+        CARDID::GOLEM,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 1 ) )
@@ -40,7 +40,7 @@ void GolemCard::OnActionPhase( Engine* pEngine )
             break;
         }
         else if( pRevealedCard->IsActionCard() &&
-                 pRevealedCard->CardId() != CARDID_GOLEM )
+                 pRevealedCard->CardId() != CARDID::GOLEM )
         {
             actionCardList.push_back( pRevealedCard );
         }

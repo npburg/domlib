@@ -7,8 +7,8 @@ namespace Domlib
 QuarryCard::QuarryCard(void)
     : Card( 
         L"Quarry",
-        CARDID_QUARRY,
-        CARDTYPE_TREASURE,
+        CARDID::QUARRY,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 1, 0 ),
         Treasure( 4, 0 ) )

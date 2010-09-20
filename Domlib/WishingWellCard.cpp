@@ -7,8 +7,8 @@ namespace Domlib
 WishingWellCard::WishingWellCard( void )
     : Card( 
         L"WishingWell",
-        CARDID_WISHINGWELL,
-        CARDTYPE_ACTION,
+        CARDID::WISHINGWELL,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

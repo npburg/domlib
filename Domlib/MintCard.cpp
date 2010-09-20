@@ -7,8 +7,8 @@ namespace Domlib
 MintCard::MintCard(void)
     : Card( 
         L"Mint",
-        CARDID_MINT,
-        CARDTYPE_ACTION,
+        CARDID::MINT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -23,7 +23,7 @@ void MintCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
     
-    if( pPlayer->CardsInHand( CARDTYPE_TREASURE ) )
+    if( pPlayer->CardsInHand( CARDTYPE::TREASURE ) )
     {
         IAI* pAI = pPlayer->GetAI();
         Card* pTreasureCard = pAI->OnMint();
@@ -45,7 +45,7 @@ void MintCard::OnBuy( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
-    pPlayer->TrashFromInPlay( CARDTYPE_TREASURE );
+    pPlayer->TrashFromInPlay( CARDTYPE::TREASURE );
 }
 
 } // namespace Domlib

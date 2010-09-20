@@ -7,8 +7,8 @@ namespace Domlib
 CityCard::CityCard(void)
     : Card( 
         L"City",
-        CARDID_CITY,
-        CARDTYPE_ACTION,
+        CARDID::CITY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

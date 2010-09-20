@@ -7,8 +7,8 @@ namespace Domlib
 WharfCard::WharfCard( void )
     : Card( 
         L"Wharf",
-        CARDID_WHARF,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::WHARF,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 BridgeCard::BridgeCard( void )
     : Card( 
         L"Bridge",
-        CARDID_BRIDGE,
-        CARDTYPE_ACTION,
+        CARDID::BRIDGE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

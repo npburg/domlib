@@ -7,8 +7,8 @@ namespace Domlib
 FeastCard::FeastCard( void )
     : Card( 
         L"Feast",
-        CARDID_FEAST,
-        CARDTYPE_ACTION,
+        CARDID::FEAST,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -31,7 +31,7 @@ void FeastCard::OnCleanUpPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
-    pPlayer->TrashFromInPlay( CARDID_FEAST );
+    pPlayer->TrashFromInPlay( CARDID::FEAST );
 }
 
 } // namespace Domlib

@@ -7,8 +7,8 @@ namespace Domlib
 CountingHouseCard::CountingHouseCard(void)
     : Card( 
         L"Counting House",
-        CARDID_COUNTINGHOUSE,
-        CARDTYPE_ACTION,
+        CARDID::COUNTINGHOUSE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -22,7 +22,7 @@ CountingHouseCard::~CountingHouseCard(void)
 void CountingHouseCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    int numCoppersInDiscard = pPlayer->CardsInDiscard( CARDID_COPPER );
+    int numCoppersInDiscard = pPlayer->CardsInDiscard( CARDID::COPPER );
     
     if( numCoppersInDiscard > 0 )
     {
@@ -33,8 +33,8 @@ void CountingHouseCard::OnActionPhase( Engine* pEngine )
         {
             for( int i = 0; i < numCoppersToTake; i++ )
             {
-                pPlayer->TakeCardFromDiscard( CARDID_COPPER );
-                pPlayer->PutCardInHand( CARDID_COPPER );
+                pPlayer->TakeCardFromDiscard( CARDID::COPPER );
+                pPlayer->PutCardInHand( CARDID::COPPER );
             }
         }
         else

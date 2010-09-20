@@ -7,8 +7,8 @@ namespace Domlib
 WorkshopCard::WorkshopCard( void )
     : Card( 
         L"Workshop",
-        CARDID_WORKSHOP,
-        CARDTYPE_ACTION,
+        CARDID::WORKSHOP,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

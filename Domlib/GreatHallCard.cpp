@@ -7,8 +7,8 @@ namespace Domlib
 GreatHallCard::GreatHallCard( void )
     : Card( 
         L"Great Hall",
-        CARDID_GREATHALL,
-        CARDTYPE_ACTION_VICTORY,
+        CARDID::GREATHALL,
+        CARDTYPE::ACTION_VICTORY,
         1,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

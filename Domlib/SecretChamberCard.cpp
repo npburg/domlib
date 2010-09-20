@@ -7,8 +7,8 @@ namespace Domlib
 SecretChamberCard::SecretChamberCard( void )
     : Card( 
         L"Secret Chamber",
-        CARDID_SECRETCHAMBER,
-        CARDTYPE_ACTION_REACTION,
+        CARDID::SECRETCHAMBER,
+        CARDTYPE::ACTION_REACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

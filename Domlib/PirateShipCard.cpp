@@ -7,8 +7,8 @@ namespace Domlib
 PirateShipCard::PirateShipCard( void )
     : Card( 
         L"Pirate Ship",
-        CARDID_PIRATESHIP,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::PIRATESHIP,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -25,19 +25,19 @@ void PirateShipCard::OnActionPhase( Engine* pEngine )
     IAI* pAI = pPlayer->GetAI();
     PirateShipOpt pirateShipOpt = pAI->OnPirateShip();
     
-    switch( pirateShipOpt )
+    switch( pirateShipOpt.underlying() )
     {
-    case PIRATESHIP_ATTACK:
+    case PirateShipOpt::ATTACK:
     {
         m_bFoundTreasure = false;
-        Attack( pEngine, ATTACK_OTHERS );
+        Attack( pEngine, AttackWhom::OTHERS );
         if( m_bFoundTreasure )
         {
             pPlayer->PlusPirateCoin();
         }
         break;
     }
-    case PIRATESHIP_PLUS_COINS:
+    case PirateShipOpt::PLUS_COINS:
         pPlayer->PlusCoins( pPlayer->PirateCoins() );
         break;
     default:

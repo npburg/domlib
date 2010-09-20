@@ -7,8 +7,8 @@ namespace Domlib
 MasqueradeCard::MasqueradeCard( void )
     : Card( 
         L"Masquerade",
-        CARDID_MASQUERADE,
-        CARDTYPE_ACTION,
+        CARDID::MASQUERADE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

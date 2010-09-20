@@ -7,8 +7,8 @@ namespace Domlib
 MonumentCard::MonumentCard(void)
     : Card( 
         L"Monument",
-        CARDID_MONUMENT,
-        CARDTYPE_ACTION,
+        CARDID::MONUMENT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

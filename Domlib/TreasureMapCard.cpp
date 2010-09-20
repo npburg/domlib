@@ -7,8 +7,8 @@ namespace Domlib
 TreasureMapCard::TreasureMapCard( void )
     : Card( 
         L"Treasure Map",
-        CARDID_TREASUREMAP,
-        CARDTYPE_ACTION,
+        CARDID::TREASUREMAP,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -26,10 +26,10 @@ void TreasureMapCard::OnActionPhase( Engine* pEngine )
     if( pPlayer->IsCardInHand( this ) )
     {
         pPlayer->TrashFromHand( this );
-        pPlayer->GainCardOnDeck( CARDID_GOLD );
-        pPlayer->GainCardOnDeck( CARDID_GOLD );
-        pPlayer->GainCardOnDeck( CARDID_GOLD );
-        pPlayer->GainCardOnDeck( CARDID_GOLD );
+        pPlayer->GainCardOnDeck( CARDID::GOLD );
+        pPlayer->GainCardOnDeck( CARDID::GOLD );
+        pPlayer->GainCardOnDeck( CARDID::GOLD );
+        pPlayer->GainCardOnDeck( CARDID::GOLD );
     }
 }
 

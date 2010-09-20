@@ -12,7 +12,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
     Domlib::IGame game;
 
-    game.RandomizeKingdomCards( Domlib::CARDSET_BASE | Domlib::CARDSET_INTRIGUE );
+    game.RandomizeKingdomCards( Domlib::CARDSET::BASE | Domlib::CARDSET::INTRIGUE );
 
     // TODO: Need to implement BigMoneyAI or DefaultAI.
     game.RegisterAI( new DefaultAI() );

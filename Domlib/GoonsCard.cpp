@@ -7,8 +7,8 @@ namespace Domlib
 GoonsCard::GoonsCard(void)
     : Card( 
         L"Goons",
-        CARDID_GOONS,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::GOONS,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 6, 0 ) )
@@ -26,7 +26,7 @@ void GoonsCard::OnActionPhase( Engine* pEngine )
     pPlayer->PlusBuys( 1 );
     pPlayer->PlusCoins( 2 );
 
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void GoonsCard::OnAttack( Engine* pEngine, Player* pPlayer )

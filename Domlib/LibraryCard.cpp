@@ -7,8 +7,8 @@ namespace Domlib
 LibraryCard::LibraryCard( void )
     : Card( 
         L"Library",
-        CARDID_LIBRARY,
-        CARDTYPE_ACTION,
+        CARDID::LIBRARY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -31,12 +31,12 @@ void LibraryCard::OnActionPhase( Engine* pEngine )
         if( pRevealedCard->IsActionCard() )
         {
             LibraryOpt libraryOpt = pAI->OnLibrary( pRevealedCard );
-            switch( libraryOpt )
+            switch( libraryOpt.underlying() )
             {
-            case LIBRARY_DISCARD_ACTION_CARD:
+            case LibraryOpt::DISCARD_ACTION_CARD:
                 revealedCardList.push_back( pRevealedCard );
                 break;
-            case LIBRARY_KEEP_ACTION_CARD:
+            case LibraryOpt::KEEP_ACTION_CARD:
                 pPlayer->PutCardInHand( pRevealedCard );
                 break;
             default:

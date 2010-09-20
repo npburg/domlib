@@ -7,8 +7,6 @@
 namespace Domlib
 {
 
-enum CARDID;
-enum CARDTYPE;
 class Player;
 
 typedef std::list<Player*>          PlayerList;
