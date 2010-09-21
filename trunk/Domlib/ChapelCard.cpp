@@ -7,8 +7,8 @@ namespace Domlib
 ChapelCard::ChapelCard( void )
     : Card( 
         L"Chapel",
-        CARDID_CHAPEL,
-        CARDTYPE_ACTION,
+        CARDID::CHAPEL,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

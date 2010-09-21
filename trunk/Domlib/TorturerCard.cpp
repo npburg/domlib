@@ -7,8 +7,8 @@ namespace Domlib
 TorturerCard::TorturerCard( void )
     : Card( 
         L"Torturer",
-        CARDID_TORTURER,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::TORTURER,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -25,7 +25,7 @@ void TorturerCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->DrawCardsToHand( 3 );
 
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void TorturerCard::OnAttack( Engine* pEngine, Player* pPlayer )
@@ -35,7 +35,7 @@ void TorturerCard::OnAttack( Engine* pEngine, Player* pPlayer )
 
     if( cardsToTrash.size() == 0 )
     {
-        pPlayer->GainCardOnDeck( CARDID_CURSE );
+        pPlayer->GainCardOnDeck( CARDID::CURSE );
     }
     else if( cardsToTrash.size() == 2 &&
              pPlayer->AreCardsInHand( cardsToTrash ) )

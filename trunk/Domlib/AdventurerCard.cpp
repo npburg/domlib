@@ -7,8 +7,8 @@ namespace Domlib
 AdventurerCard::AdventurerCard( void )
     : Card( 
         L"Adventurer",
-        CARDID_ADVENTURER,
-        CARDTYPE_ACTION,
+        CARDID::ADVENTURER,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 6, 0 ) )

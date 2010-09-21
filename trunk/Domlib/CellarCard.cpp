@@ -7,8 +7,8 @@ namespace Domlib
 CellarCard::CellarCard( void ) 
     : Card( 
         L"Cellar",
-        CARDID_CELLAR,
-        CARDTYPE_ACTION,
+        CARDID::CELLAR,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

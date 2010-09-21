@@ -7,8 +7,8 @@ namespace Domlib
 SalvagerCard::SalvagerCard( void )
     : Card( 
         L"Salvager",
-        CARDID_SALVAGER,
-        CARDTYPE_ACTION,
+        CARDID::SALVAGER,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

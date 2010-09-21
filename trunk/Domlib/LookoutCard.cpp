@@ -7,8 +7,8 @@ namespace Domlib
 LookoutCard::LookoutCard( void )
     : Card( 
         L"Lookout",
-        CARDID_LOOKOUT,
-        CARDTYPE_ACTION,
+        CARDID::LOOKOUT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 ChancellorCard::ChancellorCard( void )
     : Card( 
         L"Chancellor",
-        CARDID_CHANCELLOR,
-        CARDTYPE_ACTION,
+        CARDID::CHANCELLOR,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -29,10 +29,10 @@ void ChancellorCard::OnActionPhase( Engine* pEngine )
     chancellorOpt = pAI->OnChancellor();
     switch( chancellorOpt )
     {
-    case CHANCELLOR_DISCARD_DRAW_DECK:
+    case ChancellorOpt::DISCARD_DRAW_DECK:
         pPlayer->DiscardDrawPile();
         break;
-    case CHANCELLOR_NO_OP:
+    case ChancellorOpt::NO_OP:
         // Do nothing
         break;
     default:

@@ -7,8 +7,8 @@ namespace Domlib
 PhilosophersStoneCard::PhilosophersStoneCard( void )
     : Card( 
         L"Philosopher's Stone",
-        CARDID_PHILOSOPHERSSTONE,
-        CARDTYPE_TREASURE,
+        CARDID::PHILOSOPHERSSTONE,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 1 ) )

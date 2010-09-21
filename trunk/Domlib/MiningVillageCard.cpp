@@ -7,8 +7,8 @@ namespace Domlib
 MiningVillageCard::MiningVillageCard( void )
     : Card( 
         L"Mining Village",
-        CARDID_MININGVILLAGE,
-        CARDTYPE_ACTION,
+        CARDID::MININGVILLAGE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -30,10 +30,10 @@ void MiningVillageCard::OnActionPhase( Engine* pEngine )
     MiningVillageOpt miningVillageOpt = pAI->OnMiningVillage();
     switch( miningVillageOpt )
     {
-    case MININGVILLAGE_DO_NOT_TRASH_CARD:
+    case MiningVillageOpt::DO_NOT_TRASH_CARD:
         // do nothing
         break;
-    case MININGVILLAGE_TRASH_CARD:
+    case MiningVillageOpt::TRASH_CARD:
         pPlayer->TrashFromInPlay( this );
         break;
     default:

@@ -7,8 +7,8 @@ namespace Domlib
 MountebankCard::MountebankCard(void)
     : Card( 
         L"Mountebank",
-        CARDID_MOUNTEBANK,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::MOUNTEBANK,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -25,24 +25,24 @@ void MountebankCard::OnActionPhase( Engine* pEngine )
     
     pPlayer->PlusCoins( 2 );
     
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void MountebankCard::OnAttack( Engine* pEngine, Player* pPlayer )
 {
-    if( pPlayer->IsCardInHand( CARDID_CURSE ) )
+    if( pPlayer->IsCardInHand( CARDID::CURSE ) )
     {
         IAI* pAI = pPlayer->GetAI();
         MountebankOpt mountebankOpt = pAI->OnMountebank();
         
         switch( mountebankOpt )
         {
-        case Domlib::MOUNTEBANK_DISCARD_CURSE:
-            pPlayer->DiscardFromHand( CARDID_CURSE );
+        case Domlib::MountebankOpt::DISCARD_CURSE:
+            pPlayer->DiscardFromHand( CARDID::CURSE );
             break;
-        case Domlib::MOUNTEBANK_DO_NOT_DISCARD_CURSE:
-            pPlayer->GainCardOnDiscard( CARDID_CURSE );
-            pPlayer->GainCardOnDiscard( CARDID_COPPER );
+        case Domlib::MountebankOpt::DO_NOT_DISCARD_CURSE:
+            pPlayer->GainCardOnDiscard( CARDID::CURSE );
+            pPlayer->GainCardOnDiscard( CARDID::COPPER );
             break;
         default:
             // TODO: report error.
@@ -52,8 +52,8 @@ void MountebankCard::OnAttack( Engine* pEngine, Player* pPlayer )
     }
     else
     {
-        pPlayer->GainCardOnDiscard( CARDID_CURSE );
-        pPlayer->GainCardOnDiscard( CARDID_COPPER );
+        pPlayer->GainCardOnDiscard( CARDID::CURSE );
+        pPlayer->GainCardOnDiscard( CARDID::COPPER );
     }
 }
 

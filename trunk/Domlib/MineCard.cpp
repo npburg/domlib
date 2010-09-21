@@ -7,8 +7,8 @@ namespace Domlib
 MineCard::MineCard( void )
     : Card( 
         L"Mine",
-        CARDID_MINE,
-        CARDTYPE_ACTION,
+        CARDID::MINE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

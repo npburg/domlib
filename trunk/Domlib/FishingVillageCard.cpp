@@ -7,8 +7,8 @@ namespace Domlib
 FishingVillageCard::FishingVillageCard( void )
     : Card( 
         L"Fishing Village",
-        CARDID_FISHINGVILLAGE,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::FISHINGVILLAGE,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

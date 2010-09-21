@@ -7,8 +7,8 @@ namespace Domlib
 TransmuteCard::TransmuteCard( void )
     : Card( 
         L"Transmute",
-        CARDID_TRANSMUTE,
-        CARDTYPE_ACTION,
+        CARDID::TRANSMUTE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 0, 1 ) )
@@ -31,17 +31,17 @@ void TransmuteCard::OnActionPhase( Engine* pEngine )
         
         if( pCardToTrash->IsActionCard() )
         {
-            pPlayer->GainCardOnDiscard( CARDID_DUCHY );
+            pPlayer->GainCardOnDiscard( CARDID::DUCHY );
         }
 
         if( pCardToTrash->IsTreasureCard() )
         {
-            pPlayer->GainCardOnDiscard( CARDID_TRANSMUTE );
+            pPlayer->GainCardOnDiscard( CARDID::TRANSMUTE );
         }
 
         if( pCardToTrash->IsVictoryCard() )
         {
-            pPlayer->GainCardOnDiscard( CARDID_GOLD );
+            pPlayer->GainCardOnDiscard( CARDID::GOLD );
         }
     }
     else

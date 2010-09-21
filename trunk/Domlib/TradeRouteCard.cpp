@@ -7,8 +7,8 @@ namespace Domlib
 TradeRouteCard::TradeRouteCard(void)
     : Card( 
         L"Trade Route",
-        CARDID_TRADEROUTE,
-        CARDTYPE_ACTION,
+        CARDID::TRADEROUTE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

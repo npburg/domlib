@@ -7,8 +7,8 @@ namespace Domlib
 UpgradeCard::UpgradeCard( void )
     : Card( 
         L"Upgrade",
-        CARDID_UPGRADE,
-        CARDTYPE_ACTION,
+        CARDID::UPGRADE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

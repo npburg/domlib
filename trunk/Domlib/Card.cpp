@@ -63,11 +63,11 @@ void Card::Attack( Engine* pEngine, AttackWhom attackWhom )
     
     pAttackingPlayer = pCurrentPlayer = pEngine->GetCurrentPlayer();
 
-    if( attackWhom == ATTACK_ALL )
+    if( attackWhom == AttackWhom::ALL )
     {
         OnAttack( pEngine, pCurrentPlayer );
     }
-    else if( attackWhom == ATTACK_OTHERS )
+    else if( attackWhom == AttackWhom::OTHERS )
     {
         // fall through to attack others
     }
@@ -86,8 +86,8 @@ void Card::Attack( Engine* pEngine, AttackWhom attackWhom )
         Card* pReactionCard = pCurrentAi->OnAttack( this );
         ( (Card*) pReactionCard)->OnReaction( pEngine, pCurrentPlayer );
 
-        if( pReactionCard->CardId() != CARDID_MOAT ||
-            pCurrentPlayer->IsCardInDuration( CARDID_LIGHTHOUSE ) == false )
+        if( pReactionCard->CardId() != CARDID::MOAT ||
+            pCurrentPlayer->IsCardInDuration( CARDID::LIGHTHOUSE ) == false )
         {
             OnAttack( pEngine, pCurrentPlayer );
         }
@@ -145,11 +145,11 @@ bool Card::IsActionCard( void ) const
 {
     switch( m_CardType )
     {
-    case CARDTYPE_ACTION:
-    case CARDTYPE_ACTION_ATTACK:
-    case CARDTYPE_ACTION_REACTION:
-    case CARDTYPE_ACTION_VICTORY:
-    case CARDTYPE_ACTION_DURATION:
+    case CARDTYPE::ACTION:
+    case CARDTYPE::ACTION_ATTACK:
+    case CARDTYPE::ACTION_REACTION:
+    case CARDTYPE::ACTION_VICTORY:
+    case CARDTYPE::ACTION_DURATION:
         return true;
     default:
         return false;
@@ -158,25 +158,25 @@ bool Card::IsActionCard( void ) const
 
 bool Card::IsAttackCard( void ) const
 {
-    return ( m_CardType == CARDTYPE_ACTION_ATTACK );
+    return ( m_CardType == CARDTYPE::ACTION_ATTACK );
 }
 
 bool Card::IsReactionCard( void ) const
 {
-    return ( m_CardType == CARDTYPE_ACTION_REACTION );
+    return ( m_CardType == CARDTYPE::ACTION_REACTION );
 }
 
 bool Card::IsDurationCard( void ) const
 {
-    return ( m_CardType == CARDTYPE_ACTION_DURATION );
+    return ( m_CardType == CARDTYPE::ACTION_DURATION );
 }
 
 bool Card::IsTreasureCard( void ) const
 {
     switch( m_CardType )
     {
-    case CARDTYPE_TREASURE:
-    case CARDTYPE_TREASURE_VICTORY:
+    case CARDTYPE::TREASURE:
+    case CARDTYPE::TREASURE_VICTORY:
         return true;
     default:
         return false;
@@ -187,8 +187,8 @@ bool Card::IsVictoryCard( void ) const
 {
     switch( m_CardType )
     {
-    case CARDTYPE_VICTORY:
-    case CARDTYPE_TREASURE_VICTORY:
+    case CARDTYPE::VICTORY:
+    case CARDTYPE::TREASURE_VICTORY:
         return true;
     default:
         return false;
@@ -197,12 +197,12 @@ bool Card::IsVictoryCard( void ) const
 
 bool Card::IsCurseCard( void ) const
 {
-    return ( m_CardType == CARDTYPE_CURSE );
+    return ( m_CardType == CARDTYPE::CURSE );
 }
 
 bool Card::IsNullCard( void ) const
 {
-    return ( m_CardType == CARDTYPE_NULL );
+    return ( m_CardType == CARDTYPE::NULLCARD );
 }
 
 bool Card::CardListsMatch( CardList cardListA,

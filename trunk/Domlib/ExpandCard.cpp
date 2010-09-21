@@ -7,8 +7,8 @@ namespace Domlib
 ExpandCard::ExpandCard(void)
     : Card( 
         L"Expand",
-        CARDID_EXPAND,
-        CARDTYPE_ACTION,
+        CARDID::EXPAND,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 7, 0 ) )

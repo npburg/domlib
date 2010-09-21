@@ -7,8 +7,8 @@ namespace Domlib
 IronworksCard::IronworksCard( void )
     : Card( 
         L"Ironworks",
-        CARDID_IRONWORKS,
-        CARDTYPE_ACTION,
+        CARDID::IRONWORKS,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

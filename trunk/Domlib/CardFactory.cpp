@@ -160,7 +160,7 @@ Card::CardFactory::~CardFactory( void )
 
 Card* Card::CardFactory::GetCard( CARDID cardId )
 {
-    if( cardId == CARDID_NULL )
+    if( cardId == CARDID::NULLCARD )
     {
         return m_pNullCard;
     }
@@ -181,7 +181,7 @@ Card* Card::CardFactory::GetCard( CARDID cardId )
 
 void Card::CardFactory::AddCard( Card* pCard )
 {
-    if( pCard->CardId() != CARDID_NULL )
+    if( pCard->CardId() != CARDID::NULLCARD )
     {
         if( m_CardMap.find( pCard->CardId() ) == m_CardMap.end() )
         {
@@ -203,143 +203,143 @@ Card* Card::CardFactory::CreateCard( CARDID cardId )
     switch( cardId )
     {
     // Common Cards
-    case CARDID_COPPER:             pCard = new CopperCard();               break;
-    case CARDID_SILVER:             pCard = new SilverCard();               break;
-    case CARDID_GOLD:               pCard = new GoldCard();                 break;
-    case CARDID_ESTATE:             pCard = new EstateCard();               break;
-    case CARDID_DUCHY:              pCard = new DuchyCard();                break;
-    case CARDID_PROVINCE:           pCard = new ProvinceCard();             break;
-    case CARDID_CURSE:              pCard = new CurseCard();                break;
+    case CARDID::COPPER:             pCard = new CopperCard();               break;
+    case CARDID::SILVER:             pCard = new SilverCard();               break;
+    case CARDID::GOLD:               pCard = new GoldCard();                 break;
+    case CARDID::ESTATE:             pCard = new EstateCard();               break;
+    case CARDID::DUCHY:              pCard = new DuchyCard();                break;
+    case CARDID::PROVINCE:           pCard = new ProvinceCard();             break;
+    case CARDID::CURSE:              pCard = new CurseCard();                break;
 
     // Base Set Cards
-    case CARDID_ADVENTURER:         pCard = new AdventurerCard();           break;
-    case CARDID_BUREAUCRAT:         pCard = new BureaucratCard();           break;
-    case CARDID_CELLAR:             pCard = new CellarCard();               break;
-    case CARDID_CHAPEL:             pCard = new ChapelCard();               break;
-    case CARDID_CHANCELLOR:         pCard = new ChancellorCard();           break;
-    case CARDID_COUNCILROOM:        pCard = new CouncilRoomCard();          break;
-    case CARDID_FEAST:              pCard = new FeastCard();                break;
-    case CARDID_FESTIVAL:           pCard = new FestivalCard();             break;
-    case CARDID_GARDENS:            pCard = new GardensCard();              break;
-    case CARDID_LABORATORY:         pCard = new LaboratoryCard();           break;
-    case CARDID_LIBRARY:            pCard = new LibraryCard();              break;
-    case CARDID_MARKET:             pCard = new MarketCard();               break;
-    case CARDID_MILITIA:            pCard = new MilitiaCard();              break;
-    case CARDID_MINE:               pCard = new MineCard();                 break;
-    case CARDID_MOAT:               pCard = new MoatCard();                 break;
-    case CARDID_MONEYLENDER:        pCard = new MoneylenderCard();          break;
-    case CARDID_REMODEL:            pCard = new RemodelCard();              break;
-    case CARDID_SMITHY:             pCard = new SmithyCard();               break;
-    case CARDID_SPY:                pCard = new SpyCard();                  break;
-    case CARDID_THIEF:              pCard = new ThiefCard();                break;
-    case CARDID_THRONEROOM:         pCard = new ThroneRoomCard();           break;
-    case CARDID_VILLAGE:            pCard = new VillageCard();              break;
-    case CARDID_WITCH:              pCard = new WitchCard();                break;
-    case CARDID_WOODCUTTER:         pCard = new WoodcutterCard();           break;
-    case CARDID_WORKSHOP:           pCard = new WorkshopCard();             break;
+    case CARDID::ADVENTURER:         pCard = new AdventurerCard();           break;
+    case CARDID::BUREAUCRAT:         pCard = new BureaucratCard();           break;
+    case CARDID::CELLAR:             pCard = new CellarCard();               break;
+    case CARDID::CHAPEL:             pCard = new ChapelCard();               break;
+    case CARDID::CHANCELLOR:         pCard = new ChancellorCard();           break;
+    case CARDID::COUNCILROOM:        pCard = new CouncilRoomCard();          break;
+    case CARDID::FEAST:              pCard = new FeastCard();                break;
+    case CARDID::FESTIVAL:           pCard = new FestivalCard();             break;
+    case CARDID::GARDENS:            pCard = new GardensCard();              break;
+    case CARDID::LABORATORY:         pCard = new LaboratoryCard();           break;
+    case CARDID::LIBRARY:            pCard = new LibraryCard();              break;
+    case CARDID::MARKET:             pCard = new MarketCard();               break;
+    case CARDID::MILITIA:            pCard = new MilitiaCard();              break;
+    case CARDID::MINE:               pCard = new MineCard();                 break;
+    case CARDID::MOAT:               pCard = new MoatCard();                 break;
+    case CARDID::MONEYLENDER:        pCard = new MoneylenderCard();          break;
+    case CARDID::REMODEL:            pCard = new RemodelCard();              break;
+    case CARDID::SMITHY:             pCard = new SmithyCard();               break;
+    case CARDID::SPY:                pCard = new SpyCard();                  break;
+    case CARDID::THIEF:              pCard = new ThiefCard();                break;
+    case CARDID::THRONEROOM:         pCard = new ThroneRoomCard();           break;
+    case CARDID::VILLAGE:            pCard = new VillageCard();              break;
+    case CARDID::WITCH:              pCard = new WitchCard();                break;
+    case CARDID::WOODCUTTER:         pCard = new WoodcutterCard();           break;
+    case CARDID::WORKSHOP:           pCard = new WorkshopCard();             break;
 
     // Intrigue Set Cards
-    case CARDID_BARON:              pCard = new BaronCard();                break;
-    case CARDID_BRIDGE:             pCard = new BridgeCard();               break;
-    case CARDID_CONSPIRATOR:        pCard = new ConspiratorCard();          break;
-    case CARDID_COPPERSMITH:        pCard = new CoppersmithCard();          break;
-    case CARDID_COURTYARD:          pCard = new CourtyardCard();            break;
-    case CARDID_DUKE:               pCard = new DukeCard();                 break;
-    case CARDID_GREATHALL:          pCard = new GreatHallCard();            break;
-    case CARDID_HAREM:              pCard = new HaremCard();                break;
-    case CARDID_IRONWORKS:          pCard = new IronworksCard();            break;
-    case CARDID_MASQUERADE:         pCard = new MasqueradeCard();           break;
-    case CARDID_MININGVILLAGE:      pCard = new MiningVillageCard();        break;
-    case CARDID_MINION:             pCard = new MinionCard();               break;
-    case CARDID_NOBLES:             pCard = new NoblesCard();               break;
-    case CARDID_PAWN:               pCard = new PawnCard();                 break;
-    case CARDID_SABOTEUR:           pCard = new SaboteurCard();             break;
-    case CARDID_SCOUT:              pCard = new ScoutCard();                break;
-    case CARDID_SECRETCHAMBER:      pCard = new SecretChamberCard();        break;
-    case CARDID_SHANTYTOWN:         pCard = new ShantyTownCard();           break;
-    case CARDID_STEWARD:            pCard = new StewardCard();              break;
-    case CARDID_SWINDLER:           pCard = new SwindlerCard();             break;
-    case CARDID_TORTURER:           pCard = new TorturerCard();             break;
-    case CARDID_TRADINGPOST:        pCard = new TradingPostCard();          break;
-    case CARDID_TRIBUTE:            pCard = new TributeCard();              break;
-    case CARDID_UPGRADE:            pCard = new UpgradeCard();              break;
-    case CARDID_WISHINGWELL:        pCard = new WishingWellCard();          break;
+    case CARDID::BARON:              pCard = new BaronCard();                break;
+    case CARDID::BRIDGE:             pCard = new BridgeCard();               break;
+    case CARDID::CONSPIRATOR:        pCard = new ConspiratorCard();          break;
+    case CARDID::COPPERSMITH:        pCard = new CoppersmithCard();          break;
+    case CARDID::COURTYARD:          pCard = new CourtyardCard();            break;
+    case CARDID::DUKE:               pCard = new DukeCard();                 break;
+    case CARDID::GREATHALL:          pCard = new GreatHallCard();            break;
+    case CARDID::HAREM:              pCard = new HaremCard();                break;
+    case CARDID::IRONWORKS:          pCard = new IronworksCard();            break;
+    case CARDID::MASQUERADE:         pCard = new MasqueradeCard();           break;
+    case CARDID::MININGVILLAGE:      pCard = new MiningVillageCard();        break;
+    case CARDID::MINION:             pCard = new MinionCard();               break;
+    case CARDID::NOBLES:             pCard = new NoblesCard();               break;
+    case CARDID::PAWN:               pCard = new PawnCard();                 break;
+    case CARDID::SABOTEUR:           pCard = new SaboteurCard();             break;
+    case CARDID::SCOUT:              pCard = new ScoutCard();                break;
+    case CARDID::SECRETCHAMBER:      pCard = new SecretChamberCard();        break;
+    case CARDID::SHANTYTOWN:         pCard = new ShantyTownCard();           break;
+    case CARDID::STEWARD:            pCard = new StewardCard();              break;
+    case CARDID::SWINDLER:           pCard = new SwindlerCard();             break;
+    case CARDID::TORTURER:           pCard = new TorturerCard();             break;
+    case CARDID::TRADINGPOST:        pCard = new TradingPostCard();          break;
+    case CARDID::TRIBUTE:            pCard = new TributeCard();              break;
+    case CARDID::UPGRADE:            pCard = new UpgradeCard();              break;
+    case CARDID::WISHINGWELL:        pCard = new WishingWellCard();          break;
 
     // Seaside Set Cards
-    case CARDID_AMBASSADOR:         pCard = new AmbassadorCard();           break;
-    case CARDID_BAZAAR:             pCard = new BazaarCard();               break;
-    case CARDID_CARAVAN:            pCard = new CaravanCard();              break;
-    case CARDID_CUTPURSE:           pCard = new CutpurseCard();             break;
-    case CARDID_EMBARGO:            pCard = new EmbargoCard();              break;
-    case CARDID_EXPLORER:           pCard = new ExplorerCard();             break;
-    case CARDID_FISHINGVILLAGE:     pCard = new FishingVillageCard();       break;
-    case CARDID_GHOSTSHIP:          pCard = new GhostShipCard();            break;
-    case CARDID_HAVEN:              pCard = new HavenCard();                break;
-    case CARDID_ISLAND:             pCard = new IslandCard();               break;
-    case CARDID_LIGHTHOUSE:         pCard = new LighthouseCard();           break;
-    case CARDID_LOOKOUT:            pCard = new LookoutCard();              break;
-    case CARDID_MERCHANTSHIP:       pCard = new MerchantShipCard();         break;
-    case CARDID_NATIVEVILLAGE:      pCard = new NativeVillageCard();        break;
-    case CARDID_NAVIGATOR:          pCard = new NavigatorCard();            break;
-    case CARDID_OUTPOST:            pCard = new OutpostCard();              break;
-    case CARDID_PEARLDIVER:         pCard = new PearlDiverCard();           break;
-    case CARDID_PIRATESHIP:         pCard = new PirateShipCard();           break;
-    case CARDID_SALVAGER:           pCard = new SalvagerCard();             break;
-    case CARDID_SEAHAG:             pCard = new SeaHagCard();               break;
-    case CARDID_SMUGGLERS:          pCard = new SmugglersCard();            break;
-    case CARDID_TACTICIAN:          pCard = new TacticianCard();            break;
-    case CARDID_TREASUREMAP:        pCard = new TreasureMapCard();          break;
-    case CARDID_TREASURY:           pCard = new TreasuryCard();             break;
-    case CARDID_WAREHOUSE:          pCard = new WarehouseCard();            break;
-    case CARDID_WHARF:              pCard = new WharfCard();                break;
+    case CARDID::AMBASSADOR:         pCard = new AmbassadorCard();           break;
+    case CARDID::BAZAAR:             pCard = new BazaarCard();               break;
+    case CARDID::CARAVAN:            pCard = new CaravanCard();              break;
+    case CARDID::CUTPURSE:           pCard = new CutpurseCard();             break;
+    case CARDID::EMBARGO:            pCard = new EmbargoCard();              break;
+    case CARDID::EXPLORER:           pCard = new ExplorerCard();             break;
+    case CARDID::FISHINGVILLAGE:     pCard = new FishingVillageCard();       break;
+    case CARDID::GHOSTSHIP:          pCard = new GhostShipCard();            break;
+    case CARDID::HAVEN:              pCard = new HavenCard();                break;
+    case CARDID::ISLAND:             pCard = new IslandCard();               break;
+    case CARDID::LIGHTHOUSE:         pCard = new LighthouseCard();           break;
+    case CARDID::LOOKOUT:            pCard = new LookoutCard();              break;
+    case CARDID::MERCHANTSHIP:       pCard = new MerchantShipCard();         break;
+    case CARDID::NATIVEVILLAGE:      pCard = new NativeVillageCard();        break;
+    case CARDID::NAVIGATOR:          pCard = new NavigatorCard();            break;
+    case CARDID::OUTPOST:            pCard = new OutpostCard();              break;
+    case CARDID::PEARLDIVER:         pCard = new PearlDiverCard();           break;
+    case CARDID::PIRATESHIP:         pCard = new PirateShipCard();           break;
+    case CARDID::SALVAGER:           pCard = new SalvagerCard();             break;
+    case CARDID::SEAHAG:             pCard = new SeaHagCard();               break;
+    case CARDID::SMUGGLERS:          pCard = new SmugglersCard();            break;
+    case CARDID::TACTICIAN:          pCard = new TacticianCard();            break;
+    case CARDID::TREASUREMAP:        pCard = new TreasureMapCard();          break;
+    case CARDID::TREASURY:           pCard = new TreasuryCard();             break;
+    case CARDID::WAREHOUSE:          pCard = new WarehouseCard();            break;
+    case CARDID::WHARF:              pCard = new WharfCard();                break;
 
     // Alchemy Set Cards
-    case CARDID_ALCHEMIST:          pCard = new AlchemistCard();            break;
-    case CARDID_APOTHECARY:         pCard = new ApothecaryCard();           break;
-    case CARDID_APPRENTICE:         pCard = new ApprenticeCard();           break;
-    case CARDID_FAMILIAR:           pCard = new FamiliarCard();             break;
-    case CARDID_GOLEM:              pCard = new GolemCard();                break;
-    case CARDID_HERBALIST:          pCard = new HerbalistCard();            break;
-    case CARDID_PHILOSOPHERSSTONE:  pCard = new PhilosophersStoneCard();    break;
-    case CARDID_POSSESSION:         pCard = new PossessionCard();           break;
-    case CARDID_POTION:             pCard = new PotionCard();               break;
-    case CARDID_SCRYINGPOOL:        pCard = new ScryingPoolCard();          break;
-    case CARDID_TRANSMUTE:          pCard = new TransmuteCard();            break;
-    case CARDID_UNIVERSITY:         pCard = new UniversityCard();           break;
-    case CARDID_VINEYARD:           pCard = new VineyardCard();             break;
+    case CARDID::ALCHEMIST:          pCard = new AlchemistCard();            break;
+    case CARDID::APOTHECARY:         pCard = new ApothecaryCard();           break;
+    case CARDID::APPRENTICE:         pCard = new ApprenticeCard();           break;
+    case CARDID::FAMILIAR:           pCard = new FamiliarCard();             break;
+    case CARDID::GOLEM:              pCard = new GolemCard();                break;
+    case CARDID::HERBALIST:          pCard = new HerbalistCard();            break;
+    case CARDID::PHILOSOPHERSSTONE:  pCard = new PhilosophersStoneCard();    break;
+    case CARDID::POSSESSION:         pCard = new PossessionCard();           break;
+    case CARDID::POTION:             pCard = new PotionCard();               break;
+    case CARDID::SCRYINGPOOL:        pCard = new ScryingPoolCard();          break;
+    case CARDID::TRANSMUTE:          pCard = new TransmuteCard();            break;
+    case CARDID::UNIVERSITY:         pCard = new UniversityCard();           break;
+    case CARDID::VINEYARD:           pCard = new VineyardCard();             break;
 
     // Prosperity Set Cards
-    case CARDID_BANK:               pCard = new BankCard();                 break;
-    case CARDID_BISHOP:             pCard = new BishopCard();               break;
-    case CARDID_CITY:               pCard = new CityCard();                 break;
-    case CARDID_COLONY:             pCard = new ColonyCard();               break;
-    case CARDID_CONTRABAND:         pCard = new ContrabandCard();           break;
-    case CARDID_COUNTINGHOUSE:      pCard = new CountingHouseCard();        break;
-    case CARDID_EXPAND:             pCard = new ExpandCard();               break;
-    case CARDID_FORGE:              pCard = new ForgeCard();                break;
-    case CARDID_GOONS:              pCard = new GoonsCard();                break;
-    case CARDID_GRANDMARKET:        pCard = new GrandMarketCard();          break;
-    case CARDID_HOARD:              pCard = new HoardCard();                break;
-    case CARDID_KINGSCOURT:         pCard = new KingsCourtCard();           break;
-    case CARDID_LOAN:               pCard = new LoanCard();                 break;
-    case CARDID_MINT:               pCard = new MintCard();                 break;
-    case CARDID_MONUMENT:           pCard = new MonumentCard();             break;
-    case CARDID_MOUNTEBANK:         pCard = new MountebankCard();           break;
-    case CARDID_PEDDLER:            pCard = new PeddlerCard();              break;
-    case CARDID_PLATINUM:           pCard = new PlatinumCard();             break;
-    case CARDID_QUARRY:             pCard = new QuarryCard();               break;
-    case CARDID_RABBLE:             pCard = new RabbleCard();               break;
-    case CARDID_ROYALSEAL:          pCard = new RoyalSealCard();            break;
-    case CARDID_TALISMAN:           pCard = new TalismanCard();             break;
-    case CARDID_TRADEROUTE:         pCard = new TradeRouteCard();           break;
-    case CARDID_VAULT:              pCard = new VaultCard();                break;
-    case CARDID_VENTURE:            pCard = new VentureCard();              break;
-    case CARDID_WATCHTOWER:         pCard = new WatchtowerCard();           break;
-    case CARDID_WORKERSVILLAGE:     pCard = new WorkersVillageCard();       break;
+    case CARDID::BANK:               pCard = new BankCard();                 break;
+    case CARDID::BISHOP:             pCard = new BishopCard();               break;
+    case CARDID::CITY:               pCard = new CityCard();                 break;
+    case CARDID::COLONY:             pCard = new ColonyCard();               break;
+    case CARDID::CONTRABAND:         pCard = new ContrabandCard();           break;
+    case CARDID::COUNTINGHOUSE:      pCard = new CountingHouseCard();        break;
+    case CARDID::EXPAND:             pCard = new ExpandCard();               break;
+    case CARDID::FORGE:              pCard = new ForgeCard();                break;
+    case CARDID::GOONS:              pCard = new GoonsCard();                break;
+    case CARDID::GRANDMARKET:        pCard = new GrandMarketCard();          break;
+    case CARDID::HOARD:              pCard = new HoardCard();                break;
+    case CARDID::KINGSCOURT:         pCard = new KingsCourtCard();           break;
+    case CARDID::LOAN:               pCard = new LoanCard();                 break;
+    case CARDID::MINT:               pCard = new MintCard();                 break;
+    case CARDID::MONUMENT:           pCard = new MonumentCard();             break;
+    case CARDID::MOUNTEBANK:         pCard = new MountebankCard();           break;
+    case CARDID::PEDDLER:            pCard = new PeddlerCard();              break;
+    case CARDID::PLATINUM:           pCard = new PlatinumCard();             break;
+    case CARDID::QUARRY:             pCard = new QuarryCard();               break;
+    case CARDID::RABBLE:             pCard = new RabbleCard();               break;
+    case CARDID::ROYALSEAL:          pCard = new RoyalSealCard();            break;
+    case CARDID::TALISMAN:           pCard = new TalismanCard();             break;
+    case CARDID::TRADEROUTE:         pCard = new TradeRouteCard();           break;
+    case CARDID::VAULT:              pCard = new VaultCard();                break;
+    case CARDID::VENTURE:            pCard = new VentureCard();              break;
+    case CARDID::WATCHTOWER:         pCard = new WatchtowerCard();           break;
+    case CARDID::WORKERSVILLAGE:     pCard = new WorkersVillageCard();       break;
 
     // Invalid cases
-    case CARDID_UNKNOWN:
-    case CARDID_NULL:
+    case CARDID::UNKNOWN:
+    case CARDID::NULLCARD:
     default:
         // TODO: report error
         throw std::wstring( L"Error: Card::CardDeck::CreateCard" );

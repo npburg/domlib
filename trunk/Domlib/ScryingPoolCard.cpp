@@ -7,8 +7,8 @@ namespace Domlib
 ScryingPoolCard::ScryingPoolCard( void )
     : Card( 
         L"Scrying Pool",
-        CARDID_SCRYINGPOOL,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::SCRYINGPOOL,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 1 ) )
@@ -25,7 +25,7 @@ void ScryingPoolCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PlusActions( 1 );
 
-    Attack( pEngine, ATTACK_ALL );
+    Attack( pEngine, AttackWhom::ALL );
 
     CardList revealedCardList;
     Card* pRevealedCard;
@@ -58,10 +58,10 @@ void ScryingPoolCard::OnAttack( Engine* pEngine, Player* pPlayer )
     
     switch( scryingPoolOpt )
     {
-    case SCRYINGPOOL_DISCARD_CARD:
+    case ScryingPoolOpt::DISCARD_CARD:
         pPlayer->PutCardInDiscard( pCard );
         break;
-    case SCRYINGPOOL_PUT_BACK_CARD:
+    case ScryingPoolOpt::PUT_BACK_CARD:
         pPlayer->PutCardOnDraw( pCard );
         break;
     default:

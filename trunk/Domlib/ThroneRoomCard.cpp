@@ -7,8 +7,8 @@ namespace Domlib
 ThroneRoomCard::ThroneRoomCard( void )
     : Card( 
         L"ThroneRoom",
-        CARDID_THRONEROOM,
-        CARDTYPE_ACTION,
+        CARDID::THRONEROOM,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 LighthouseCard::LighthouseCard( void )
     : Card( 
         L"Lighthouse",
-        CARDID_LIGHTHOUSE,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::LIGHTHOUSE,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

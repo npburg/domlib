@@ -7,8 +7,8 @@ namespace Domlib
 ContrabandCard::ContrabandCard(void)
     : Card( 
         L"Contraband",
-        CARDID_CONTRABAND,
-        CARDTYPE_TREASURE,
+        CARDID::CONTRABAND,
+        CARDTYPE::TREASURE,
         3,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 GoldCard::GoldCard( void )
     : Card( 
         L"Gold",
-        CARDID_GOLD,
-        CARDTYPE_TREASURE,
+        CARDID::GOLD,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 3, 0 ),
         Treasure( 6, 0 ) )

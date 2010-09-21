@@ -7,8 +7,8 @@ namespace Domlib
 MerchantShipCard::MerchantShipCard( void )
     : Card( 
         L"Merchant Ship",
-        CARDID_MERCHANTSHIP,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::MERCHANTSHIP,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

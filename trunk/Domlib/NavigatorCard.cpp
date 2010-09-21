@@ -7,8 +7,8 @@ namespace Domlib
 NavigatorCard::NavigatorCard( void )
     : Card( 
         L"Navigator",
-        CARDID_NAVIGATOR,
-        CARDTYPE_ACTION,
+        CARDID::NAVIGATOR,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

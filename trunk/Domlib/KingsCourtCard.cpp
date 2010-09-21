@@ -7,8 +7,8 @@ namespace Domlib
 KingsCourtCard::KingsCourtCard(void)
     : Card( 
         L"King's Court",
-        CARDID_KINGSCOURT,
-        CARDTYPE_ACTION,
+        CARDID::KINGSCOURT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 7, 0 ) )

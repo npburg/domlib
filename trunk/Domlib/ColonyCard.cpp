@@ -7,8 +7,8 @@ namespace Domlib
 ColonyCard::ColonyCard(void)
     : Card( 
         L"Colony",
-        CARDID_COLONY,
-        CARDTYPE_VICTORY,
+        CARDID::COLONY,
+        CARDTYPE::VICTORY,
         10,
         Treasure( 0, 0 ),
         Treasure( 11, 0 ) )

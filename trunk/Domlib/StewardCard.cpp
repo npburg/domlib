@@ -7,8 +7,8 @@ namespace Domlib
 StewardCard::StewardCard( void )
     : Card( 
         L"Steward",
-        CARDID_STEWARD,
-        CARDTYPE_ACTION,
+        CARDID::STEWARD,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -27,13 +27,13 @@ void StewardCard::OnActionPhase( Engine* pEngine )
 
     switch( stewardOpt )
     {
-    case STEWARD_PLUS_2_CARDS:
+    case StewardOpt::PLUS_2_CARDS:
         pPlayer->DrawCardsToHand( 2 );
         break;
-    case STEWARD_PLUS_2_COINS:
+    case StewardOpt::PLUS_2_COINS:
         pPlayer->PlusCoins( 2 );
         break;
-    case STEWARD_TRASH_2_CARDS:
+    case StewardOpt::TRASH_2_CARDS:
         {
             CardList cardsToTrash = pAI->OnStewardTrash();
             if( cardsToTrash.size() == 2 &&

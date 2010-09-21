@@ -7,8 +7,8 @@ namespace Domlib
 TalismanCard::TalismanCard(void)
     : Card( 
         L"Talisman",
-        CARDID_TALISMAN,
-        CARDTYPE_TREASURE,
+        CARDID::TALISMAN,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 1, 0 ),
         Treasure( 4, 0 ) )

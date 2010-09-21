@@ -7,8 +7,8 @@ namespace Domlib
 ApothecaryCard::ApothecaryCard( void )
     : Card( 
         L"Apothecary",
-        CARDID_APOTHECARY,
-        CARDTYPE_ACTION,
+        CARDID::APOTHECARY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 1 ) )
@@ -37,8 +37,8 @@ void ApothecaryCard::OnActionPhase( Engine* pEngine )
     {
         Card* pCardInList = *cardIter;
 
-        if( pCardInList->CardId() == CARDID_COPPER ||
-            pCardInList->CardId() == CARDID_POTION )
+        if( pCardInList->CardId() == CARDID::COPPER ||
+            pCardInList->CardId() == CARDID::POTION )
         {
             pPlayer->PutCardInHand( pCardInList );
             revealedCardList.erase( cardIter );

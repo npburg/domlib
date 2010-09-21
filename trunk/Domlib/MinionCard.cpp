@@ -7,8 +7,8 @@ namespace Domlib
 MinionCard::MinionCard( void )
     : Card( 
         L"Minion",
-        CARDID_MINION,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::MINION,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -29,15 +29,15 @@ void MinionCard::OnActionPhase( Engine* pEngine )
     MinionOpt minionOpt = pAI->OnMinion();
     switch( minionOpt )
     {
-    case MINION_PLUS_2_COINS:
+    case MinionOpt::PLUS_2_COINS:
         pPlayer->PlusCoins( 2 );
         break;
-    case MINION_DISCARD_HAND:
+    case MinionOpt::DISCARD_HAND:
         {
         pPlayer->DiscardHand();
         pPlayer->DrawCardsToHand( 4 );
 
-        Attack( pEngine, ATTACK_OTHERS );
+        Attack( pEngine, AttackWhom::OTHERS );
         break;
         }
     default:

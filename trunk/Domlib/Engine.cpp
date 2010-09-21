@@ -170,7 +170,7 @@ void Engine::PutCardInSupply( Card* pCard )
 Card* Engine::GetAmbassadorCard( void )
 {
     DOMLIB_NOT_IMPLEMENTED;
-    return Card::GetCard( CARDID_NULL );
+    return Card::GetCard( CARDID::NULLCARD );
 }
 
 } // namespace Domlib

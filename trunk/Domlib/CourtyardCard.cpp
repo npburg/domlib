@@ -7,8 +7,8 @@ namespace Domlib
 CourtyardCard::CourtyardCard( void )
     : Card( 
         L"Courtyard",
-        CARDID_COURTYARD,
-        CARDTYPE_ACTION,
+        CARDID::COURTYARD,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

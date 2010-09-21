@@ -7,8 +7,8 @@ namespace Domlib
 SmugglersCard::SmugglersCard( void )
     : Card( 
         L"Smugglers",
-        CARDID_SMUGGLERS,
-        CARDTYPE_ACTION,
+        CARDID::SMUGGLERS,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

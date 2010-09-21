@@ -7,8 +7,8 @@ namespace Domlib
 ScoutCard::ScoutCard( void )
     : Card( 
         L"Scout",
-        CARDID_SCOUT,
-        CARDTYPE_ACTION,
+        CARDID::SCOUT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

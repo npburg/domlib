@@ -7,8 +7,8 @@ namespace Domlib
 BureaucratCard::BureaucratCard( void )
     : Card( 
         L"Bureaucrat",
-        CARDID_BUREAUCRAT,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::BUREAUCRAT,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -23,8 +23,8 @@ void BureaucratCard::OnActionPhase( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
-    pPlayer->GainCardOnDeck( CARDID_SILVER );
-    Attack( pEngine, ATTACK_OTHERS );
+    pPlayer->GainCardOnDeck( CARDID::SILVER );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void BureaucratCard::OnAttack( Engine* pEngine, Player* pPlayer )
