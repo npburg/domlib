@@ -26,7 +26,7 @@ void BaronCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PlusBuys( 1 );
     BaronOpt baronOpt = pAI->OnBaron();
-    switch( baronOpt.underlying() )
+    switch( baronOpt )
     {
     case BaronOpt::DISCARD_ESTATE:
         pPlayer->PlusCoins( 4 ) ;

@@ -27,7 +27,7 @@ void ChancellorCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PlusCoins( 2 );
     chancellorOpt = pAI->OnChancellor();
-    switch( chancellorOpt.underlying() )
+    switch( chancellorOpt )
     {
     case ChancellorOpt::DISCARD_DRAW_DECK:
         pPlayer->DiscardDrawPile();

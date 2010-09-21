@@ -25,7 +25,7 @@ void NoblesCard::OnActionPhase( Engine* pEngine )
     IAI* pAI = pPlayer->GetAI();
     NoblesOpt noblesOpt = pAI->OnNobles();
 
-    switch( noblesOpt.underlying() )
+    switch( noblesOpt )
     {
     case NoblesOpt::PLUS_3_CARDS:
         pPlayer->DrawCardsToHand( 3 );

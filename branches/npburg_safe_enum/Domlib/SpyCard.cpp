@@ -44,7 +44,7 @@ void SpyCard::OnAttack( Engine* pEngine, Player* pPlayer )
         spyOpt = pAttackingAi->OnSpyOther( pCard );
     }
     
-    switch( spyOpt.underlying() )
+    switch( spyOpt )
     {
     case SpyOpt::DISCARD_CARD:
         pPlayer->PutCardInDiscard( pCard );

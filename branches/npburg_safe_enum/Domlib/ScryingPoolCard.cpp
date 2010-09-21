@@ -56,7 +56,7 @@ void ScryingPoolCard::OnAttack( Engine* pEngine, Player* pPlayer )
         scryingPoolOpt = pAttackingAi->OnScryingPoolOther( pCard );
     }
     
-    switch( scryingPoolOpt.underlying() )
+    switch( scryingPoolOpt )
     {
     case ScryingPoolOpt::DISCARD_CARD:
         pPlayer->PutCardInDiscard( pCard );

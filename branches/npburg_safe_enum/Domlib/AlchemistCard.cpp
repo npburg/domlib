@@ -36,7 +36,7 @@ void AlchemistCard::OnCleanUpPhase( Engine* pEngine )
     {
         AlchemistOpt alchemistOpt = pAI->OnAlchemist();
         
-        switch( alchemistOpt.underlying() )
+        switch( alchemistOpt )
         {
         case AlchemistOpt::DISCARD:
             // Do nothing, the card will be cleaned up as normal.
