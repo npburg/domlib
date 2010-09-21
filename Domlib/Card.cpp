@@ -143,7 +143,7 @@ bool Card::InList( Engine* pEngine, CardList cardList ) const
 
 bool Card::IsActionCard( void ) const
 {
-    switch( m_CardType.underlying() )
+    switch( m_CardType )
     {
     case CARDTYPE::ACTION:
     case CARDTYPE::ACTION_ATTACK:
@@ -173,7 +173,7 @@ bool Card::IsDurationCard( void ) const
 
 bool Card::IsTreasureCard( void ) const
 {
-    switch( m_CardType.underlying() )
+    switch( m_CardType )
     {
     case CARDTYPE::TREASURE:
     case CARDTYPE::TREASURE_VICTORY:
@@ -185,7 +185,7 @@ bool Card::IsTreasureCard( void ) const
 
 bool Card::IsVictoryCard( void ) const
 {
-    switch( m_CardType.underlying() )
+    switch( m_CardType )
     {
     case CARDTYPE::VICTORY:
     case CARDTYPE::TREASURE_VICTORY:

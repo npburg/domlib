@@ -27,7 +27,7 @@ void PawnCard::OnActionPhase( Engine* pEngine )
 
     if( pawnOptPair.first != pawnOptPair.second )
     {
-        switch( pawnOptPair.first.underlying() )
+        switch( pawnOptPair.first )
         {
         case PawnOpt::PLUS_1_CARD:
             pPlayer->DrawCardsToHand( 1 );
@@ -47,7 +47,7 @@ void PawnCard::OnActionPhase( Engine* pEngine )
             break;
         }
 
-        switch( pawnOptPair.second.underlying() )
+        switch( pawnOptPair.second )
         {
         case PawnOpt::PLUS_1_CARD:
             pPlayer->DrawCardsToHand( 1 );

@@ -90,7 +90,7 @@ void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
     
     ThiefOpt thiefOpt = 
         pAttackingAi->OnThiefGain( pCardToTrash );
-    switch( thiefOpt.underlying() )
+    switch( thiefOpt )
     {
     case ThiefOpt::STEAL_TREASURE_CARD:
         pAttackingPlayer->PutCardInDiscard( pCardToTrash );

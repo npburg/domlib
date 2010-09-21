@@ -28,7 +28,7 @@ void MiningVillageCard::OnActionPhase( Engine* pEngine )
     pPlayer->PlusActions( 2 );
 
     MiningVillageOpt miningVillageOpt = pAI->OnMiningVillage();
-    switch( miningVillageOpt.underlying() )
+    switch( miningVillageOpt )
     {
     case MiningVillageOpt::DO_NOT_TRASH_CARD:
         // do nothing

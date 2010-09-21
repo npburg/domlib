@@ -27,7 +27,7 @@ void ExplorerCard::OnActionPhase( Engine* pEngine )
     if( pPlayer->IsCardInHand( CARDID::PROVINCE ) )
     {
         ExplorerOpt explorerOpt = pAI->OnExplorer();
-        switch( explorerOpt.underlying() )
+        switch( explorerOpt )
         {
         case Domlib::ExplorerOpt::REVEAL_PROVINCE:
             // TODO: reveal province

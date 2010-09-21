@@ -33,14 +33,7 @@ public:
     safe_enum( void ) {}
     safe_enum( type v ) : val( v ) {}
 
-    inner underlying( void ) const { return val; }
-    
-    bool operator == (const safe_enum &s) const { return this->val == s.val; }
-    bool operator != (const safe_enum &s) const { return this->val != s.val; }
-    bool operator <  (const safe_enum &s) const { return this->val <  s.val; }
-    bool operator <= (const safe_enum &s) const { return this->val <= s.val; }
-    bool operator >  (const safe_enum &s) const { return this->val >  s.val; }
-    bool operator >= (const safe_enum &s) const { return this->val >= s.val; }
+    operator int( void ) const { return (int) this->val; }
 };
 
 

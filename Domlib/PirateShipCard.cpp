@@ -25,7 +25,7 @@ void PirateShipCard::OnActionPhase( Engine* pEngine )
     IAI* pAI = pPlayer->GetAI();
     PirateShipOpt pirateShipOpt = pAI->OnPirateShip();
     
-    switch( pirateShipOpt.underlying() )
+    switch( pirateShipOpt )
     {
     case PirateShipOpt::ATTACK:
     {

@@ -31,7 +31,7 @@ void LibraryCard::OnActionPhase( Engine* pEngine )
         if( pRevealedCard->IsActionCard() )
         {
             LibraryOpt libraryOpt = pAI->OnLibrary( pRevealedCard );
-            switch( libraryOpt.underlying() )
+            switch( libraryOpt )
             {
             case LibraryOpt::DISCARD_ACTION_CARD:
                 revealedCardList.push_back( pRevealedCard );

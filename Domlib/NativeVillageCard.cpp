@@ -27,7 +27,7 @@ void NativeVillageCard::OnActionPhase( Engine* pEngine )
     pPlayer->PlusActions( 2 );
     NativeVillageOpt nativeVillageOpt = pAI->OnNativeVillage();
     
-    switch( nativeVillageOpt.underlying() )
+    switch( nativeVillageOpt )
     {
     case NativeVillageOpt::DRAW_CARDS:
         pPlayer->DrawCardsFromNativeVillage();

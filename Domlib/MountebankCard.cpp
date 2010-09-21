@@ -35,7 +35,7 @@ void MountebankCard::OnAttack( Engine* pEngine, Player* pPlayer )
         IAI* pAI = pPlayer->GetAI();
         MountebankOpt mountebankOpt = pAI->OnMountebank();
         
-        switch( mountebankOpt.underlying() )
+        switch( mountebankOpt )
         {
         case Domlib::MountebankOpt::DISCARD_CURSE:
             pPlayer->DiscardFromHand( CARDID::CURSE );

@@ -27,7 +27,7 @@ void MinionCard::OnActionPhase( Engine* pEngine )
     pPlayer->PlusActions( 1 );
 
     MinionOpt minionOpt = pAI->OnMinion();
-    switch( minionOpt.underlying() )
+    switch( minionOpt )
     {
     case MinionOpt::PLUS_2_COINS:
         pPlayer->PlusCoins( 2 );

@@ -37,7 +37,7 @@ void TreasuryCard::OnCleanUpPhase( Engine* pEngine )
     {
         TreasuryOpt treasuryOpt = pAI->OnTreasury();
         
-        switch( treasuryOpt.underlying() )
+        switch( treasuryOpt )
         {
         case Domlib::TreasuryOpt::DISCARD:
             // Do nothing

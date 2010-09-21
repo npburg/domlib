@@ -25,7 +25,7 @@ void StewardCard::OnActionPhase( Engine* pEngine )
     IAI* pAI = pPlayer->GetAI();
     StewardOpt stewardOpt = pAI->OnSteward();
 
-    switch( stewardOpt.underlying() )
+    switch( stewardOpt )
     {
     case StewardOpt::PLUS_2_CARDS:
         pPlayer->DrawCardsToHand( 2 );

@@ -30,7 +30,7 @@ void PearlDiverCard::OnActionPhase( Engine* pEngine )
     Card* pCard = pPlayer->SetAsideCardFromUnderDraw();
     PearlDiverOpt pearlDiverOpt = pAI->OnPearlDiver( pCard );
     
-    switch( pearlDiverOpt.underlying() )
+    switch( pearlDiverOpt )
     {
     case Domlib::PearlDiverOpt::TOP_OF_DRAWPILE:
         pPlayer->PutCardOnDraw( pCard );

@@ -33,7 +33,7 @@ Treasure LoanCard::OnTreasurePhase( Engine* pEngine )
             IAI* pAI = pPlayer->GetAI();
             LoanOpt loanOpt = pAI->OnLoan( pRevealedCard );
             
-            switch( loanOpt.underlying() )
+            switch( loanOpt )
             {
             case LoanOpt::DISCARD_CARD:
                 revealedCardList.push_back( pRevealedCard );

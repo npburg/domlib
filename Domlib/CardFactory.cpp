@@ -200,7 +200,7 @@ Card* Card::CardFactory::CreateCard( CARDID cardId )
     // TODO: Add code to instantiate requrested card.
     Card* pCard = m_pNullCard;
 
-    switch( cardId.underlying() )
+    switch( cardId )
     {
     // Common Cards
     case CARDID::COPPER:             pCard = new CopperCard();               break;
