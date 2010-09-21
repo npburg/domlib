@@ -7,8 +7,8 @@ namespace Domlib
 TributeCard::TributeCard( void )
     : Card( 
         L"Tribute",
-        CARDID_TRIBUTE,
-        CARDTYPE_ACTION,
+        CARDID::TRIBUTE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

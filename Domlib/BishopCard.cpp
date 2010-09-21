@@ -7,8 +7,8 @@ namespace Domlib
 BishopCard::BishopCard(void)
     : Card( 
         L"Bishop",
-        CARDID_BISHOP,
-        CARDTYPE_ACTION,
+        CARDID::BISHOP,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 SaboteurCard::SaboteurCard( void )
     : Card( 
         L"Saboteur",
-        CARDID_SABOTEUR,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::SABOTEUR,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -21,7 +21,7 @@ SaboteurCard::~SaboteurCard( void )
 
 void SaboteurCard::OnActionPhase( Engine* pEngine )
 {
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void SaboteurCard::OnAttack( Engine* pEngine, Player* pPlayer )

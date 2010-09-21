@@ -7,8 +7,8 @@ namespace Domlib
 ProvinceCard::ProvinceCard( void )
     : Card( 
         L"Province",
-        CARDID_PROVINCE,
-        CARDTYPE_VICTORY,
+        CARDID::PROVINCE,
+        CARDTYPE::VICTORY,
         6,
         Treasure( 8, 0 ),
         Treasure( 0, 0 ) )

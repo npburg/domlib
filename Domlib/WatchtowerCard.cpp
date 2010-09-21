@@ -7,8 +7,8 @@ namespace Domlib
 WatchtowerCard::WatchtowerCard(void)
     : Card( 
         L"Watchtower",
-        CARDID_WATCHTOWER,
-        CARDTYPE_ACTION_REACTION,
+        CARDID::WATCHTOWER,
+        CARDTYPE::ACTION_REACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

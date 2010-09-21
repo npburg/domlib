@@ -7,8 +7,8 @@ namespace Domlib
 ShantyTownCard::ShantyTownCard( void )
     : Card( 
         L"Shanty Town",
-        CARDID_SHANTYTOWN,
-        CARDTYPE_ACTION,
+        CARDID::SHANTYTOWN,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -25,7 +25,7 @@ void ShantyTownCard::OnActionPhase( Engine* pEngine )
 
     pPlayer->PlusActions( 2 );
     pPlayer->RevealHand();
-    if( pPlayer->GetCardCountInHandType( CARDTYPE_ACTION ) == 0 )
+    if( pPlayer->GetCardCountInHandType( CARDTYPE::ACTION ) == 0 )
     {
         pPlayer->DrawCardsToHand( 2 );
     }

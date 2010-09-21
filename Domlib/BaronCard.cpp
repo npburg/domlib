@@ -7,8 +7,8 @@ namespace Domlib
 BaronCard::BaronCard( void )
     : Card( 
         L"Baron",
-        CARDID_BARON,
-        CARDTYPE_ACTION,
+        CARDID::BARON,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -28,11 +28,11 @@ void BaronCard::OnActionPhase( Engine* pEngine )
     BaronOpt baronOpt = pAI->OnBaron();
     switch( baronOpt )
     {
-    case BARON_DISCARD_ESTATE:
+    case BaronOpt::DISCARD_ESTATE:
         pPlayer->PlusCoins( 4 ) ;
         break;
-    case BARON_DO_NOT_DISCARD_ESTATE:
-        pPlayer->GainCardOnDeck( CARDID_ESTATE );
+    case BaronOpt::DO_NOT_DISCARD_ESTATE:
+        pPlayer->GainCardOnDeck( CARDID::ESTATE );
         break;
     default:
         // TODO: report error

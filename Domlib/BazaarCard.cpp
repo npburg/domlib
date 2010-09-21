@@ -7,8 +7,8 @@ namespace Domlib
 BazaarCard::BazaarCard( void )
     : Card( 
         L"Bazaar",
-        CARDID_BAZAAR,
-        CARDTYPE_ACTION,
+        CARDID::BAZAAR,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

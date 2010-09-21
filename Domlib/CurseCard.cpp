@@ -7,8 +7,8 @@ namespace Domlib
 CurseCard::CurseCard( void )
     : Card( 
         L"Curse",
-        CARDID_CURSE,
-        CARDTYPE_CURSE,
+        CARDID::CURSE,
+        CARDTYPE::CURSE,
         -1,
         Treasure( 0, 0 ),
         Treasure( 0, 0 ) )

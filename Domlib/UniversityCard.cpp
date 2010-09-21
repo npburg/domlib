@@ -7,8 +7,8 @@ namespace Domlib
 UniversityCard::UniversityCard( void )
     : Card( 
         L"University",
-        CARDID_UNIVERSITY,
-        CARDTYPE_ACTION,
+        CARDID::UNIVERSITY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 1 ) )

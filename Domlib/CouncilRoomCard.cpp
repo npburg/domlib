@@ -7,8 +7,8 @@ namespace Domlib
 CouncilRoomCard::CouncilRoomCard( void )
     : Card( 
         L"Council Room",
-        CARDID_COUNCILROOM,
-        CARDTYPE_ACTION,
+        CARDID::COUNCILROOM,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

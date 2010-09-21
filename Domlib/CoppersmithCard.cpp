@@ -7,8 +7,8 @@ namespace Domlib
 CoppersmithCard::CoppersmithCard( void )
     : Card( 
         L"Coppersmith",
-        CARDID_COPPERSMITH,
-        CARDTYPE_ACTION,
+        CARDID::COPPERSMITH,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

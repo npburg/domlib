@@ -1,9 +1,8 @@
 #pragma once
+#include "Domlib.h"
 
 namespace Domlib
 {
-
-enum CARDID;
 
 class SupplyPile
 {

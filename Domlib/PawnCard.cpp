@@ -7,8 +7,8 @@ namespace Domlib
 PawnCard::PawnCard( void )
     : Card( 
         L"Pawn",
-        CARDID_PAWN,
-        CARDTYPE_ACTION,
+        CARDID::PAWN,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )
@@ -29,16 +29,16 @@ void PawnCard::OnActionPhase( Engine* pEngine )
     {
         switch( pawnOptPair.first )
         {
-        case PAWN_PLUS_1_CARD:
+        case PawnOpt::PLUS_1_CARD:
             pPlayer->DrawCardsToHand( 1 );
             break;
-        case PAWN_PLUS_1_ACTION:
+        case PawnOpt::PLUS_1_ACTION:
             pPlayer->PlusActions( 1 );
             break;        
-        case PAWN_PLUS_1_BUY:
+        case PawnOpt::PLUS_1_BUY:
             pPlayer->PlusBuys( 1 );
             break;
-        case PAWN_PLUS_1_COIN:
+        case PawnOpt::PLUS_1_COIN:
             pPlayer->PlusCoins( 1 );
             break;
         default:
@@ -49,16 +49,16 @@ void PawnCard::OnActionPhase( Engine* pEngine )
 
         switch( pawnOptPair.second )
         {
-        case PAWN_PLUS_1_CARD:
+        case PawnOpt::PLUS_1_CARD:
             pPlayer->DrawCardsToHand( 1 );
             break;
-        case PAWN_PLUS_1_ACTION:
+        case PawnOpt::PLUS_1_ACTION:
             pPlayer->PlusActions( 1 );
             break;        
-        case PAWN_PLUS_1_BUY:
+        case PawnOpt::PLUS_1_BUY:
             pPlayer->PlusBuys( 1 );
             break;
-        case PAWN_PLUS_1_COIN:
+        case PawnOpt::PLUS_1_COIN:
             pPlayer->PlusCoins( 1 );
             break;
         default:

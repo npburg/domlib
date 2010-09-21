@@ -7,8 +7,8 @@ namespace Domlib
 TreasuryCard::TreasuryCard( void )
     : Card( 
         L"Treasury",
-        CARDID_TREASURY,
-        CARDTYPE_ACTION,
+        CARDID::TREASURY,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -33,16 +33,16 @@ void TreasuryCard::OnCleanUpPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
     IAI* pAI = pPlayer->GetAI();
 
-    if( pPlayer->IsCardInBuyList( CARDTYPE_VICTORY ) )
+    if( pPlayer->IsCardInBuyList( CARDTYPE::VICTORY ) )
     {
         TreasuryOpt treasuryOpt = pAI->OnTreasury();
         
         switch( treasuryOpt )
         {
-        case Domlib::TREASURY_DISCARD:
+        case Domlib::TreasuryOpt::DISCARD:
             // Do nothing
             break;
-        case Domlib::TREASURY_PUT_BACK:
+        case Domlib::TreasuryOpt::PUT_BACK:
             pPlayer->TakeCardFromInPlay( this );
             pPlayer->PutCardOnDraw( this );
             break;

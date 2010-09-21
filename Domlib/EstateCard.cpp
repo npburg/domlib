@@ -7,8 +7,8 @@ namespace Domlib
 EstateCard::EstateCard( void )
     : Card( 
         L"Estate",
-        CARDID_ESTATE,
-        CARDTYPE_VICTORY,
+        CARDID::ESTATE,
+        CARDTYPE::VICTORY,
         1,
         Treasure( 2, 0 ),
         Treasure( 0, 0 ) )

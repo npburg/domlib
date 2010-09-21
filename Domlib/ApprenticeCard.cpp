@@ -7,8 +7,8 @@ namespace Domlib
 ApprenticeCard::ApprenticeCard( void )
     : Card( 
         L"Apprentice",
-        CARDID_APPRENTICE,
-        CARDTYPE_ACTION,
+        CARDID::APPRENTICE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

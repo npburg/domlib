@@ -7,8 +7,8 @@ namespace Domlib
 DuchyCard::DuchyCard( void )
     : Card( 
         L"Duchy",
-        CARDID_DUCHY,
-        CARDTYPE_VICTORY,
+        CARDID::DUCHY,
+        CARDTYPE::VICTORY,
         3,
         Treasure( 5, 0 ),
         Treasure( 0, 0 ) )

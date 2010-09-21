@@ -7,8 +7,8 @@ namespace Domlib
 GhostShipCard::GhostShipCard( void )
     : Card( 
         L"Ghost Ship",
-        CARDID_GHOSTSHIP,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::GHOSTSHIP,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -25,7 +25,7 @@ void GhostShipCard::OnActionPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
  
     pPlayer->DrawCardsToHand( 2 );
-    Attack( pEngine, ATTACK_OTHERS );   
+    Attack( pEngine, AttackWhom::OTHERS );   
 }
 
 

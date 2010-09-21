@@ -7,8 +7,8 @@ namespace Domlib
 PlatinumCard::PlatinumCard(void)
     : Card( 
         L"Platinum",
-        CARDID_PLATINUM,
-        CARDTYPE_VICTORY,
+        CARDID::PLATINUM,
+        CARDTYPE::VICTORY,
         10,
         Treasure( 0, 0 ),
         Treasure( 11, 0 ) )

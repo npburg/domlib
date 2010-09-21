@@ -7,8 +7,8 @@ namespace Domlib
 SilverCard::SilverCard( void )
     : Card( 
         L"Silver",
-        CARDID_SILVER,
-        CARDTYPE_TREASURE,
+        CARDID::SILVER,
+        CARDTYPE::TREASURE,
         0,
         Treasure( 2, 0 ),
         Treasure( 3, 0 ) )

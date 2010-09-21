@@ -7,8 +7,8 @@ namespace Domlib
 MilitiaCard::MilitiaCard( void )
     : Card( 
         L"Militia",
-        CARDID_MILITIA,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::MILITIA,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -24,7 +24,7 @@ void MilitiaCard::OnActionPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
 
     pPlayer->PlusCoins( 2 );
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
     
 void MilitiaCard::OnAttack( Engine* pEngine, Player* pPlayer )

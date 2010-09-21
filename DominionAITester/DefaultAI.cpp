@@ -13,31 +13,31 @@ DefaultAI::~DefaultAI( void )
 
 Domlib::ICard* DefaultAI::PlayAction( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::PlayTreasure( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::BuyCard( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnAttack( Domlib::ICard* pAttackCard )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnGainACard( const Domlib::ITreasure* cost )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -50,7 +50,7 @@ Domlib::ICard* DefaultAI::OnGainACardExactly( const Domlib::ITreasure* cost )
         return (*cardList.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -62,13 +62,13 @@ Domlib::ICardList DefaultAI::OnReturnToDrawPile( Domlib::ICardList cardList )
 
 Domlib::ICard* DefaultAI::OnTrashCardFromHand( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnBureaucrat( void )
 {
-    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_VICTORY ) )
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE::VICTORY ) )
     {
         Domlib::ICardList hand = m_pPlayer->GetHand();
         
@@ -83,7 +83,7 @@ Domlib::ICard* DefaultAI::OnBureaucrat( void )
         }
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -97,7 +97,7 @@ Domlib::ICardList DefaultAI::OnCellar( void )
 
 Domlib::ChancellorOpt DefaultAI::OnChancellor( void )
 {
-    return Domlib::CHANCELLOR_NO_OP;
+    return Domlib::ChancellorOpt::NO_OP;
 }
 
 
@@ -111,7 +111,7 @@ Domlib::ICardList DefaultAI::OnChapel( void )
 
 Domlib::LibraryOpt DefaultAI::OnLibrary( Domlib::ICard* pCard )
 {
-    return Domlib::LIBRARY_DISCARD_ACTION_CARD;
+    return Domlib::LibraryOpt::DISCARD_ACTION_CARD;
 }
 
 
@@ -142,7 +142,7 @@ Domlib::ICardList DefaultAI::OnMilitia( void )
 
 Domlib::ICard* DefaultAI::OnMineTrash( void )
 {
-    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_TREASURE ) )
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE::TREASURE ) )
     {
         Domlib::ICardList hand = m_pPlayer->GetHand();
         
@@ -157,37 +157,37 @@ Domlib::ICard* DefaultAI::OnMineTrash( void )
         }
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnMineGain( const Domlib::ITreasure* cost )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_COPPER );
+    return Domlib::ICard::GetCard( Domlib::CARDID::COPPER );
 }
 
 
 Domlib::ICard* DefaultAI::OnRemodel( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::SpyOpt DefaultAI::OnSpyOther( Domlib::ICard* pCard )
 {
-    return Domlib::SPY_DISCARD_CARD;
+    return Domlib::SpyOpt::DISCARD_CARD;
 }
 
 
 Domlib::SpyOpt DefaultAI::OnSpySelf( Domlib::ICard* pCard )
 {
-    return Domlib::SPY_DISCARD_CARD;
+    return Domlib::SpyOpt::DISCARD_CARD;
 }
 
 
 Domlib::ThiefOpt DefaultAI::OnThiefGain( Domlib::ICard* pCard )
 {
-    return Domlib::THIEF_STEAL_TREASURE_CARD;
+    return Domlib::ThiefOpt::STEAL_TREASURE_CARD;
 }
 
 
@@ -199,7 +199,7 @@ Domlib::ICard* DefaultAI::OnThiefTrash( Domlib::ICardList cardList )
 
 Domlib::ICard* DefaultAI::OnThroneRoom( void )
 {
-    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE_ACTION ) )
+    if( m_pPlayer->CardsInHand( Domlib::CARDTYPE::ACTION ) )
     {
         Domlib::ICardList hand = m_pPlayer->GetHand();
         
@@ -214,13 +214,13 @@ Domlib::ICard* DefaultAI::OnThroneRoom( void )
         }
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::BaronOpt DefaultAI::OnBaron( void )
 {
-    return Domlib::BARON_DISCARD_ESTATE;
+    return Domlib::BaronOpt::DISCARD_ESTATE;
 }
 
 
@@ -233,13 +233,13 @@ Domlib::ICard* DefaultAI::OnCourtyard( void )
         return (*hand.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnIronworks( const Domlib::ITreasure* cost )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -252,31 +252,31 @@ Domlib::ICard* DefaultAI::OnMasqueradePass( void )
         return (*hand.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnMasqueradeTrash( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::MiningVillageOpt DefaultAI::OnMiningVillage( void )
 {
-    return Domlib::MININGVILLAGE_DO_NOT_TRASH_CARD;
+    return Domlib::MiningVillageOpt::DO_NOT_TRASH_CARD;
 }
 
 
 Domlib::MinionOpt DefaultAI::OnMinion( void )
 {
-    return Domlib::MINION_PLUS_2_COINS;
+    return Domlib::MinionOpt::PLUS_2_COINS;
 }
 
 
 Domlib::NoblesOpt DefaultAI::OnNobles( void )
 {
-    return Domlib::NOBLES_PLUS_3_CARDS;
+    return Domlib::NoblesOpt::PLUS_3_CARDS;
 }
 
 
@@ -284,8 +284,8 @@ Domlib::PawnOptPair DefaultAI::OnPawn( void )
 {
     Domlib::PawnOptPair pawnOptPair;
 
-    pawnOptPair.first = Domlib::PAWN_PLUS_1_ACTION;
-    pawnOptPair.second = Domlib::PAWN_PLUS_1_CARD;
+    pawnOptPair.first = Domlib::PawnOpt::PLUS_1_ACTION;
+    pawnOptPair.second = Domlib::PawnOpt::PLUS_1_CARD;
     
     return pawnOptPair;
 }
@@ -321,7 +321,7 @@ Domlib::ICardList DefaultAI::OnSecretChamberReaction( void )
 
 Domlib::StewardOpt DefaultAI::OnSteward( void )
 {
-    return Domlib::STEWARD_PLUS_2_COINS;
+    return Domlib::StewardOpt::PLUS_2_COINS;
 }
 
 
@@ -355,7 +355,7 @@ Domlib::ICard* DefaultAI::OnSwindler( Domlib::ICard* pCard )
         return (*cardList.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -395,13 +395,13 @@ Domlib::ICard* DefaultAI::OnUpgrade( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnWishingWell( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_COPPER );
+    return Domlib::ICard::GetCard( Domlib::CARDID::COPPER );
 }
 
 
@@ -413,7 +413,7 @@ Domlib::ICard* DefaultAI::OnAmbassadorReveal( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -432,13 +432,13 @@ Domlib::ICard* DefaultAI::OnEmbargo( void )
         return (*cardsAvailable.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ExplorerOpt DefaultAI::OnExplorer( void )
 {
-    return Domlib::EXPLORER_REVEAL_PROVINCE;
+    return Domlib::ExplorerOpt::REVEAL_PROVINCE;
 }
 
 
@@ -475,7 +475,7 @@ Domlib::ICard* DefaultAI::OnHaven( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -487,7 +487,7 @@ Domlib::ICard* DefaultAI::OnIsland( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -507,7 +507,7 @@ Domlib::ILookoutStruct DefaultAI::OnLookout( Domlib::ICardList cardList )
 
 Domlib::NativeVillageOpt DefaultAI::OnNativeVillage( void )
 {
-    return Domlib::NATIVEVILLAGE_SET_ASIDE_CARD;
+    return Domlib::NativeVillageOpt::SET_ASIDE_CARD;
 }
 
 
@@ -521,13 +521,13 @@ Domlib::ICardList DefaultAI::OnNavigator( Domlib::ICardList cardList )
 
 Domlib::PearlDiverOpt DefaultAI::OnPearlDiver( Domlib::ICard* pCard )
 {
-    return Domlib::PEARLDIVER_BOTTOM_OF_DRAWPILE;
+    return Domlib::PearlDiverOpt::BOTTOM_OF_DRAWPILE;
 }
 
 
 Domlib::PirateShipOpt DefaultAI::OnPirateShip( void )
 {
-    return Domlib::PIRATESHIP_ATTACK;
+    return Domlib::PirateShipOpt::ATTACK;
 }
 
 
@@ -538,7 +538,7 @@ Domlib::ICard* DefaultAI::OnPirateShipTrash( Domlib::ICardList cardList )
         return (*cardList.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -550,7 +550,7 @@ Domlib::ICard* DefaultAI::OnSalvager( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -564,13 +564,13 @@ Domlib::ICard* DefaultAI::OnSmugglers( Domlib::ICardList cardList )
         return (*gainList.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::TreasuryOpt DefaultAI::OnTreasury( void )
 {
-    return Domlib::TREASURY_PUT_BACK;
+    return Domlib::TreasuryOpt::PUT_BACK;
 }
 
 
@@ -596,7 +596,7 @@ Domlib::ICardList DefaultAI::OnWarehouse( void )
 
 Domlib::AlchemistOpt DefaultAI::OnAlchemist( void )
 {
-    return Domlib::ALCHEMIST_PUT_BACK;
+    return Domlib::AlchemistOpt::PUT_BACK;
 }
 
 
@@ -608,7 +608,7 @@ Domlib::ICard* DefaultAI::OnApprentice( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -620,19 +620,19 @@ Domlib::ICardList DefaultAI::OnGolem( Domlib::ICardList cardList )
 
 Domlib::ICard* DefaultAI::OnHerbalist( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ScryingPoolOpt DefaultAI::OnScryingPoolOther( Domlib::ICard* pCard )
 {
-    return Domlib::SCRYINGPOOL_DISCARD_CARD;
+    return Domlib::ScryingPoolOpt::DISCARD_CARD;
 }
 
 
 Domlib::ScryingPoolOpt DefaultAI::OnScryingPoolSelf( Domlib::ICard* pCard )
 {
-    return Domlib::SCRYINGPOOL_DISCARD_CARD;
+    return Domlib::ScryingPoolOpt::DISCARD_CARD;
 }
 
 
@@ -644,19 +644,19 @@ Domlib::ICard* DefaultAI::OnTransmute( void )
         return (*hand.begin());
     }
     
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnUniversity( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
  
 Domlib::LoanOpt DefaultAI::OnLoan( Domlib::ICard* pCard )
 {
-    return Domlib::LOAN_DISCARD_CARD;
+    return Domlib::LoanOpt::DISCARD_CARD;
 }
 
 
@@ -669,19 +669,19 @@ Domlib::ICard* DefaultAI::OnBishopSelf( void )
         return (*hand.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnBishopOther( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnContraband( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -693,7 +693,7 @@ int DefaultAI::OnCountingHouse( int numCoppersInDiscard )
 
 Domlib::ICard* DefaultAI::OnExpand( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
@@ -739,25 +739,25 @@ Domlib::ICard* DefaultAI::OnKingsCourt( void )
         return (*hand.begin());
     }
 
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::ICard* DefaultAI::OnMint( void )
 {
-    return Domlib::ICard::GetCard( Domlib::CARDID_NULL );
+    return Domlib::ICard::GetCard( Domlib::CARDID::NULLCARD );
 }
 
 
 Domlib::MountebankOpt DefaultAI::OnMountebank( void )
 {
-    return Domlib::MOUNTEBANK_DISCARD_CURSE;
+    return Domlib::MountebankOpt::DISCARD_CURSE;
 }
 
 
 Domlib::RoyalSealOpt DefaultAI::OnRoyalSeal( Domlib::ICard* pCard )
 {
-    return Domlib::ROYALSEAL_PUT_BACK_CARD;
+    return Domlib::RoyalSealOpt::PUT_BACK_CARD;
 }
 
 

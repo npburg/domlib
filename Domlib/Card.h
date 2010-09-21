@@ -15,11 +15,17 @@ typedef std::list<Card*>            CardList;
 typedef CardList::iterator          CardListIter;
 typedef CardList::const_iterator    CardListConstIter;
 
-enum AttackWhom
+
+struct AttackWhom_def
 {
-    ATTACK_OTHERS,
-    ATTACK_ALL,
+    enum type
+    {
+        OTHERS,
+        ALL,
+    };
 };
+typedef safe_enum< AttackWhom_def > AttackWhom;
+
 
 class Card
 {

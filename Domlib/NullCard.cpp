@@ -7,8 +7,8 @@ namespace Domlib
 NullCard::NullCard( void )
     : Card(  
         L"NULL",
-        CARDID_NULL,
-        CARDTYPE_NULL,
+        CARDID::NULLCARD,
+        CARDTYPE::NULLCARD,
         0,
         Treasure( 0, 0 ),
         Treasure( 0, 0 ) )

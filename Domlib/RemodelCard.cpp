@@ -7,8 +7,8 @@ namespace Domlib
 RemodelCard::RemodelCard( void )
     : Card(
            L"Remodel",
-           CARDID_REMODEL,
-           CARDTYPE_ACTION,
+           CARDID::REMODEL,
+           CARDTYPE::ACTION,
            0,
            Treasure( 0, 0 ),
            Treasure( 4, 0 ) )

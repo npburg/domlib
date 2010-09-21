@@ -7,8 +7,8 @@ namespace Domlib
 ConspiratorCard::ConspiratorCard( void )
     : Card( 
         L"Conspirator",
-        CARDID_CONSPIRATOR,
-        CARDTYPE_ACTION,
+        CARDID::CONSPIRATOR,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

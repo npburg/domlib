@@ -7,8 +7,8 @@ namespace Domlib
 OutpostCard::OutpostCard( void )
     : Card( 
         L"Outpost",
-        CARDID_OUTPOST,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::OUTPOST,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

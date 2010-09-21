@@ -7,8 +7,8 @@ namespace Domlib
 WorkersVillageCard::WorkersVillageCard(void)
     : Card( 
         L"Worker's Village",
-        CARDID_WORKERSVILLAGE,
-        CARDTYPE_ACTION,
+        CARDID::WORKERSVILLAGE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 VaultCard::VaultCard(void)
     : Card( 
         L"Vault",
-        CARDID_VAULT,
-        CARDTYPE_ACTION,
+        CARDID::VAULT,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

@@ -227,7 +227,7 @@ void Player::TrashFromInPlay( CARDTYPE cardType )
 Card* Player::TrashCardFromDeck( void )
 {
     DOMLIB_NOT_IMPLEMENTED;
-    return Card::GetCard( CARDID_NULL );
+    return Card::GetCard( CARDID::NULLCARD );
 }
 
 void Player::GainCardOnDeck( CARDID cardId )
@@ -491,7 +491,7 @@ CardList Player::SetAside( int numCards )
 Card* Player::SetAsideCardFromUnderDraw( void )
 {
     DOMLIB_NOT_IMPLEMENTED;
-    return Card::GetCard( CARDID_NULL );
+    return Card::GetCard( CARDID::NULLCARD );
 }
 
 void Player::DrawCardsFromNativeVillage( void )
@@ -522,7 +522,7 @@ void Player::PutCardInHaven( Card* pCard )
 Card* Player::TakeCardFromHaven( void )
 {
     DOMLIB_NOT_IMPLEMENTED;
-    return Card::GetCard( CARDID_NULL );
+    return Card::GetCard( CARDID::NULLCARD );
 }
 
 void Player::TakeCardsFromHand( CardList cardList )

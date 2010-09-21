@@ -7,8 +7,8 @@ namespace Domlib
 DukeCard::DukeCard( void )
     : Card( 
         L"Duke",
-        CARDID_DUKE,
-        CARDTYPE_ACTION,
+        CARDID::DUKE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )
@@ -22,7 +22,7 @@ DukeCard::~DukeCard( void )
 int DukeCard::OnScoring( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    int numDuchies = pPlayer->GetCardCountInDeckId( CARDID_DUCHY );
+    int numDuchies = pPlayer->GetCardCountInDeckId( CARDID::DUCHY );
     return ( int )( numDuchies / 5 );
 }
 

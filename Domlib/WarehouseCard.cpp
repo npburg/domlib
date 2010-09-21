@@ -7,8 +7,8 @@ namespace Domlib
 WarehouseCard::WarehouseCard( void )
     : Card( 
         L"Warehouse",
-        CARDID_WAREHOUSE,
-        CARDTYPE_ACTION,
+        CARDID::WAREHOUSE,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )

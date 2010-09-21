@@ -7,8 +7,8 @@ namespace Domlib
 ThiefCard::ThiefCard( void )
     : Card( 
         L"Thief",
-        CARDID_THIEF,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::THIEF,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 4, 0 ) )
@@ -22,7 +22,7 @@ ThiefCard::~ThiefCard( void )
 
 void ThiefCard::OnActionPhase( Engine* pEngine )
 {
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
@@ -92,10 +92,10 @@ void ThiefCard::OnAttack( Engine* pEngine, Player* pPlayer )
         pAttackingAi->OnThiefGain( pCardToTrash );
     switch( thiefOpt )
     {
-    case THIEF_STEAL_TREASURE_CARD:
+    case ThiefOpt::STEAL_TREASURE_CARD:
         pAttackingPlayer->PutCardInDiscard( pCardToTrash );
         break;
-    case THIEF_TRASH_TREASURE_CARD:
+    case ThiefOpt::TRASH_TREASURE_CARD:
         pEngine->PutCardInTrash( pCardToTrash );
         break;
     default:

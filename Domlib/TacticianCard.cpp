@@ -7,8 +7,8 @@ namespace Domlib
 TacticianCard::TacticianCard( void )
     : Card( 
         L"Tactician",
-        CARDID_TACTICIAN,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::TACTICIAN,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 5, 0 ) )

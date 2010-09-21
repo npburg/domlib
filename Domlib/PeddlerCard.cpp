@@ -7,8 +7,8 @@ namespace Domlib
 PeddlerCard::PeddlerCard(void)
     : Card( 
         L"Peddler",
-        CARDID_PEDDLER,
-        CARDTYPE_ACTION,
+        CARDID::PEDDLER,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 8, 0 ) )
@@ -31,7 +31,7 @@ void PeddlerCard::OnActionPhase( Engine* pEngine )
 Treasure PeddlerCard::Cost( Engine* pEngine )
 {
     Player* pPlayer = pEngine->GetCurrentPlayer();
-    int numActionCardsInPlay = pPlayer->CardsInPlay( CARDTYPE_ACTION );
+    int numActionCardsInPlay = pPlayer->CardsInPlay( CARDTYPE::ACTION );
     int coins = std::max( m_TreasureValue.Coins() - ( 2 * numActionCardsInPlay), 0 );
     
     return Treasure( coins, 0 );

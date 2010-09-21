@@ -7,8 +7,8 @@ namespace Domlib
 HavenCard::HavenCard( void )
     : Card( 
         L"Haven",
-        CARDID_HAVEN,
-        CARDTYPE_ACTION_DURATION,
+        CARDID::HAVEN,
+        CARDTYPE::ACTION_DURATION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )

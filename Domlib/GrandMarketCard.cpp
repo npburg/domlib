@@ -7,8 +7,8 @@ namespace Domlib
 GrandMarketCard::GrandMarketCard(void)
     : Card( 
         L"Grand Market",
-        CARDID_GRANDMARKET,
-        CARDTYPE_ACTION,
+        CARDID::GRANDMARKET,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 6, 0 ) )

@@ -7,8 +7,8 @@ namespace Domlib
 PearlDiverCard::PearlDiverCard( void )
     : Card( 
         L"Pearl Diver",
-        CARDID_PEARLDIVER,
-        CARDTYPE_ACTION,
+        CARDID::PEARLDIVER,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )
@@ -32,10 +32,10 @@ void PearlDiverCard::OnActionPhase( Engine* pEngine )
     
     switch( pearlDiverOpt )
     {
-    case Domlib::PEARLDIVER_TOP_OF_DRAWPILE:
+    case Domlib::PearlDiverOpt::TOP_OF_DRAWPILE:
         pPlayer->PutCardOnDraw( pCard );
         break;
-    case Domlib::PEARLDIVER_BOTTOM_OF_DRAWPILE:
+    case Domlib::PearlDiverOpt::BOTTOM_OF_DRAWPILE:
         pPlayer->PutCardUnderDraw( pCard );
         break;
     default:

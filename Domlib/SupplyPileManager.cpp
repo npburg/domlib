@@ -8,7 +8,7 @@ namespace Domlib
 
 SupplyPileManager::SupplyPileManager()
 {
-    m_pNullPile = new SupplyPile( CARDID_NULL, 0 );
+    m_pNullPile = new SupplyPile( CARDID::NULLCARD, 0 );
 }
 
 SupplyPileManager::~SupplyPileManager()

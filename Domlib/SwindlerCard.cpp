@@ -7,8 +7,8 @@ namespace Domlib
 SwindlerCard::SwindlerCard( void )
     : Card( 
         L"Swindler",
-        CARDID_SWINDLER,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::SWINDLER,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -25,7 +25,7 @@ void SwindlerCard::OnActionPhase( Engine* pEngine )
     
     pPlayer->PlusCoins( 2 );
 
-    Attack( pEngine, ATTACK_OTHERS );
+    Attack( pEngine, AttackWhom::OTHERS );
 }
 
 void SwindlerCard::OnAttack( Engine* pEngine, Player* pPlayer )

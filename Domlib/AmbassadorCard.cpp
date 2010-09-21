@@ -7,8 +7,8 @@ namespace Domlib
 AmbassadorCard::AmbassadorCard( void )
     : Card( 
         L"Ambassador",
-        CARDID_AMBASSADOR,
-        CARDTYPE_ACTION_ATTACK,
+        CARDID::AMBASSADOR,
+        CARDTYPE::ACTION_ATTACK,
         0,
         Treasure( 0, 0 ),
         Treasure( 3, 0 ) )
@@ -46,8 +46,8 @@ void AmbassadorCard::OnActionPhase( Engine* pEngine )
     }
     
     pEngine->SetAmbassadorCard( pRevealedCard );
-    Attack( pEngine, ATTACK_OTHERS );
-    pEngine->SetAmbassadorCard( Card::GetCard( CARDID_NULL ) );
+    Attack( pEngine, AttackWhom::OTHERS );
+    pEngine->SetAmbassadorCard( Card::GetCard( CARDID::NULLCARD ) );
 }
 
 void AmbassadorCard::OnAttack( Engine* pEngine, Player* pPlayer )

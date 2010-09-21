@@ -7,8 +7,8 @@ namespace Domlib
 HerbalistCard::HerbalistCard( void )
     : Card( 
         L"Herbalist",
-        CARDID_HERBALIST,
-        CARDTYPE_ACTION,
+        CARDID::HERBALIST,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )
@@ -32,7 +32,7 @@ void HerbalistCard::OnCleanUpPhase( Engine* pEngine )
     Player* pPlayer = pEngine->GetCurrentPlayer();
     IAI* pAI = pPlayer->GetAI();
 
-    if( pPlayer->GetCardCountInDeckType( CARDTYPE_TREASURE ) > 0 )
+    if( pPlayer->GetCardCountInDeckType( CARDTYPE::TREASURE ) > 0 )
     {
         Card* pTreasureToPutBack = pAI->OnHerbalist();
 

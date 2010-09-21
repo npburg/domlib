@@ -7,8 +7,8 @@ namespace Domlib
 EmbargoCard::EmbargoCard( void )
     : Card( 
         L"Embargo",
-        CARDID_EMBARGO,
-        CARDTYPE_ACTION,
+        CARDID::EMBARGO,
+        CARDTYPE::ACTION,
         0,
         Treasure( 0, 0 ),
         Treasure( 2, 0 ) )
