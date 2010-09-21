@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Domlib", "Domlib\Domlib.vcp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Domcomp", "Domcomp\Domcomp.vcproj", "{D293BDBF-3766-422F-9536-FAA9182BC6CD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DomcompDLL", "DomcompDLL\DomcompDLL.vcproj", "{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -28,6 +30,10 @@ Global
 		{D293BDBF-3766-422F-9536-FAA9182BC6CD}.Debug|Win32.Build.0 = Debug|Win32
 		{D293BDBF-3766-422F-9536-FAA9182BC6CD}.Release|Win32.ActiveCfg = Release|Win32
 		{D293BDBF-3766-422F-9536-FAA9182BC6CD}.Release|Win32.Build.0 = Release|Win32
+		{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}.Debug|Win32.Build.0 = Debug|Win32
+		{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}.Release|Win32.ActiveCfg = Release|Win32
+		{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

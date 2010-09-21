@@ -23,6 +23,10 @@ bool CommandlineSettings::ParseCommandlineArguments(
         {
             SelectedCardSets.Base = true;
         }
+        else if( currentArgument == L"-h" )
+        {
+            PrintHelp = true;
+        }
 
         argItr++;
     }
@@ -35,7 +39,7 @@ bool CommandlineSettings::ParseCommandlineArguments(
     return success;
 }
 
-void CommandlineSettings::PrintHelp( std::wostream& out )
+void CommandlineSettings::Help( std::wostream& out )
 {
     out << L"Domcomp.exe [args] a.dll b.dll ..." << std::endl;
     out << std::endl;

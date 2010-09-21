@@ -7,3 +7,5 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <windows.h>
+#include <strsafe.h>
