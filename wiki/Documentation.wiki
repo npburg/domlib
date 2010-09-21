@@ -406,3 +406,79 @@ TODO: Add description from the AI developer perspective.
 The Game class has functions which makes it easier to debug custom AIs. These functions range from telling the engine to use specific cards to initial game conditions. It also allows the loading of previous game templates for analysis.
 
 TBD
+
+= Domcomp =
+
+The Domcomp project within the Domlib solution builds an executable which runs competitive AIs against each other. It loads each AI via run-time DLL map and executes a series of Domlib games via the command line.
+
+There are a few reasons why DLLs are used:
+
+ # Easier to share private implementations.
+ # Easier to separate private AI source code from the Domlib solution. AI implementations will not be stored in the Domlib solution, so it will be easier to load implementations via DLLs.
+
+== Commandline Arguments ==
+
+These command line arguments can also be retrieved via `-h`.
+
+=== Game Controls ===
+
+`-g X` - Run X games. ( Required )
+
+`-r Y` - Run each game Y times. ( Default = 1 )
+
+=== Selecting Card Sets ===
+
+`-b` - Use Base cards
+
+`-i` - Use Intrigue cards
+
+`-s` - Use Seaside
+
+`-a` - Use Alchemy
+
+`-p` - Use Prosperity
+
+`-x` - Use All card sets ( Default )
+
+=== Selecting AI DLLs ===
+
+Each DLL is specified after any arguments. At least two must provided and do not need to be unique.
+
+=== Examples ===
+
+`Domcomp.exe -g 100000 -r 100 A.dll B.dll C.dll`
+
+ * Run 100,000 games
+ * Re-running each game 100 times
+ * Using all decks ( default )
+ * With competitor AIs A, B, C.
+
+`Domcomp.exe -g 1000 A.dll A.dll A.dll`
+
+ * Run 1,000 games
+ * Re-running each game once ( default )
+ * Using all decks ( default )
+ * With the same three competitor AIs.
+
+`DomComp.exe -g 1000 -b -i A.dll B.dll C.dll`
+
+ * Run 1,000 games
+ * Re-running each game once ( default )
+ * Using only Base and Intrigue cards
+ * With competitor AIs A, B, C.
+
+== Required DLL Exports ==
+
+Domcomp requires two DLL exports.
+
+`void CreateAI( void )`
+
+The DLL is expected to instantiate an instance of the AI and return a pointer to that interface.
+
+`void DestoryAI( void )`
+
+Docomp will call this to destroy an instance of the AI.
+
+== Sample DLL ==
+
+The domlib solution contains a project called DomAIDLL which contains skeleton DLL code. This will create an empty DLL with the required exports. Developers can use this to begin writing a DLL.
