@@ -13,6 +13,8 @@ public:
         SelectedCardSets.Alchemy    = false;
         SelectedCardSets.Prosperity = false;
         SelectedCardSets.All        = false;
+
+        PrintHelp  = false;
     }
 
     ~CommandlineSettings( void )
@@ -23,7 +25,7 @@ public:
         int argc,
         _TCHAR* argv[] );
 
-    static void PrintHelp( std::wostream& out );
+    static void Help( std::wostream& out );
 
     struct
     {
@@ -34,6 +36,8 @@ public:
         bool    Alchemy;
         bool    Prosperity;
     } SelectedCardSets;
+
+    bool    PrintHelp;
 
 private:
     bool Validate( void );
