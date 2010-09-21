@@ -477,8 +477,12 @@ The DLL is expected to instantiate an instance of the AI and return a pointer to
 
 `void DestoryAI( void )`
 
-Docomp will call this to destroy an instance of the AI.
+Domcomp will call this to destroy an instance of the AI.
 
 == Sample DLL ==
 
 The domlib solution contains a project called DomAIDLL which contains skeleton DLL code. This will create an empty DLL with the required exports. Developers can use this to begin writing a DLL.
+
+== Output ==
+
+TBD. Most likely Text, CSV, HTML, and XML support.
