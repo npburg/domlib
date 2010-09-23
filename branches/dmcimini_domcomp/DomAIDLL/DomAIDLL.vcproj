@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="DomcompDLL"
-	ProjectGUID="{1FC5165F-9D2C-4880-AB7A-8A2B4B0EDE16}"
-	RootNamespace="DomcompDLL"
+	Name="DomAIDLL"
+	ProjectGUID="{ECCFF840-F7D1-45C9-92A1-08738DCB2D06}"
+	RootNamespace="DomAIDLL"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;DOMCOMPDLL_EXPORTS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;DOMAIDLL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -114,7 +114,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;DOMCOMPDLL_EXPORTS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;DOMAIDLL_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
@@ -166,7 +166,7 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source"
+			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
@@ -193,11 +193,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\DomcompDLL.cpp"
+				RelativePath=".\DomAIDLL.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\DomcompDLL.h"
+				RelativePath=".\DomAIDLL.h"
 				>
 			</File>
 		</Filter>
