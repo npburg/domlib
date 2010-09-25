@@ -188,6 +188,14 @@
 				RelativePath=".\Domcomp.h"
 				>
 			</File>
+			<File
+				RelativePath=".\IDll.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\IDll.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Precompiled Header"

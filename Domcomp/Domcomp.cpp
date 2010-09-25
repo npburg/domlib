@@ -2,6 +2,7 @@
 #include "Domlib.h"
 #include "Domcomp.h"
 #include "CommandlineArgs.h"
+#include "IDll.h"
 
 int _tmain( int argc, _TCHAR* argv[] )
 {
@@ -10,71 +11,41 @@ int _tmain( int argc, _TCHAR* argv[] )
     int retValue = 0;
     CommandlineSettings args;
 
+    IDll* pDllInstance = NULL;
+    Domlib::AI* pAIInstance = NULL;
+
     bool success = args.ParseCommandlineArguments( argc, argv );
 
+    // Print Help
     if( success )
     {
         if( args.PrintHelp )
         {
             CommandlineSettings::Help( std::wcout );
         }
-        else
-        {
-            // Load DLLs
-            HMODULE hDllHandle = LoadLibrary( L"DomcompDLL.dll" );
-
-            if( hDllHandle != NULL )
-            {
-                FuncPtrCreateAI pCreateAI = NULL;
-                FuncPtrDestroyAI pDestroyAI = NULL;
-
-                // Get CreateAI Procedure
-                if( success )
-                {
-                    pCreateAI = (FuncPtrCreateAI)GetProcAddress(
-                        hDllHandle,
-                        "CreateAI" );
-
-                    if( pCreateAI == NULL )
-                    {
-                        std::wcout << L"Error resolving CreateAI DLL procedure" << std::endl;
-                        std::wcout << GetWindowsErrorString() << std::endl;
-                        success = false;
-                    }
-                }
-
-                // Get DestroyAI Procedure
-                if( success )
-                {
-                    pDestroyAI = (FuncPtrDestroyAI)GetProcAddress(
-                        hDllHandle,
-                        "DestroyAI" );
-
-                    if( pDestroyAI == NULL )
-                    {
-                        std::wcout << L"Error resolving DestroyAI DLL procedure" << std::endl;
-                        std::wcout << GetWindowsErrorString() << std::endl;
-                        success = false;
-                    }
-                }
-
-                // Test Callbacks
-                if( success )
-                {
-                    (pCreateAI)();
-                    (pCreateAI)();
-                }
-
-                FreeLibrary( hDllHandle );
-                pCreateAI = NULL;
-                pDestroyAI = NULL;
-            }
-            else
-            {
-                success = false;
-            }
-        }
     }
+
+    // Load DLLs
+    if( success )
+    {
+        success = IDll::Create( 
+            L"DomAIDll.dll", 
+            pDllInstance );
+    }
+
+    // Create AI Instance for that DLL
+    if( success )
+    {
+        success = pDllInstance->CreateAI( pAIInstance );
+    }
+
+    // Delete AI Instance for that DLL
+    if( success )
+    {
+        success = pDllInstance->DeleteAI( pAIInstance );
+    }
+
+    IDll::Delete( pDllInstance );
 
     if( !success )
     {
