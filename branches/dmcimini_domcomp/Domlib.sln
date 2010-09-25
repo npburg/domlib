@@ -9,8 +9,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Domlib", "Domlib\Domlib.vcproj", "{2893F16F-7DED-467E-8993-7FD97510A41E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Domcomp", "Domcomp\Domcomp.vcproj", "{D293BDBF-3766-422F-9536-FAA9182BC6CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2893F16F-7DED-467E-8993-7FD97510A41E} = {2893F16F-7DED-467E-8993-7FD97510A41E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DomAIDLL", "DomAIDLL\DomAIDLL.vcproj", "{ECCFF840-F7D1-45C9-92A1-08738DCB2D06}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2893F16F-7DED-467E-8993-7FD97510A41E} = {2893F16F-7DED-467E-8993-7FD97510A41E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
