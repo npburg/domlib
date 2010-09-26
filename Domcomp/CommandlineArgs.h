@@ -12,9 +12,11 @@ public:
         SelectedCardSets.Seaside    = false;
         SelectedCardSets.Alchemy    = false;
         SelectedCardSets.Prosperity = false;
-        SelectedCardSets.All        = false;
 
         PrintHelp  = false;
+
+        GameCount = 0;
+        RerunCountPerGame = 1;
     }
 
     ~CommandlineSettings( void )
@@ -27,6 +29,7 @@ public:
 
     static void Help( std::wostream& out );
 
+    // Argument Values
     struct
     {
         bool    All;
@@ -38,6 +41,10 @@ public:
     } SelectedCardSets;
 
     bool    PrintHelp;
+    int     GameCount;
+    int     RerunCountPerGame;
+
+    std::vector<std::wstring>   DllList;
 
 private:
     bool Validate( void );

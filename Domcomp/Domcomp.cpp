@@ -9,11 +9,8 @@ int _tmain( int argc, _TCHAR* argv[] )
     SetConsoleTitle( L"Domcomp" );
 
     int retValue = 0;
+
     CommandlineSettings args;
-
-    IDll* pDllInstance = NULL;
-    Domlib::AI* pAIInstance = NULL;
-
     bool success = args.ParseCommandlineArguments( argc, argv );
 
     // Print Help
@@ -26,26 +23,52 @@ int _tmain( int argc, _TCHAR* argv[] )
     }
 
     // Load DLLs
+    std::vector<IDll*> DLLs;
+
     if( success )
     {
-        success = IDll::Create( 
-            L"DomAIDll.dll", 
-            pDllInstance );
+        IDll* pDllInstance = NULL;
+
+        std::vector<std::wstring>::const_iterator dllNameItr = args.DllList.begin();
+
+        while( dllNameItr != args.DllList.end() && success )
+        {
+            success = IDll::Create( 
+                *dllNameItr, 
+                pDllInstance );
+
+            if( success )
+            {
+                DLLs.push_back( pDllInstance );
+            }
+
+            dllNameItr++;
+        }
     }
 
-    // Create AI Instance for that DLL
+    // Run the game simulations
     if( success )
     {
-        success = pDllInstance->CreateAI( pAIInstance );
+        const int& GameCount    = args.GameCount;
+        const int& RerunCount   = args.RerunCountPerGame;
+
+        for( int i = 0; i < GameCount && success; i++ )
+        {
+            success = RunGame( DLLs );
+        }
     }
 
-    // Delete AI Instance for that DLL
-    if( success )
+    // Clean-up DLLs
+    std::vector<IDll*>::iterator dllItr = DLLs.begin();
+    while( dllItr != DLLs.end() )
     {
-        success = pDllInstance->DeleteAI( pAIInstance );
-    }
+        IDll* pCurrentDLL = *dllItr;
 
-    IDll::Delete( pDllInstance );
+        success = IDll::Delete( pCurrentDLL );
+
+        dllItr++;
+    }
+    DLLs.clear();
 
     if( !success )
     {
@@ -55,24 +78,51 @@ int _tmain( int argc, _TCHAR* argv[] )
 	return 0;
 }
 
-std::wstring GetWindowsErrorString( void )
+bool RunGame(
+    const std::vector<IDll*>& dllList )
 {
-    LPVOID lpMsgBuf;
+    bool success = true;
 
-    FormatMessage(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-            FORMAT_MESSAGE_FROM_SYSTEM |
-            FORMAT_MESSAGE_IGNORE_INSERTS,
-        NULL,
-        GetLastError(),
-        MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
-        (LPTSTR) &lpMsgBuf,
-        0,
-        NULL );
+    std::vector< std::pair< Domlib::AI*, IDll* > >   AIList;
 
-    std::wstring errorString( (LPTSTR) lpMsgBuf );
+    // Create one AI from each DLL
+    std::vector<IDll*>::const_iterator curDllItr = dllList.begin();
+    while( curDllItr != dllList.end() && success)
+    {
+        IDll* pCurrentDLL = *curDllItr;
+        
+        Domlib::AI* newAI = NULL;
 
-    LocalFree(lpMsgBuf);
-    return errorString;
+        success = pCurrentDLL->CreateAI( newAI );
+
+        if( success )
+        {
+            AIList.push_back( std::pair< Domlib::AI*, IDll* >( newAI, pCurrentDLL ) );
+        }
+
+        curDllItr++;
+    }
+
+    // Execute the Game
+    if( success )
+    {
+
+    }
+
+    // Clean-UP the AIs
+    std::vector< std::pair< Domlib::AI*, IDll* > >::iterator aiItr = AIList.begin();
+    while( aiItr != AIList.end() )
+    {
+        std::pair< Domlib::AI*, IDll* > currentAiDLL = *aiItr;
+
+        Domlib::AI* pChildAI    = currentAiDLL.first;
+        IDll*       pParentAI   = currentAiDLL.second;
+
+        success = pParentAI->DeleteAI( pChildAI );
+
+        aiItr++;
+    }
+    AIList.clear();
+
+    return success;
 }
-
