@@ -140,3 +140,24 @@ bool IDll::DeleteAI( Domlib::AI* &pAI ) const
 
     return success;
 }
+
+std::wstring GetWindowsErrorString( void )
+{
+    LPVOID lpMsgBuf;
+
+    FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+            FORMAT_MESSAGE_FROM_SYSTEM |
+            FORMAT_MESSAGE_IGNORE_INSERTS,
+        NULL,
+        GetLastError(),
+        MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
+        (LPTSTR) &lpMsgBuf,
+        0,
+        NULL );
+
+    std::wstring errorString( (LPTSTR) lpMsgBuf );
+
+    LocalFree(lpMsgBuf);
+    return errorString;
+}

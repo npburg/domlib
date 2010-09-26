@@ -36,7 +36,5 @@ private:
     FuncPtrDestroyAI    m_pFuncDestroyAI;
 };
 
-
-
 // Error Utility
 std::wstring GetWindowsErrorString( void );

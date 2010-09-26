@@ -9,3 +9,4 @@
 #include <iostream>
 #include <windows.h>
 #include <strsafe.h>
+#include <sstream>

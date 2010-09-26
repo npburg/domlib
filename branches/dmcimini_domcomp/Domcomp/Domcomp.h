@@ -1,3 +1,8 @@
 #pragma once
 
-std::wstring GetWindowsErrorString( void );
+#include <vector>
+
+class IDll;
+
+bool RunGame(
+    const std::vector<IDll*>& dllList );

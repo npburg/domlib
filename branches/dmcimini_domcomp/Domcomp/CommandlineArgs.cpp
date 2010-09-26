@@ -23,9 +23,52 @@ bool CommandlineSettings::ParseCommandlineArguments(
         {
             SelectedCardSets.Base = true;
         }
+        else if( currentArgument == L"-i" )
+        {
+            SelectedCardSets.Intrigue = true;
+        }
+        else if( currentArgument == L"-s" )
+        {
+            SelectedCardSets.Seaside = true;
+        }
+        else if( currentArgument == L"-a" )
+        {
+            SelectedCardSets.Alchemy = true;
+        }
+        else if( currentArgument == L"-p" )
+        {
+            SelectedCardSets.Prosperity = true;
+        }
+        else if( currentArgument == L"-x" )
+        {
+            SelectedCardSets.Alchemy = true;
+            SelectedCardSets.Base = true;
+            SelectedCardSets.Intrigue = true;
+            SelectedCardSets.Prosperity = true;
+            SelectedCardSets.Seaside = true;
+        }
         else if( currentArgument == L"-h" )
         {
             PrintHelp = true;
+        }
+        else if( currentArgument == L"-g" )
+        {
+            argItr++;
+
+            std::wistringstream intStream( *argItr );
+            intStream >> GameCount;
+        }
+        else if( currentArgument == L"-r" )
+        {
+            argItr++;
+
+            std::wistringstream intStream( *argItr );
+            intStream >> RerunCountPerGame;
+        }
+        else
+        {
+            // Must be a dll
+            DllList.push_back( currentArgument );
         }
 
         argItr++;
@@ -90,7 +133,11 @@ bool CommandlineSettings::Validate( void )
         !SelectedCardSets.Prosperity &&
         !SelectedCardSets.Seaside )
     {
-        SelectedCardSets.All = true;
+        SelectedCardSets.Alchemy = true;
+        SelectedCardSets.Base = true;
+        SelectedCardSets.Intrigue = true;
+        SelectedCardSets.Prosperity = true;
+        SelectedCardSets.Seaside = true;
     }
 
     return success;
