@@ -49,12 +49,22 @@ int _tmain( int argc, _TCHAR* argv[] )
     // Run the game simulations
     if( success )
     {
+        CardSets sets;
+
+        sets.Alchemy    = args.SelectedCardSets.Alchemy;
+        sets.Base       = args.SelectedCardSets.Base;
+        sets.Intrigue   = args.SelectedCardSets.Intrigue;
+        sets.Prosperity = args.SelectedCardSets.Prosperity;
+        sets.Seaside    = args.SelectedCardSets.Seaside;
+
         const int& GameCount    = args.GameCount;
         const int& RerunCount   = args.RerunCountPerGame;
 
         for( int i = 0; i < GameCount && success; i++ )
         {
-            success = RunGame( DLLs );
+            success = RunGame(
+                DLLs,
+                sets );
         }
     }
 
@@ -79,11 +89,13 @@ int _tmain( int argc, _TCHAR* argv[] )
 }
 
 bool RunGame(
-    const std::vector<IDll*>& dllList )
+    const std::vector<IDll*>& dllList,
+    const CardSets& cardSets )
 {
     bool success = true;
 
-    std::vector< std::pair< Domlib::AI*, IDll* > >   AIList;
+    std::vector< std::pair< Domlib::AI*, IDll* > >   AIParentList;
+    std::vector< Domlib::AI* > AIList;
 
     // Create one AI from each DLL
     std::vector<IDll*>::const_iterator curDllItr = dllList.begin();
@@ -97,7 +109,7 @@ bool RunGame(
 
         if( success )
         {
-            AIList.push_back( std::pair< Domlib::AI*, IDll* >( newAI, pCurrentDLL ) );
+            AIParentList.push_back( std::pair< Domlib::AI*, IDll* >( newAI, pCurrentDLL ) );
         }
 
         curDllItr++;
@@ -106,12 +118,37 @@ bool RunGame(
     // Execute the Game
     if( success )
     {
+        Domlib::IGame game;
 
+        // Register card sets
+        int cardSetMask = 0;
+        if( cardSets.Alchemy )      cardSetMask |= Domlib::CARDSET_ALCHEMY;
+        if( cardSets.Base )         cardSetMask |= Domlib::CARDSET_BASE;
+        if( cardSets.Intrigue )     cardSetMask |= Domlib::CARDSET_INTRIGUE;
+        if( cardSets.Prosperity )   cardSetMask |= Domlib::CARDSET_PROSPERITY;
+        if( cardSets.Seaside )      cardSetMask |= Domlib::CARDSET_SEASIDE;
+
+        game.RandomizeKingdomCards( cardSetMask );
+
+        // Register Players
+        std::vector< Domlib::AI* >::const_iterator aiItr = AIList.begin();
+        while( aiItr != AIList.end() )
+        {
+            Domlib::AI* currentAI = *aiItr;
+
+            game.RegisterAI( currentAI );
+        }
+
+        // Play!
+        game.Play();
+
+        // Parse results
+        game.GetResults();
     }
 
     // Clean-UP the AIs
-    std::vector< std::pair< Domlib::AI*, IDll* > >::iterator aiItr = AIList.begin();
-    while( aiItr != AIList.end() )
+    std::vector< std::pair< Domlib::AI*, IDll* > >::iterator aiItr = AIParentList.begin();
+    while( aiItr != AIParentList.end() )
     {
         std::pair< Domlib::AI*, IDll* > currentAiDLL = *aiItr;
 
