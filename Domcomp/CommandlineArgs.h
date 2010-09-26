@@ -32,7 +32,6 @@ public:
     // Argument Values
     struct
     {
-        bool    All;
         bool    Base;
         bool    Intrigue;
         bool    Seaside;
