@@ -282,7 +282,7 @@ public:
     Engine*         GetEngine( void );
     bool            IsCardInStock( CARDID cardId );
     ICardList       PilesAvailable( void );
-    bool            CardsAvailable( CARDID cardId );
+    int             CardsAvailable( CARDID cardId );
     ICardList       CardsCostingExactly( const ITreasure* cost );
     ICardList       CardsCostingUpTo( const ITreasure* cost );
     IPlayerOther*   GetPreviousPlayer( IPlayer* pPlayer );

@@ -31,10 +31,7 @@ void Card::OnActionPhase( Engine* pEngine ) {}
 
 void Card::OnReaction( Engine* pEngine, Player* pPlayer ) {}
 
-void Card::OnActionPhaseOther( Engine* pEngine, Player* pPlayer )
-{
-    DOMLIB_NOT_IMPLEMENTED;
-}
+void Card::OnActionPhaseOther( Engine* pEngine, Player* pPlayer ) {}
 
 Treasure Card::OnTreasurePhase( Engine* pEngine )
 {
@@ -49,10 +46,7 @@ void Card::OnBuy( Engine* pEngine ) {}
 
 int Card::OnScoring( Engine* pEngine ) { return VictoryPoints( pEngine ); }
 
-void Card::ActionForOthers( Engine* pEngine )
-{
-    DOMLIB_NOT_IMPLEMENTED;
-}
+void Card::ActionForOthers( Engine* pEngine ) {}
 
 void Card::OnAttack( Engine* pEngine, Player* pPlayer ) {}
 

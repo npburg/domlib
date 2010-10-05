@@ -19,7 +19,7 @@ public:
     void*   GetResults( void );
 
 private:
-    const Engine    m_Engine;
+    Engine    m_Engine;
 };
 
 } // namespace Domlib

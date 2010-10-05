@@ -7,6 +7,9 @@ namespace Domlib
 
 Engine::Engine( void )
 {
+    // TODO: Implement the NullPlayer and NullAI.
+    //m_pNullPlayer = new Player( this, 
+    m_pCurrentPlayer = m_pNullPlayer;
 }
 
 Engine::~Engine( void )
@@ -21,24 +24,19 @@ Engine::~Engine( void )
 
 bool Engine::IsCardInStock( CARDID cardId )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return false;
+    return m_SupplyPileManager.IsPileAvailable( cardId );
 }
 
 
 CardList Engine::PilesAvailable( void )
 {
-    throw std::wstring( L"Error: Engine::PilesAvailable - To be implemented..." );
-    CardList cardList;
-    
-    return cardList;
+    return m_SupplyPileManager.PilesAvailable();
 }
 
 
-bool Engine::CardsAvailable( CARDID cardId )
+int Engine::CardsAvailable( CARDID cardId )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return false;
+    return m_SupplyPileManager.CardsAvailable( cardId );
 }
 
 
@@ -48,6 +46,11 @@ CardList Engine::CardsCostingExactly( const Treasure* cost )
     CardList cardList;
     
     return cardList;
+}
+
+void Engine::RandomizeKingdomCards( int cardSet )
+{
+    m_CardSet = cardSet;
 }
 
 void Engine::RegisterPlayer( AI* pAI )
@@ -61,6 +64,9 @@ void Engine::RegisterPlayer( AI* pAI )
 
 void Engine::Play( void )
 {
+    m_SupplyPileManager.RandomizeKingdomCards( m_CardSet );
+    m_SupplyPileManager.InitializePiles( m_PlayerList.size() );
+    
     m_pCurrentPlayer = GetFirstPlayer();
 
     try
@@ -86,91 +92,148 @@ void Engine::Play( void )
 
 Player* Engine::GetFirstPlayer( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return NULL;
+    if( m_PlayerList.size() )
+    {
+        return m_PlayerList.front();
+    }
+    
+    return m_pNullPlayer;
 }
 
 Player* Engine::GetPreviousPlayer( Player* pPlayer )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return NULL;
+    PlayerListIter iter = find( m_PlayerList.begin(),
+                                m_PlayerList.end(),
+                                pPlayer );
+    
+    if( iter == m_PlayerList.end() )
+    {
+        // TODO: report error
+        return m_pNullPlayer;
+    }
+    else if (iter == m_PlayerList.begin() )
+    {
+        return m_PlayerList.back();
+    }
+    else
+    {
+        iter--;
+        return (*iter);
+    }
 }
 
 Player* Engine::GetCurrentPlayer( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return NULL;
+    return m_pCurrentPlayer;
 }
 
 Player* Engine::GetNextPlayer( Player* pPlayer )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return NULL;
+    PlayerListIter iter = find( m_PlayerList.begin(),
+                                m_PlayerList.end(),
+                                pPlayer );
+    
+    if( iter == m_PlayerList.end() )
+    {
+        // TODO: report error
+        return m_pNullPlayer;
+    }
+    else
+    {
+        iter++;
+        if( iter == m_PlayerList.end() )
+        {
+            return m_PlayerList.front();
+        }
+        else
+        {
+            return (*iter);
+        }
+    }
 }
 
 Player* Engine::GetLastPlayer( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return NULL;
+    if( m_PlayerList.size() )
+    {
+        return m_PlayerList.back();
+    }
+    
+    return m_pNullPlayer;
 }
 
 void Engine::PutCardInTrash( Card* pCard )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_TrashList.push_front( pCard );
 }
 
 bool Engine::IsGameOver( void ) const
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return true;
+    if( m_SupplyPileManager.PileExists( CARDID::COLONY ) && 
+        m_SupplyPileManager.IsPileEmpty( CARDID::COLONY ) )
+    {
+        return true;
+    }
+    else if( m_SupplyPileManager.IsPileEmpty( CARDID::PROVINCE ) )
+    {
+        return true;
+    }
+    else if( m_PlayerList.size() <= 4 &&
+             m_SupplyPileManager.NumEmptyPiles() >= 3 )
+    {
+        return true;
+    }
+    else if( m_SupplyPileManager.NumEmptyPiles() >= 4 )
+    {
+        return true;
+    }
+
+    return false;
 }
 
 int Engine::TradeTokens( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return 0;
+    return m_TradeRouteMat;
 }
 
 void Engine::SetContrabandCard( Card* pCard )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_SupplyPileManager.SetContrabandCard( pCard );
 }
 
 void Engine::ClearContrabandCards( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_SupplyPileManager.ClearContrabandCards();
 }
 
 int Engine::SupplyPilesEmpty( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return 0;
+    return m_SupplyPileManager.NumEmptyPiles();
 }
 
 void Engine::SetOutpostFlag( bool flag )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_OutpostFlag = flag;
 }
 
 void Engine::OnEmbargo(Domlib::Card* pCard)
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_SupplyPileManager.Embargo( pCard );
 }
 
 void Engine::SetAmbassadorCard( Card* pCard )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_pAmbassadorCard = pCard;
 }
 
 void Engine::PutCardInSupply( Card* pCard )
 {
-    DOMLIB_NOT_IMPLEMENTED;
+    m_SupplyPileManager.AddCard( pCard );
 }
 
 Card* Engine::GetAmbassadorCard( void )
 {
-    DOMLIB_NOT_IMPLEMENTED;
-    return Card::GetCard( CARDID::NULLCARD );
+    return m_pAmbassadorCard;
 }
 
 } // namespace Domlib

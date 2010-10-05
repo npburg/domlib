@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "SupplyPile.h"
+#include "Card.h"
 
 namespace Domlib
 {
@@ -12,7 +13,15 @@ SupplyPile::SupplyPile(
     m_CardId            = cardId;
     m_CardsAvailable    = cardsAvailable;
     m_EmbargoTokens     = 0;
-    m_TradeRouteToken   = 1;
+    if( Card::GetCard( cardId )->IsVictoryCard() )
+    {
+        m_TradeRouteToken = 1;
+    }
+    else
+    {
+        m_TradeRouteToken = 0;
+    }
+    m_ContrabandFlag    = false;
 }
 
 CARDID SupplyPile::GetCardId( void ) const    
@@ -35,6 +44,21 @@ int SupplyPile::TradeRouteTokens( void ) const
     return m_TradeRouteToken;
 }
 
+bool SupplyPile::IsEmpty( void ) const
+{
+    if( m_CardsAvailable > 0 )
+    {
+        return false;
+    }
+
+    return true;
+}
+
+void SupplyPile::SetSize( int quantity )
+{
+    m_CardsAvailable = quantity;
+}
+
 void SupplyPile::AddCard( void )
 {
     m_CardsAvailable++;
@@ -53,7 +77,7 @@ void SupplyPile::RemoveCard( void )
     }
 }
 
-void SupplyPile::AddEmbargoTokens( void ) 
+void SupplyPile::AddEmbargoToken( void ) 
 { 
     m_EmbargoTokens++; 
 }
@@ -64,6 +88,11 @@ void SupplyPile::RemoveTradeRouteToken( void )
     {
         m_TradeRouteToken = 0;
     }
+}
+
+void SupplyPile::SetContrabandFlag( bool flag )
+{
+    m_ContrabandFlag = flag;
 }
 
 } // namespace Domlib

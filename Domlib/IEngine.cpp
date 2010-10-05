@@ -26,7 +26,7 @@ bool IEngine::IsCardInStock( CARDID cardId )
     return m_pEngine->IsCardInStock( cardId );
 }
 
-bool IEngine::CardsAvailable( CARDID cardId )
+int IEngine::CardsAvailable( CARDID cardId )
 {
     return m_pEngine->CardsAvailable( cardId );
 }

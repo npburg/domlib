@@ -22,9 +22,10 @@ public:
     // IEngine Interfaces
     bool        IsCardInStock( CARDID cardId );
     CardList    PilesAvailable( void );
-    bool        CardsAvailable( CARDID cardId );
+    int         CardsAvailable( CARDID cardId );
     CardList    CardsCostingExactly( const Treasure* cost );
 
+    void        RandomizeKingdomCards( int cardSet );
     void        RegisterPlayer( AI* pAI );
     void        Play( void );
 
@@ -50,10 +51,12 @@ protected:
     bool IsGameOver( void ) const;
 
 private:
+    int                 m_CardSet;
+    Player*             m_pNullPlayer;
     Player*             m_pCurrentPlayer;
     PlayerList          m_PlayerList;
     SupplyPileManager   m_SupplyPileManager;
-    ICardList           m_TrashList;
+    CardList            m_TrashList;
     int                 m_TradeRouteMat;
     bool                m_OutpostFlag;
     bool                m_PossessionFlag;
